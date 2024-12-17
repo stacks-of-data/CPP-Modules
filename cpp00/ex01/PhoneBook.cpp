@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 01:11:26 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/18 01:56:59 by amsaleh          ###   ########.fr       */
+/*   Updated: 2024/12/18 02:11:32 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 int	PhoneBook::GetNewContactIndex()
 {
-	std::time_t	oldest_time = 0;
+	std::time_t	oldest_time = contacts[0].time;
 	int			oldest_i = 0;
 	if (n_contacts_init < 8)
 		return (n_contacts_init);
-	oldest_time = contacts[0].time;
 	for (int i = 1; i < 8; i++)
 	{
 		if (contacts[i].time < oldest_time)
