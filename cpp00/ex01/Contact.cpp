@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/18 01:11:41 by amsaleh           #+#    #+#             */
+/*   Updated: 2024/12/18 01:11:42 by amsaleh          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Contact.hpp"
 
 void Contact::SetContactData(std::string _first_name, std::string _last_name,
@@ -9,4 +21,17 @@ void Contact::SetContactData(std::string _first_name, std::string _last_name,
 	phone_number = _phone_number;
 	darkest_secret = _darkest_secret;
 	std::time(&time);
+}
+
+std::string	Contact::GetContactFirstName()
+{
+	return (first_name);
+}
+std::string	Contact::GetContactLastName()
+{
+	return (last_name);
+}
+std::string	Contact::GetContactNickname()
+{
+	return (nickname);
 }

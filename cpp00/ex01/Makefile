@@ -1,8 +1,8 @@
 CC = g++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-SRCS = main.cpp Contact.cpp PhoneBook.cpp
+SRCS = main.cpp Contact.cpp PhoneBook.cpp utils.cpp
 OBJS = $(SRCS:.cpp=.o)
-HEADERS = PhoneBook.hpp Contact.hpp
+HEADERS = PhoneBook.hpp Contact.hpp utils.hpp
 NAME = contacts
 
 all: $(NAME)

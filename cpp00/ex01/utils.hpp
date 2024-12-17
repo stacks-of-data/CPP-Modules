@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/18 01:11:29 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/18 01:47:33 by amsaleh          ###   ########.fr       */
+/*   Created: 2024/12/18 01:37:42 by amsaleh           #+#    #+#             */
+/*   Updated: 2024/12/18 01:50:02 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_H
-# define PHONEBOOK_H
+#ifndef UTILS_H
+# define UTILS_H
 
 #include <iostream>
-#include "Contact.hpp"
-#include "utils.hpp"
 
-class	PhoneBook
-{
-	private:
-	Contact	contacts[8];
-	int		n_contacts_init = 0;
-	int		GetNewContactIndex();
-	public:
-	void	AddContact();
-};
+bool	CheckInputErrors(bool bDisplay);
+bool	CheckInputErrorsStr(std::string input);
 
 #endif
