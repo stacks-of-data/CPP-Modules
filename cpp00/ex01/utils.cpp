@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 01:36:35 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/18 15:31:42 by amsaleh          ###   ########.fr       */
+/*   Updated: 2024/12/18 18:28:15 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool	CheckPhoneNumber(std::string str)
 	{
 		if (!isdigit(str[i]) && str[i] != ' ')
 		{
-			std::cerr << "BRUH, I TOLD YOU TO INPUT A PHONE NUMBER YOU IDIOT!!!\nYOU DON'T EVEN DESERVE A RETRY.";
+			std::cerr << "BRUH, I TOLD YOU TO INPUT A PHONE NUMBER YOU IDIOT!!!\nYOU DON'T EVEN DESERVE A RETRY.\n";
 			return (0);
 		}
 		i++;
@@ -80,6 +80,44 @@ bool	CheckSearchIndexInput(std::string str)
 		return (0);
 	}
 	return (1);
+}
+
+bool	CheckName(std::string str)
+{
+	size_t	i = 0;
+	bool	bContainsAlpha = false;
+	while (str[i])
+	{
+		if (isdigit(str[i]))
+		{
+			std::cerr << "YOU DON'T KNOW WHAT A NAME IS, WHO ENTERS A NUMBER IN A NAME!!!\nYOU DON'T EVEN DESERVE A RETRY.\n";
+			return (0);
+		}
+		else if (!isalpha(str[i]) && !isspace(str[i]))
+		{
+			std::cerr << "ITS CRAZY THAT YOU ENTERED A SPECIAL CHARACTER IN A NAME!!!\nYOU DON'T EVEN DESERVE A RETRY.\n";
+			return (0);
+		}
+		else if (isalpha(str[i]))
+			bContainsAlpha = true;
+		i++;
+	}
+	if (!bContainsAlpha)
+	{
+		std::cerr << "A NAME WITH ONLY WHITESPACES ARE YOU SERIOUS!!!\nYOU DON'T EVEN DESERVE A RETRY.\n";
+		return (0);
+	}
+	return (1);
+}
+
+bool	CheckNickname(std::string str)
+{
+	size_t	i = 0;
+	bool	bContainsAlpha = false;
+	while (str[i])
+	{
+		if (isalnum(str[i]) && !isspace(str[i]))
+	}
 }
 
 void	TruncateStr(std::string *str)

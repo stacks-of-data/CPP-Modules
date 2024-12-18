@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 01:11:26 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/18 16:25:08 by amsaleh          ###   ########.fr       */
+/*   Updated: 2024/12/18 18:26:43 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,11 @@ void	PhoneBook::AddContact()
 	std::cout << "First Name: ";
 	std::getline(std::cin, first_name);
 	if (!CheckInputErrorsStr(first_name)) return;
+	if (!CheckName(first_name)) return;
 	std::cout << "Last Name: ";
 	std::getline(std::cin, last_name);
 	if (!CheckInputErrorsStr(last_name)) return;
+	if (!CheckName(last_name)) return;
 	std::cout << "Nickname: ";
 	std::getline(std::cin, nickname);
 	if (!CheckInputErrorsStr(nickname)) return;
