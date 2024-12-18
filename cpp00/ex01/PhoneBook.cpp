@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 01:11:26 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/18 15:58:36 by amsaleh          ###   ########.fr       */
+/*   Updated: 2024/12/18 16:25:08 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,16 +87,19 @@ void	PhoneBook::SearchContacts()
 		std::cout << std::setw(10) << nickname << '\n';
 	}
 	std::cout << "Enter an contact index from 1-8 to get the full contact info: ";
-	INPUT_LABEL:
-	std::getline(std::cin, input);
-	if (!CheckInputErrorsStr(input)) return;
-	if (!CheckSearchIndexInput(input)) return;
-	i_input = input[0] - '0';
-	if (n_contacts_init < i_input)
+	do
 	{
-		std::cerr << "Contact doesn't exist, try again: ";
-		goto INPUT_LABEL;
-	}
+		std::getline(std::cin, input);
+		if (!CheckInputErrorsStr(input)) return;
+		if (!CheckSearchIndexInput(input)) return;
+		i_input = input[0] - '0';
+		if (n_contacts_init < i_input)
+		{
+			std::cerr << "Contact doesn't exist, try again: ";
+			continue;
+		}
+		break;
+	} while (true);
 	std::cout << i_input << '\n';
 	std::cout << "First Name: " << contacts[i_input - 1].GetContactFirstName() << '\n';
 	std::cout << "Last Name: " << contacts[i_input - 1].GetContactLastName() << '\n';
