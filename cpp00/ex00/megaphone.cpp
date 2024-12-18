@@ -11,7 +11,7 @@ int main(int ac, char **av)
 	for (size_t i = 0; i < str.length(); i++)
 	{
 		if (!isupper(str[i]))
-			str[i] = toupper(str[i]);
+			str.replace(i, 1, 1, toupper(str[i]));
 	}
     std::cout << str << "\n";
     return (0);
