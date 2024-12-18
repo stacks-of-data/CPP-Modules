@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 01:11:26 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/18 18:26:43 by amsaleh          ###   ########.fr       */
+/*   Updated: 2024/12/18 20:02:25 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,16 @@ void	PhoneBook::AddContact()
 	int	i = n_contacts_init < 8 ? n_contacts_init: GetNewContactIndex();
 	std::cout << "First Name: ";
 	std::getline(std::cin, first_name);
-	if (!CheckInputErrorsStr(first_name)) return;
-	if (!CheckName(first_name)) return;
+	if (!CheckInputErrorsStr(first_name) || !CheckName(first_name)) return;
 	std::cout << "Last Name: ";
 	std::getline(std::cin, last_name);
-	if (!CheckInputErrorsStr(last_name)) return;
-	if (!CheckName(last_name)) return;
+	if (!CheckInputErrorsStr(last_name) || !CheckName(last_name)) return;
 	std::cout << "Nickname: ";
 	std::getline(std::cin, nickname);
-	if (!CheckInputErrorsStr(nickname)) return;
+	if (!CheckInputErrorsStr(nickname) || !CheckNickname(nickname)) return;
 	std::cout << "Phone Number: ";
 	std::getline(std::cin, phone_number);
-	if (!CheckInputErrorsStr(phone_number)) return;
-	if (!CheckPhoneNumber(phone_number)) return;
+	if (!CheckInputErrorsStr(phone_number) || !CheckPhoneNumber(phone_number)) return;
 	std::cout << "Darkest Secret: ";
 	std::getline(std::cin, darkest_secret);
 	if (!CheckInputErrorsStr(darkest_secret)) return;
@@ -92,8 +89,7 @@ void	PhoneBook::SearchContacts()
 	do
 	{
 		std::getline(std::cin, input);
-		if (!CheckInputErrorsStr(input)) return;
-		if (!CheckSearchIndexInput(input)) return;
+		if (!CheckInputErrorsStr(input) || !CheckSearchIndexInput(input)) return;
 		i_input = input[0] - '0';
 		if (n_contacts_init < i_input)
 		{

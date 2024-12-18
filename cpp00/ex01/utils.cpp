@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 01:36:35 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/18 18:28:15 by amsaleh          ###   ########.fr       */
+/*   Updated: 2024/12/18 20:05:51 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,15 +113,21 @@ bool	CheckName(std::string str)
 bool	CheckNickname(std::string str)
 {
 	size_t	i = 0;
-	bool	bContainsAlpha = false;
 	while (str[i])
 	{
-		if (isalnum(str[i]) && !isspace(str[i]))
+		if (isascii(str[i]) && !isspace(str[i]))
+			return (1);
+		i++;
 	}
+	std::cerr << "REALLY! NICKNAME WITH ONLY WHITESPACES!!!\nYOU DON'T EVEN DESERVE A RETRY.\n";
+	return (0);
 }
 
 void	TruncateStr(std::string *str)
 {
 	if (str->length() > 10)
-		str->replace(9, 2, ".\0");
+	{
+		str->replace(9, 1, ".");
+		str->erase(10);
+	}
 }
