@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 01:11:41 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/18 01:11:42 by amsaleh          ###   ########.fr       */
+/*   Updated: 2024/12/18 15:23:58 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,14 @@ std::string	Contact::GetContactLastName()
 std::string	Contact::GetContactNickname()
 {
 	return (nickname);
+}
+
+std::string	Contact::GetContactPhoneNumber()
+{
+	return (phone_number);
+}
+
+std::string	Contact::GetContactDarkestSecret()
+{
+	return (darkest_secret);
 }

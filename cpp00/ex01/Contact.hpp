@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 01:11:38 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/18 01:11:39 by amsaleh          ###   ########.fr       */
+/*   Updated: 2024/12/18 15:24:24 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ class Contact
 	std::string	GetContactFirstName();
 	std::string	GetContactLastName();
 	std::string	GetContactNickname();
+	std::string	GetContactPhoneNumber();
+	std::string	GetContactDarkestSecret();
 };
 
 #endif
