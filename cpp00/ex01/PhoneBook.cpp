@@ -14,15 +14,15 @@
 
 int	PhoneBook::GetNewContactIndex()
 {
-	std::time_t	oldest_time = contacts[0].time;
+	std::time_t	oldest_time = contacts[0].GetContactTimestamp();
 	int			oldest_i = 0;
 	if (n_contacts_init < 8)
 		return (n_contacts_init);
 	for (int i = 1; i < 8; i++)
 	{
-		if (contacts[i].time < oldest_time)
+		if (contacts[i].GetContactTimestamp() < oldest_time)
 		{
-			oldest_time = contacts[i].time;
+			oldest_time = contacts[i].GetContactTimestamp();
 			oldest_i = i;
 		}
 	}

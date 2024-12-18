@@ -24,8 +24,8 @@ class Contact
 	std::string	first_name;
 	std::string	last_name;
 	std::string	nickname;
-	public:
 	std::time_t	time;
+	public:
 	void SetContactData(std::string _first_name, std::string _last_name,
 		std::string _nickname, std::string _phone_number, std::string _darkest_secret);
 	std::string	GetContactFirstName();
@@ -33,6 +33,7 @@ class Contact
 	std::string	GetContactNickname();
 	std::string	GetContactPhoneNumber();
 	std::string	GetContactDarkestSecret();
+	std::time_t	GetContactTimestamp();
 };
 
 #endif

@@ -45,3 +45,8 @@ std::string	Contact::GetContactDarkestSecret()
 {
 	return (darkest_secret);
 }
+
+std::time_t Contact::GetContactTimestamp()
+{
+	return (time);
+}
