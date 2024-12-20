@@ -1,5 +1,5 @@
 *.o
 cpp00/ex00/megaphone
 cpp00/ex01/contacts
-cpp00/ex02/a.out
+cpp00/ex02/accounts_manager
 .vscode
