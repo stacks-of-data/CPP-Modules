@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 22:29:24 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/20 22:34:16 by amsaleh          ###   ########.fr       */
+/*   Updated: 2024/12/20 22:54:28 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,10 @@ Account::Account(int initial_deposit)
 	_totalAmount += initial_deposit;
 	_amount = initial_deposit;
 	_nbAccounts++;
+}
+
+Account::Account(void)
+{
 }
 
 Account::~Account(void)
