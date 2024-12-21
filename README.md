@@ -18,7 +18,6 @@ ctime: https://cplusplus.com/reference/ctime/
 iomanip: https://cplusplus.com/reference/iomanip/  
 STL: https://www.geeksforgeeks.org/the-c-standard-template-library-stl/  
 operator overloading: https://en.cppreference.com/w/cpp/language/operators  
-allocator: https://en.cppreference.com/w/cpp/memory/allocator  
 Vector Constructor: https://cplusplus.com/reference/vector/vector/vector/  
 iterator: https://en.cppreference.com/w/cpp/iterator/iterator  
 for_each: https://en.cppreference.com/w/cpp/algorithm/for_each  
