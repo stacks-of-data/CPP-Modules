@@ -19,5 +19,6 @@ STL: https://www.geeksforgeeks.org/the-c-standard-template-library-stl/
 operator overloading: https://en.cppreference.com/w/cpp/language/operators  
 allocator: https://en.cppreference.com/w/cpp/memory/allocator  
 Vector Constructor: https://cplusplus.com/reference/vector/vector/vector/  
+iterator: https://en.cppreference.com/w/cpp/iterator/iterator  
 for_each: https://en.cppreference.com/w/cpp/algorithm/for_each  
 mem_fun_ref: https://en.cppreference.com/w/cpp/utility/functional/mem_fun_ref  
