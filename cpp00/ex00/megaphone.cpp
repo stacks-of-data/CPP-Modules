@@ -7,12 +7,16 @@ int main(int ac, char **av)
         std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << "\n";
         return (0);
     }
-    std::string	str = av[1];
-	for (size_t i = 0; i < str.length(); i++)
-	{
-		if (!isupper(str[i]))
-			str.replace(i, 1, 1, toupper(str[i]));
-	}
-    std::cout << str << "\n";
+    for (size_t i = 1; i < ac; i++)
+    {
+        std::string	str = av[i];
+	    for (size_t j = 0; j < str.length(); j++)
+	    {
+		    if (!isupper(str[j]))
+			    str.replace(j, 1, 1, toupper(str[j]));
+	    }
+        std::cout << str;
+    }
+    std::cout << '\n';
     return (0);
 }
