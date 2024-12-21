@@ -1,5 +1,6 @@
+# CPP-Modules
 CPP-Modules are C++ projects with the main goal of OOP where we will learn about Namespaces, classes, stdio streams, errors handling in C++, STL.  
-CPP00 Exercises:  
+## CPP00  
 EX00 (Megaphone):  
 Create a program which take command line arguments then capitalize each alphapatical character in the arguments then output them to the standard output in C++ manner.  
 EX01 (My Awesome PhoneBook):  
