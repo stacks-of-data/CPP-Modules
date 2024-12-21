@@ -1,4 +1,4 @@
-CPP-Modules are C++ projects with the main goal of OOP where we will learn about Namespaces, classes, stdio streams, errors handling in C++, STL.
+CPP-Modules are C++ projects with the main goal of OOP where we will learn about Namespaces, classes, stdio streams, errors handling in C++, STL.  
 CPP00 Exercises:  
 EX00 (Megaphone):  
 Create a program which take command line arguments then capitalize each alphapatical character in the arguments then output them to the standard output in C++ manner.  
@@ -9,11 +9,15 @@ This exersice will simulate a problem about a lost source file where you only ha
 Resources:  
 OOP: https://www.w3schools.com/cpp/cpp_oop.asp  
 iostream: https://cplusplus.com/reference/iostream/  
+ios_base: https://cplusplus.com/reference/ios/ios_base/  
 string: https://cplusplus.com/reference/string/string/  
+basic_string: https://cplusplus.com/reference/string/basic_string/  
 getline: https://cplusplus.com/reference/string/string/getline/  
 ctime: https://cplusplus.com/reference/ctime/  
 iomanip: https://cplusplus.com/reference/iomanip/  
 STL: https://www.geeksforgeeks.org/the-c-standard-template-library-stl/  
+operator overloading: https://en.cppreference.com/w/cpp/language/operators  
+allocator: https://en.cppreference.com/w/cpp/memory/allocator  
 Vector Constructor: https://cplusplus.com/reference/vector/vector/vector/  
 for_each: https://en.cppreference.com/w/cpp/algorithm/for_each  
 mem_fun_ref: https://en.cppreference.com/w/cpp/utility/functional/mem_fun_ref  
