@@ -10,14 +10,15 @@ This exersice will simulate a problem about a lost source file where you only ha
 Resources:  
 OOP: https://www.w3schools.com/cpp/cpp_oop.asp  
 iostream: https://cplusplus.com/reference/iostream/  
+iomanip: https://cplusplus.com/reference/iomanip/  
 ios_base: https://cplusplus.com/reference/ios/ios_base/  
 iostate: https://cplusplus.com/reference/ios/ios_base/iostate/  
+Input/output with files: https://cplusplus.com/doc/tutorial/files/  
 string: https://cplusplus.com/reference/string/string/  
 basic_string: https://cplusplus.com/reference/string/basic_string/  
 SSO: https://rrmprogramming.com/article/small-string-optimization-sso-in-c/  
 getline: https://cplusplus.com/reference/string/string/getline/  
 ctime: https://cplusplus.com/reference/ctime/  
-iomanip: https://cplusplus.com/reference/iomanip/  
 STL: https://www.geeksforgeeks.org/the-c-standard-template-library-stl/  
 operator overloading: https://en.cppreference.com/w/cpp/language/operators  
 Vector Constructor: https://cplusplus.com/reference/vector/vector/vector/  
@@ -25,5 +26,4 @@ iterator: https://en.cppreference.com/w/cpp/iterator/iterator
 for_each: https://en.cppreference.com/w/cpp/algorithm/for_each  
 mem_fun_ref: https://en.cppreference.com/w/cpp/utility/functional/mem_fun_ref  
 References: https://www.geeksforgeeks.org/references-in-cpp/  
-Constructors and member initializer lists: https://en.cppreference.com/w/cpp/language/constructor  
-Input/output with files: https://cplusplus.com/doc/tutorial/files/
+Constructors and member initializer lists: https://en.cppreference.com/w/cpp/language/constructor
