@@ -11,6 +11,7 @@ Resources:
 OOP: https://www.w3schools.com/cpp/cpp_oop.asp  
 iostream: https://cplusplus.com/reference/iostream/  
 ios_base: https://cplusplus.com/reference/ios/ios_base/  
+iostate: https://cplusplus.com/reference/ios/ios_base/iostate/  
 string: https://cplusplus.com/reference/string/string/  
 basic_string: https://cplusplus.com/reference/string/basic_string/  
 SSO: https://rrmprogramming.com/article/small-string-optimization-sso-in-c/  
@@ -23,3 +24,6 @@ Vector Constructor: https://cplusplus.com/reference/vector/vector/vector/
 iterator: https://en.cppreference.com/w/cpp/iterator/iterator  
 for_each: https://en.cppreference.com/w/cpp/algorithm/for_each  
 mem_fun_ref: https://en.cppreference.com/w/cpp/utility/functional/mem_fun_ref  
+References: https://www.geeksforgeeks.org/references-in-cpp/  
+Constructors and member initializer lists: https://en.cppreference.com/w/cpp/language/constructor  
+Input/output with files: https://cplusplus.com/doc/tutorial/files/
