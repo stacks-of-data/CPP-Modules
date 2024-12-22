@@ -5,30 +5,25 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/18 01:11:35 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/21 23:25:45 by amsaleh          ###   ########.fr       */
+/*   Created: 2024/12/22 00:56:26 by amsaleh           #+#    #+#             */
+/*   Updated: 2024/12/22 00:56:27 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include <iostream>
+#include <string>
 
 int main()
 {
-	PhoneBook *phone_book = new PhoneBook;
-	while (true)
-	{
-		std::string	cmd;
-		std::cout << "Enter a command: ";
-		std::getline(std::cin, cmd);
-		if (!CheckInputErrors(true))
-			break;
-		if (!cmd.compare("ADD"))
-			phone_book->AddContact();
-		if (!cmd.compare("SEARCH"))
-			phone_book->SearchContacts();
-		if (!cmd.compare("EXIT") || !CheckInputErrors(true))
-			break;
-	}
-	delete phone_book;
-	return (0);
+	std::string		str = "HI THIS IS BRAIN";
+	std::string*	stringPTR = &str;
+	std::string&	stringREF = str;
+
+	std::cout << "str memory address: " << (void *)stringREF.c_str() << '\n';
+	std::cout << "stringPTR memory address: " << stringPTR << '\n';
+	std::cout << "stringREF memory address: " << (void *)stringREF.c_str() << '\n';
+
+	std::cout << "str: " << str << '\n';
+	std::cout << "stringPTR: " << *stringPTR << '\n';
+	std::cout << "stringREF: " << stringREF << '\n';
 }

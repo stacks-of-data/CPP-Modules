@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/18 01:11:29 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/21 23:24:13 by amsaleh          ###   ########.fr       */
+/*   Created: 2024/12/22 21:20:09 by amsaleh           #+#    #+#             */
+/*   Updated: 2024/12/22 22:02:59 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_H
-# define PHONEBOOK_H
+#include "HumanB.hpp"
 
-#include <iomanip>
-#include "Contact.hpp"
-#include "utils.hpp"
-
-class	PhoneBook
+HumanB::HumanB(std::string name) : name(name), weapon(NULL)
 {
-	private:
-	Contact	contacts[8];
-	int		n_contacts_init = 0;
-	int		GetNewContactIndex(void);
-	public:
-	PhoneBook(void);
-	~PhoneBook();
-	void	AddContact(void);
-	void	SearchContacts(void);
-};
+}
 
-#endif
+HumanB::~HumanB()
+{
+}
+
+void	HumanB::setWeapon(Weapon& weapon)
+{
+	this->weapon = &weapon;
+}
+
+void	HumanB::attack()
+{
+	if (!weapon)
+		std::cout << name << " can't attack!\n";
+	else
+		std::cout << name << " attacks with their " << weapon->getType() << '\n';
+}

@@ -5,30 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/18 01:11:35 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/21 23:25:45 by amsaleh          ###   ########.fr       */
+/*   Created: 2024/12/21 22:50:05 by amsaleh           #+#    #+#             */
+/*   Updated: 2024/12/22 00:24:22 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
+#include "Zombie.hpp"
 
 int main()
 {
-	PhoneBook *phone_book = new PhoneBook;
-	while (true)
-	{
-		std::string	cmd;
-		std::cout << "Enter a command: ";
-		std::getline(std::cin, cmd);
-		if (!CheckInputErrors(true))
-			break;
-		if (!cmd.compare("ADD"))
-			phone_book->AddContact();
-		if (!cmd.compare("SEARCH"))
-			phone_book->SearchContacts();
-		if (!cmd.compare("EXIT") || !CheckInputErrors(true))
-			break;
-	}
-	delete phone_book;
+	int	n_zombies = 500;
+	std::string z_name = "Brainzzz";
+	Zombie*	z_horde = zombieHorde(n_zombies, z_name);
+	for (int i = 0; i < n_zombies; i++)
+		z_horde[i].announce();
+	delete[] z_horde;
 	return (0);
 }

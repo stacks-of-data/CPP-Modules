@@ -6,13 +6,21 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 01:11:26 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/18 20:02:25 by amsaleh          ###   ########.fr       */
+/*   Updated: 2024/12/21 23:24:59 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-int	PhoneBook::GetNewContactIndex()
+PhoneBook::PhoneBook(void)
+{
+}
+
+PhoneBook::~PhoneBook()
+{
+}
+
+int	PhoneBook::GetNewContactIndex(void)
 {
 	std::time_t	oldest_time = contacts[0].GetContactTimestamp();
 	int			oldest_i = 0;
@@ -29,7 +37,7 @@ int	PhoneBook::GetNewContactIndex()
 	return (oldest_i);
 }
 
-void	PhoneBook::AddContact()
+void	PhoneBook::AddContact(void)
 {
 	std::string	first_name;
 	std::string	last_name;
@@ -58,7 +66,7 @@ void	PhoneBook::AddContact()
 	std::cout << "New contact was added successfully!\n";
 }
 
-void	PhoneBook::SearchContacts()
+void	PhoneBook::SearchContacts(void)
 {
 	std::string	input;
 	int			i_input;

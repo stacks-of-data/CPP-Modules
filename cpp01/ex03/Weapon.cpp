@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/18 01:11:29 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/21 23:24:13 by amsaleh          ###   ########.fr       */
+/*   Created: 2024/12/22 13:39:52 by amsaleh           #+#    #+#             */
+/*   Updated: 2024/12/22 21:34:36 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_H
-# define PHONEBOOK_H
+#include "Weapon.hpp"
 
-#include <iomanip>
-#include "Contact.hpp"
-#include "utils.hpp"
-
-class	PhoneBook
+Weapon::Weapon(std::string weapon_type)
 {
-	private:
-	Contact	contacts[8];
-	int		n_contacts_init = 0;
-	int		GetNewContactIndex(void);
-	public:
-	PhoneBook(void);
-	~PhoneBook();
-	void	AddContact(void);
-	void	SearchContacts(void);
-};
+	this->weapon_type = weapon_type;
+}
 
-#endif
+Weapon::~Weapon()
+{
+}
+
+const std::string	Weapon::getType()
+{
+	return (weapon_type);
+}
+
+void	Weapon::setType(std::string new_weapon_type)
+{
+	weapon_type = new_weapon_type;
+}

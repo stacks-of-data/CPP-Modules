@@ -1,5 +1,10 @@
 *.o
+.vscode
+.idea
 cpp00/ex00/megaphone
 cpp00/ex01/contacts
 cpp00/ex02/accounts_manager
-.vscode
+cpp01/ex00/brainzzzz
+cpp01/ex01/brainzzzz_horde
+cpp01/ex02/hi_brain
+cpp01/ex03/violence

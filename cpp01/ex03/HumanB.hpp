@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/18 01:11:29 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/21 23:24:13 by amsaleh          ###   ########.fr       */
+/*   Created: 2024/12/22 18:03:07 by amsaleh           #+#    #+#             */
+/*   Updated: 2024/12/22 22:01:42 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_H
-# define PHONEBOOK_H
+#ifndef HUMANB_H
+#define HUMANB_H
 
-#include <iomanip>
-#include "Contact.hpp"
-#include "utils.hpp"
+#include <iostream>
+#include "Weapon.hpp"
 
-class	PhoneBook
+class HumanB
 {
 	private:
-	Contact	contacts[8];
-	int		n_contacts_init = 0;
-	int		GetNewContactIndex(void);
+	std::string	name;
+	Weapon*		weapon;
 	public:
-	PhoneBook(void);
-	~PhoneBook();
-	void	AddContact(void);
-	void	SearchContacts(void);
+	HumanB(std::string name);
+	~HumanB();
+	void	setWeapon(Weapon& weapon);
+	void	attack();
 };
 
 #endif
