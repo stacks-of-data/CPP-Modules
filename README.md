@@ -13,6 +13,7 @@ iostream: https://cplusplus.com/reference/iostream/
 ios_base: https://cplusplus.com/reference/ios/ios_base/  
 string: https://cplusplus.com/reference/string/string/  
 basic_string: https://cplusplus.com/reference/string/basic_string/  
+SSO: https://rrmprogramming.com/article/small-string-optimization-sso-in-c/  
 getline: https://cplusplus.com/reference/string/string/getline/  
 ctime: https://cplusplus.com/reference/ctime/  
 iomanip: https://cplusplus.com/reference/iomanip/  
