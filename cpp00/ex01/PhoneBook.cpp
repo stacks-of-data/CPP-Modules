@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 01:11:26 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/21 23:24:59 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/01 17:45:20 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 PhoneBook::PhoneBook(void)
 {
+	n_contacts_init = 0;
 }
 
 PhoneBook::~PhoneBook()
@@ -113,5 +114,5 @@ void	PhoneBook::SearchContacts(void)
 	std::cout << "Phone Number: " << contacts[i_input - 1].GetContactPhoneNumber() << '\n';
 	std::cout << "Darkest Secret: " << contacts[i_input - 1].GetContactDarkestSecret() << '\n';
 	std::cout << "Press ENTER to continue!";
-	getchar();
+	std::cin.get();
 }

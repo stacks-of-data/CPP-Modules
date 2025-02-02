@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 01:11:29 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/21 23:24:13 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/01 17:43:32 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class	PhoneBook
 {
 	private:
 	Contact	contacts[8];
-	int		n_contacts_init = 0;
+	int		n_contacts_init;
 	int		GetNewContactIndex(void);
 	public:
 	PhoneBook(void);

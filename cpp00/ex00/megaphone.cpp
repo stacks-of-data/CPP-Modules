@@ -7,7 +7,7 @@ int main(int ac, char **av)
         std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << "\n";
         return (0);
     }
-    for (size_t i = 1; i < ac; i++)
+    for (int i = 1; i < ac; i++)
     {
         std::string	str = av[i];
 	    for (size_t j = 0; j < str.length(); j++)

@@ -1,13 +1,15 @@
-CC = g++
+CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
-#HEADERS = Weapon.hpp HumanA.hpp HumanB.hpp
+#HEADERS = TEST.HPP
 NAME = sed
 
 all: $(NAME)
 $(NAME): $(OBJS)
 	$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
 clean:
 	rm -f $(OBJS)
 fclean: clean

@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 01:36:35 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/18 20:05:51 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/02 14:01:41 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,26 @@
 
 bool	CheckInputErrors(bool bDisplay)
 {
+	(void)bDisplay;
 	if (std::cin.bad())
 	{
 		if (bDisplay)
 			std::cerr << "I/O Error, Exiting!\n";
-		return (0);
+		return (false);
 	}
 	if (std::cin.eof())
 	{
 		if (bDisplay)
 			std::cerr << "\nEOF, Exiting!\n";
-		return (0);
+		return (false);
 	}
 	if (std::cin.fail())
 	{
 		if (bDisplay)
 			std::cerr << "Input Error, Exiting!\n";
-		return (0);
+		return (false);
 	}
-	return (1);
+	return (true);
 }
 
 bool	CheckInputErrorsStr(std::string input)
