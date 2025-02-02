@@ -6,12 +6,12 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 18:03:07 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/22 22:01:42 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/02 19:05:35 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HUMANB_H
-#define HUMANB_H
+#ifndef HUMANB_HPP
+#define HUMANB_HPP
 
 #include <iostream>
 #include "Weapon.hpp"

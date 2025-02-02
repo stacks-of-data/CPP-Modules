@@ -6,12 +6,12 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 01:37:42 by amsaleh           #+#    #+#             */
-/*   Updated: 2024/12/18 19:59:02 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/02 19:06:28 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef UTILS_HPP
+# define UTILS_HPP
 
 #include <iostream>
 
