@@ -14,12 +14,12 @@ void	Harl::info(void)
 
 void	Harl::warning(void)
 {
-	std::cout << "[ WARNING ]\nI am not sure why this was done, it can cause issues but okay!\n";
+	std::cerr << "[ WARNING ]\nI am not sure why this was done, it can cause issues but okay!\n";
 }
 
 void	Harl::error(void)
 {
-	std::cout << "[ ERROR ]\nWHAT HAVE YOU DONE!!!!! FIX THE ISSUE!!!!\n";
+	std::cerr << "[ ERROR ]\nWHAT HAVE YOU DONE!!!!! FIX THE ISSUE!!!!\n";
 }
 
 int	getHarlFilterLevel(std::string level, std::string *levels_str)

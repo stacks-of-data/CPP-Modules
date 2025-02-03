@@ -6,19 +6,19 @@ int	checkArgs(int ac, char **av)
 {
 	if (ac != 4)
 	{
-		std::cout << "Correct usage: sed filename s1 s2\n";
+		std::cerr << "Correct usage: sed filename s1 s2\n";
 		return (0);
 	}
 	std::string	filename = av[1];
 	std::string	s1 = av[2];
 	if (filename.empty())
 	{
-		std::cout << "File argument is empty!\n";
+		std::cerr << "File argument is empty!\n";
 		return (0);
 	}
 	if (s1.empty())
 	{
-		std::cout << "s1 argument is empty!\n";
+		std::cerr << "s1 argument is empty!\n";
 		return (0);
 	}
 	return (1);
@@ -78,7 +78,7 @@ int main(int ac, char **av)
 	infile.open(filename.c_str(), std::ifstream::in);
 	if (!infile.is_open())
 	{
-		std::cout << "Attempt to open " << filename << " failed!\n";
+		std::cerr << "Attempt to open " << filename << " failed!\n";
 		return (1);
 	}
 	std::string data = sed_process(infile, s1, s2);
@@ -87,7 +87,7 @@ int main(int ac, char **av)
 	outfile.open(filename.append(".replace").c_str(), std::ofstream::out);
 	if (!outfile.is_open())
 	{
-		std::cout << "Attempt to open " << filename << " failed!\n";
+		std::cerr << "Attempt to open " << filename << " failed!\n";
 		return (1);
 	}
 	outfile << data;
