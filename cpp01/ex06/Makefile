@@ -3,7 +3,7 @@ CFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = main.cpp Harl.cpp
 OBJS = $(SRCS:.cpp=.o)
 HEADERS = Harl.hpp
-NAME = harl
+NAME = harlFilter
 
 all: $(NAME)
 $(NAME): $(OBJS) $(HEADERS)
