@@ -36,6 +36,11 @@ std::string	sed_process(std::ifstream &infile, std::string s1, std::string s2)
 	{
 		start = 0;
 		std::getline(infile, line);
+		if (infile.bad())
+		{
+			std::cout << "Error reading file.\n";
+			std::exit(1);
+		}
 		if (infile.eof())
 		{
 			if (line.empty())
