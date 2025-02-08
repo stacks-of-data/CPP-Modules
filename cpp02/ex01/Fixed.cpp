@@ -6,17 +6,16 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:03:07 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/08 19:29:57 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/09 00:34:34 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <cmath>
 
-Fixed::Fixed()
+Fixed::Fixed() : val(0)
 {
 	std::cout << "Default constructor called\n";
-	this->val = 0;
 }
 
 Fixed::Fixed(const Fixed& obj)
@@ -25,16 +24,14 @@ Fixed::Fixed(const Fixed& obj)
 	*this = obj;
 }
 
-Fixed::Fixed(const int iVal)
+Fixed::Fixed(const int iVal) : val(iVal << this->fractBits)
 {
 	std::cout << "Int constructor called\n";
-	this->val = iVal << this->fractBits;
 }
 
-Fixed::Fixed(const float fVal)
+Fixed::Fixed(const float fVal) : val(roundf(fVal * (1 << this->fractBits)))
 {
 	std::cout << "Float constructor called\n";
-	this->val = roundf(fVal * (1 << this->fractBits));
 }
 
 int	Fixed::toInt() const
@@ -44,7 +41,7 @@ int	Fixed::toInt() const
 
 float	Fixed::toFloat() const
 {
-	return ((float)this->val / (1 << this->fractBits));
+	return (static_cast<float>(this->val) / (1 << this->fractBits));
 }
 
 Fixed::~Fixed()
