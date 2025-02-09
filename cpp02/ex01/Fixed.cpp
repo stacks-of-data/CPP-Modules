@@ -6,32 +6,33 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:03:07 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/09 00:34:34 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/09 16:19:16 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 #include <cmath>
+#include <iostream>
 
 Fixed::Fixed() : val(0)
 {
-	std::cout << "Default constructor called\n";
+	std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed& obj)
 {
-	std::cout << "Copy constructor called\n";
+	std::cout << "Copy constructor called" << std::endl;
 	*this = obj;
 }
 
 Fixed::Fixed(const int iVal) : val(iVal << this->fractBits)
 {
-	std::cout << "Int constructor called\n";
+	std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float fVal) : val(roundf(fVal * (1 << this->fractBits)))
 {
-	std::cout << "Float constructor called\n";
+	std::cout << "Float constructor called" << std::endl;
 }
 
 int	Fixed::toInt() const
@@ -46,23 +47,23 @@ float	Fixed::toFloat() const
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called\n";
+	std::cout << "Destructor called" << std::endl;
 }
 
 int	Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits member function called\n";
+	std::cout << "getRawBits member function called" << std::endl;
 	return (this->val);
 }
 
 void	Fixed::setRawBits(const int raw)
 {
-	std::cout << "setRawBits member function called\n";
+	std::cout << "setRawBits member function called" << std::endl;
 	this->val = raw;
 }
 
 Fixed& Fixed::operator= (const Fixed& obj) {
-	std::cout << "Copy assignment operator called\n";
+	std::cout << "Copy assignment operator called" << std::endl;
 	this->val = obj.val;
 	return (*this);
 }

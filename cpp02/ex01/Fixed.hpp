@@ -6,14 +6,12 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:03:18 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/08 19:25:43 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/09 16:19:05 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 #define FIXED_HPP
-
-#include <iostream>
 
 class Fixed
 {

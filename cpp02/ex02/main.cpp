@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:03:21 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/09 01:09:00 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/09 16:20:10 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main( void )
 	std::cout << a++ << std::endl;
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
-	a = Fixed(20);
-	std::cout << a / b << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;
+	std::cout << Fixed::min( a, b ) << std::endl;
 	return 0;
 }

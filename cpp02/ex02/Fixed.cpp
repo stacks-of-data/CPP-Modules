@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:03:07 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/09 01:12:22 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/09 16:12:19 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,26 @@ Fixed Fixed::operator--(int) {
 	Fixed newObj = *this;
 	operator--();
 	return (newObj);
+}
+
+Fixed&	Fixed::min(Fixed& objX, Fixed& objY)
+{
+	return (objX < objY ? objX : objY);
+}
+
+Fixed&	Fixed::min(const Fixed& objX, const Fixed& objY)
+{
+	return ((Fixed&)(objX < objY ? objX : objY));
+}
+
+Fixed&	Fixed::max(Fixed& objX, Fixed& objY)
+{
+	return (objX > objY ? objX : objY);
+}
+
+Fixed&	Fixed::max(const Fixed& objX, const Fixed& objY)
+{
+	return ((Fixed&)(objX > objY ? objX : objY));
 }
 
 std::ostream &operator<<(std::ostream &os, const Fixed &obj)
