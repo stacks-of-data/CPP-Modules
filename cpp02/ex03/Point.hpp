@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:09:53 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/09 17:09:56 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/09 22:46:27 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,14 @@ class Point
 	public:
 	Point();
 	Point(const float new_x, const float new_y);
+	Point(const Fixed new_x, const Fixed new_y);
 	Point(const Point& obj);
 	~Point();
+	Fixed	getX() const;
+	Fixed	getY() const;
+	Fixed	crossProduct(const Point& obj) const;
 	Point&	operator= (const Point& obj);
+	Point	operator- (const Point& obj) const;
 };
 
 #endif
