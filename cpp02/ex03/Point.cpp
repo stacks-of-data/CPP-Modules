@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:09:51 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/09 22:46:04 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/12 02:26:18 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ Point&	Point::operator= (const Point& obj) {
 	return (*this);
 }
 
-Point	Point::operator- (const Point& obj) const {
-	return (Point(this->x - obj.getX(), this->y - obj.getY()));
+bool	Point::operator== (const Point& obj) const {
+	return (this->x == obj.getX() && this->y == obj.getY());
 }

@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:09:53 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/09 22:46:27 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/12 02:26:24 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class Point
 	Fixed	getY() const;
 	Fixed	crossProduct(const Point& obj) const;
 	Point&	operator= (const Point& obj);
-	Point	operator- (const Point& obj) const;
+	bool	operator== (const Point& obj) const;
 };
 
 #endif
