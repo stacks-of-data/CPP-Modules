@@ -6,16 +6,15 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:03:26 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/09 16:21:09 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/12 17:50:59 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
-Fixed::Fixed()
+Fixed::Fixed() : val(0)
 {
 	std::cout << "Default constructor called" << std::endl;
-	this->val = 0;
 }
 
 Fixed::Fixed(Fixed& obj)
