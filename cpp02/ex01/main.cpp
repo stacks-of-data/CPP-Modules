@@ -6,12 +6,11 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:03:21 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/09 16:19:10 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/12 17:32:34 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-#include <iostream>
 
 int main( void )
 {
