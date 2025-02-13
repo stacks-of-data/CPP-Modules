@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:02:42 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 18:22:16 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 18:37:45 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ unsigned int ClapTrap::getAttackDmg()
 	return (this->attack_dmg);
 }
 
-ClapTrap&	ClapTrap::operator= (ClapTrap& obj)
+ClapTrap&	ClapTrap::operator= (const ClapTrap& obj)
 {
 	std::cout << "ClapTrap Copy assignment operator called" << std::endl;
 	this->name = obj.name;

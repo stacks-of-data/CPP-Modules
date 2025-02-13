@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:49:23 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 18:20:32 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 18:37:18 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ class ClapTrap
 	unsigned int	getHitPoints();
 	unsigned int	getEnergyPoints();
 	unsigned int	getAttackDmg();
-	ClapTrap&	operator= (ClapTrap& obj);
+	ClapTrap&	operator= (const ClapTrap& obj);
 };
 
 #endif

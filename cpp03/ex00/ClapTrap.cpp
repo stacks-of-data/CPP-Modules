@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:02:42 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 18:22:24 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 18:37:51 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	std::cout << this->name << " was repaired by " << amount << std::endl;
 }
 
-ClapTrap&	ClapTrap::operator= (ClapTrap& obj)
+ClapTrap&	ClapTrap::operator= (const ClapTrap& obj)
 {
 	std::cout << "ClapTrap Copy assignment operator called" << std::endl;
 	this->name = obj.name;
