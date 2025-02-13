@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:31:37 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 23:08:47 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 23:45:11 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 	public:
 	static const unsigned int	INIT_HIT_POINTS = 100;

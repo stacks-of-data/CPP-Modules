@@ -6,18 +6,18 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:36:22 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 19:54:30 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 22:54:58 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap() : ClapTrap::ClapTrap(DEFAULT_TRAP_NAME, 100, 50, 20)
+ScavTrap::ScavTrap() : ClapTrap::ClapTrap(DEFAULT_TRAP_NAME, INIT_HIT_POINTS, INIT_ENERGY_POINTS, INIT_ATTACK_DMG)
 {
 	std::cout << "ScavTrap Default constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap::ClapTrap(name, 100, 50, 20)
+ScavTrap::ScavTrap(std::string name) : ClapTrap::ClapTrap(name, INIT_HIT_POINTS, INIT_ENERGY_POINTS, INIT_ATTACK_DMG)
 {
 	std::cout << "ScavTrap Parameterized constructor called" << std::endl;
 }
@@ -30,7 +30,7 @@ ScavTrap::ScavTrap(ScavTrap& obj) : ClapTrap::ClapTrap(obj.getName(), obj.getHit
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << "ScavTrap Destructor constructor called" << std::endl;
+	std::cout << "ScavTrap Destructor called" << std::endl;
 }
 
 void	ScavTrap::attack(const std::string& target)

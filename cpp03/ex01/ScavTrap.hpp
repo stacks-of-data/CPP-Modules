@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:31:37 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 19:45:57 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 23:09:17 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 class ScavTrap : public ClapTrap
 {
 	public:
+	static const unsigned int	INIT_HIT_POINTS = 100;
+	static const unsigned int	INIT_ENERGY_POINTS = 50;
+	static const unsigned int	INIT_ATTACK_DMG = 20;
 	ScavTrap();
 	ScavTrap(std::string name);
 	ScavTrap(ScavTrap& obj);

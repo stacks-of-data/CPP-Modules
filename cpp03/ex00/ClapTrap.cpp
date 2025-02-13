@@ -6,21 +6,21 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:02:42 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 19:12:43 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 22:53:44 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include <limits>
 
-ClapTrap::ClapTrap() : name("DEFAULT_NAME"),
-	hit_points(10), energy_points(10), attack_dmg(0)
+ClapTrap::ClapTrap() : name(DEFAULT_TRAP_NAME),
+	hit_points(INIT_HIT_POINTS), energy_points(INIT_ENERGY_POINTS), attack_dmg(INIT_ATTACK_DMG)
 {
 	std::cout << "ClapTrap Default constructor called" << std::endl;	
 }
 
 ClapTrap::ClapTrap(std::string name) : name(name),
-	hit_points(10), energy_points(10), attack_dmg(0)
+	hit_points(INIT_HIT_POINTS), energy_points(INIT_ENERGY_POINTS), attack_dmg(INIT_ATTACK_DMG)
 {
 	std::cout << "ClapTrap Parameterized constructor called" << std::endl;	
 }
