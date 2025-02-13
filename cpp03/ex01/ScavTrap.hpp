@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:31:37 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 18:20:11 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 18:30:16 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class ScavTrap : public ClapTrap
 	ScavTrap(ScavTrap& obj);
 	~ScavTrap();
 	void	attack(const std::string& target);
+	ScavTrap&	operator= (ScavTrap& obj);
 };
 
 #endif

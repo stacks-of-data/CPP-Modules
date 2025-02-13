@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:36:22 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 18:21:04 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 18:30:53 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,14 @@ void	ScavTrap::attack(const std::string& target)
 	std::cout << "ScavTrap " << this->name << " attacks "
 		<< target << ", causing " << this->attack_dmg
 			<<" points of damage!" << std::endl;
+}
+
+ScavTrap&	ScavTrap::operator= (ScavTrap& obj)
+{
+	std::cout << "ScavTrap Copy assignment operator called" << std::endl;
+	this->name = obj.name;
+	this->hit_points = obj.hit_points;
+	this->energy_points = obj.energy_points;
+	this->attack_dmg = obj.attack_dmg;
+	return (*this);
 }
