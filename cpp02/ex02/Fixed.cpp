@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:03:07 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/09 16:12:19 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 19:09:27 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void Fixed::setRawBits(const int raw) {
 
 Fixed &Fixed::operator=(const Fixed &obj)
 {
-	this->val = obj.val;
+	if (this != &obj)
+		this->val = obj.val;
 	return (*this);
 }
 
