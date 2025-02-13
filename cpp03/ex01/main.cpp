@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:47:51 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 18:28:17 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 19:47:30 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int main()
 	obj_scav->takeDamage(5);
 	obj_scav->attack("Human");
 	obj_scav->beRepaired(5);
+	obj_scav->guardGate();
 	for (int i = 0; i < 10; i++)
 		obj_scav->attack("Human");
 	delete obj_scav;

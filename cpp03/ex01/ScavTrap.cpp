@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:36:22 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 18:30:53 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 19:46:48 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ void	ScavTrap::attack(const std::string& target)
 	std::cout << "ScavTrap " << this->name << " attacks "
 		<< target << ", causing " << this->attack_dmg
 			<<" points of damage!" << std::endl;
+}
+
+void	ScavTrap::guardGate()
+{
+	std::cout << this->name << " is now in gate keeper mode" << std::endl;
 }
 
 ScavTrap&	ScavTrap::operator= (ScavTrap& obj)
