@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:36:22 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 19:46:48 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 19:54:30 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ void	ScavTrap::guardGate()
 ScavTrap&	ScavTrap::operator= (ScavTrap& obj)
 {
 	std::cout << "ScavTrap Copy assignment operator called" << std::endl;
-	this->name = obj.name;
-	this->hit_points = obj.hit_points;
-	this->energy_points = obj.energy_points;
-	this->attack_dmg = obj.attack_dmg;
+	this->name = obj.getName();
+	this->hit_points = obj.getHitPoints();
+	this->energy_points = obj.getEnergyPoints();
+	this->attack_dmg = obj.getAttackDmg();
 	return (*this);
 }
