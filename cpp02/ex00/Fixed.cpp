@@ -6,11 +6,12 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:03:26 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/12 17:50:59 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 13:51:31 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+#include <iostream>
 
 Fixed::Fixed() : val(0)
 {
