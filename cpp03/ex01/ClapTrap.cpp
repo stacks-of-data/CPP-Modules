@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:02:42 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 18:37:45 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 19:13:50 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ ClapTrap::ClapTrap(std::string name, unsigned int hit_points,
 	std::cout << "ClapTrap Parameterized constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(ClapTrap& obj) : name(obj.name),
-	hit_points(obj.hit_points), energy_points(obj.energy_points),
-	attack_dmg(obj.attack_dmg)
+ClapTrap::ClapTrap(ClapTrap& obj) : name(obj.getName()),
+	hit_points(obj.getHitPoints()), energy_points(obj.getEnergyPoints()),
+	attack_dmg(obj.getAttackDmg())
 {
 	std::cout << "ClapTrap Copy constructor called" << std::endl;
 }
@@ -97,22 +97,22 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	std::cout << this->name << " was repaired by " << amount << std::endl;
 }
 
-std::string ClapTrap::getName()
+std::string ClapTrap::getName() const
 {
 	return (this->name);
 }
 
-unsigned int ClapTrap::getHitPoints()
+unsigned int ClapTrap::getHitPoints() const
 {
 	return (this->hit_points);
 }
 
-unsigned int ClapTrap::getEnergyPoints()
+unsigned int ClapTrap::getEnergyPoints() const
 {
 	return (this->energy_points);
 }
 
-unsigned int ClapTrap::getAttackDmg()
+unsigned int ClapTrap::getAttackDmg() const
 {
 	return (this->attack_dmg);
 }
@@ -120,9 +120,9 @@ unsigned int ClapTrap::getAttackDmg()
 ClapTrap&	ClapTrap::operator= (const ClapTrap& obj)
 {
 	std::cout << "ClapTrap Copy assignment operator called" << std::endl;
-	this->name = obj.name;
-	this->hit_points = obj.hit_points;
-	this->energy_points = obj.energy_points;
-	this->attack_dmg = obj.attack_dmg;
+	this->name = obj.getName();
+	this->hit_points = obj.getHitPoints();
+	this->energy_points = obj.getEnergyPoints();
+	this->attack_dmg = obj.getAttackDmg();
 	return (*this);
 }
