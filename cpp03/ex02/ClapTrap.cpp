@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:02:42 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 22:54:06 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 23:54:33 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "Repair amount attempt to overflow hit_points, aborting" << std::endl;
 		return;
 	}
-	if (!amount)
+	if (!amount || amount + this->hit_points > INIT_HIT_POINTS)
 	{
-		std::cout << "Repair amount is 0, aborting" << std::endl;
+		std::cout << "Repair amount is invalid, aborting" << std::endl;
 		return;
 	}
 	this->energy_points--;

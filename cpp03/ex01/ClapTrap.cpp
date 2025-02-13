@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:02:42 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 22:54:06 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/13 23:54:40 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,9 @@ void	ClapTrap::takeDamage(unsigned int amount)
 		std::cout << this->name << " is destroyed" << std::endl;
 		return;
 	}
-	if (amount > this->hit_points)
+	if (!amount || amount + this->hit_points > INIT_HIT_POINTS)
 	{
-		std::cout << this->name << " took " << hit_points << " damage" << std::endl;
-		this->hit_points = 0;
+		std::cout << "Repair amount is invalid, aborting" << std::endl;
 		return;
 	}
 	this->hit_points -= amount;
