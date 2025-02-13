@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 20:26:00 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 23:44:57 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/14 00:07:55 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 class DiamondTrap: public ScavTrap, public FragTrap
 {
 	private:
-	std::string name;
+	std::string _name;
 	public:
 	DiamondTrap();
 	DiamondTrap(std::string name);

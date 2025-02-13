@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:36:22 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 22:54:58 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/14 00:16:14 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,28 @@ ScavTrap::~ScavTrap()
 
 void	ScavTrap::attack(const std::string& target)
 {
-	if (!this->energy_points || !this->hit_points)
+	if (!this->_energy_points || !this->_hit_points)
 	{
-		std::cout << "ScavTrap " << this->name << " can't attack" << std::endl;
+		std::cout << "ScavTrap " << this->_name << " can't attack" << std::endl;
 		return;
 	}
-	this->energy_points--;
-	std::cout << "ScavTrap " << this->name << " attacks "
-		<< target << ", causing " << this->attack_dmg
+	this->_energy_points--;
+	std::cout << "ScavTrap " << this->_name << " attacks "
+		<< target << ", causing " << this->_attack_dmg
 			<<" points of damage!" << std::endl;
 }
 
 void	ScavTrap::guardGate()
 {
-	std::cout << this->name << " is now in gate keeper mode" << std::endl;
+	std::cout << this->_name << " is now in gate keeper mode" << std::endl;
 }
 
 ScavTrap&	ScavTrap::operator= (ScavTrap& obj)
 {
 	std::cout << "ScavTrap Copy assignment operator called" << std::endl;
-	this->name = obj.getName();
-	this->hit_points = obj.getHitPoints();
-	this->energy_points = obj.getEnergyPoints();
-	this->attack_dmg = obj.getAttackDmg();
+	this->_name = obj.getName();
+	this->_hit_points = obj.getHitPoints();
+	this->_energy_points = obj.getEnergyPoints();
+	this->_attack_dmg = obj.getAttackDmg();
 	return (*this);
 }
