@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:39 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/14 22:46:02 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/15 01:31:46 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ WrongAnimal::WrongAnimal() : type("WrongAnimal")
 	std::cout << "WrongAnimal constructor called" << std::endl;
 }
 
-WrongAnimal::WrongAnimal(std::string sType) : type(sType)
+WrongAnimal::WrongAnimal(std::string& sType) : type(sType)
 {
 	std::cout << "WrongAnimal parameterized constructor called" << std::endl;
 }

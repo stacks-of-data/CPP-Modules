@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:36:22 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/14 22:57:33 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/15 01:36:16 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ ScavTrap::ScavTrap() : ClapTrap::ClapTrap(DEFAULT_TRAP_NAME, INIT_HIT_POINTS, IN
 	std::cout << "ScavTrap Default constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(const std::string name) : ClapTrap::ClapTrap(name, INIT_HIT_POINTS, INIT_ENERGY_POINTS, INIT_ATTACK_DMG)
+ScavTrap::ScavTrap(const std::string& name) : ClapTrap::ClapTrap(name, INIT_HIT_POINTS, INIT_ENERGY_POINTS, INIT_ATTACK_DMG)
 {
 	std::cout << "ScavTrap Parameterized constructor called" << std::endl;
 }

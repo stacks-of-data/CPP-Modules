@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 15:59:54 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/14 22:47:16 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/15 01:30:50 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Animal
 	std::string	type;
 	public:
 	Animal();
-	Animal(std::string type);
+	Animal(std::string& type);
 	Animal(const Animal& obj);
 	virtual ~Animal();
 	std::string	getType() const;

@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 19:51:46 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/14 22:57:14 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/15 01:36:06 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ FragTrap::FragTrap() : ClapTrap::ClapTrap(DEFAULT_TRAP_NAME, INIT_HIT_POINTS, IN
 	std::cout << "FragTrap Default constructor called" << std::endl;
 }
 
-FragTrap::FragTrap(const std::string name) : ClapTrap::ClapTrap(name, INIT_HIT_POINTS, INIT_ENERGY_POINTS, INIT_ATTACK_DMG)
+FragTrap::FragTrap(const std::string& name) : ClapTrap::ClapTrap(name, INIT_HIT_POINTS, INIT_ENERGY_POINTS, INIT_ATTACK_DMG)
 {
 	std::cout << "FragTrap Parameterized constructor called" << std::endl;
 }

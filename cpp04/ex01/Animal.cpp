@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:04:39 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/14 23:45:53 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/15 01:30:32 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Animal::Animal() : type("Animal")
 	std::cout << "Animal constructor called" << std::endl;
 }
 
-Animal::Animal(const std::string sType) : type(sType)
+Animal::Animal(const std::string& sType) : type(sType)
 {
 	std::cout << "Animal parameterized constructor called" << std::endl;
 }

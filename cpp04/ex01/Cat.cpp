@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:39 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/15 01:00:34 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/15 01:30:22 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Cat::Cat() : Animal()
 	std::cout << "Cat constructor called" << std::endl;
 }
 
-Cat::Cat(const std::string sType) : Animal()
+Cat::Cat(const std::string& sType) : Animal()
 {
 	this->brain = new Brain();
 	this->type = sType;

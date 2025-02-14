@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:02:53 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/14 22:45:39 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/15 01:32:00 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class WrongCat : public WrongAnimal
 	std::string	type;
 	public:
 	WrongCat();
-	WrongCat(std::string sType);
+	WrongCat(std::string& sType);
 	WrongCat(const WrongCat &obj);
 	~WrongCat();
 	void makeSound() const;

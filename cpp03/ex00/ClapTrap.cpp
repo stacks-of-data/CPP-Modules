@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:02:42 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/14 22:55:01 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/15 01:34:08 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ ClapTrap::ClapTrap() : _name(DEFAULT_TRAP_NAME),
 	std::cout << "ClapTrap Default constructor called" << std::endl;	
 }
 
-ClapTrap::ClapTrap(const std::string name) : _name(name),
+ClapTrap::ClapTrap(const std::string& name) : _name(name),
 	_hit_points(INIT_HIT_POINTS), _energy_points(INIT_ENERGY_POINTS), _attack_dmg(INIT_ATTACK_DMG)
 {
 	std::cout << "ClapTrap Parameterized constructor called" << std::endl;	

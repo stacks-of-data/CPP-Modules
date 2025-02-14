@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:59:18 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/14 22:56:56 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/15 01:35:55 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ DiamondTrap::DiamondTrap() : ClapTrap(std::string(DEFAULT_TRAP_NAME).append("_cl
 	std::cout << "DiamondTrap Default constructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const std::string name) : ClapTrap(std::string(name).append("_clap_name"),
+DiamondTrap::DiamondTrap(const std::string& name) : ClapTrap(std::string(name).append("_clap_name"),
 	FragTrap::INIT_HIT_POINTS, ScavTrap::INIT_ENERGY_POINTS, FragTrap::INIT_ATTACK_DMG), _name(name)
 {
 	std::cout << "DiamondTrap Parameterized constructor called" << std::endl;

@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:31:37 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/14 22:57:27 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/15 01:36:20 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class ScavTrap : virtual public ClapTrap
 	static const unsigned int	INIT_ENERGY_POINTS = 50;
 	static const unsigned int	INIT_ATTACK_DMG = 20;
 	ScavTrap();
-	ScavTrap(const std::string name);
+	ScavTrap(const std::string& name);
 	ScavTrap(const ScavTrap& obj);
 	~ScavTrap();
 	void	attack(const std::string& target);

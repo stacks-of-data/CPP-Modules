@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:49:23 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/14 22:53:28 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/15 01:34:31 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ class ClapTrap
 	static const unsigned int	INIT_ENERGY_POINTS = 10;
 	static const unsigned int	INIT_ATTACK_DMG = 0;
 	ClapTrap();
-	ClapTrap(const std::string name);
-	ClapTrap(const std::string name, const unsigned int hit_points,
+	ClapTrap(const std::string& name);
+	ClapTrap(const std::string& name, const unsigned int hit_points,
 		const unsigned int energy_points, const unsigned int attack_dmg);
 	ClapTrap(const ClapTrap& obj);
 	~ClapTrap();

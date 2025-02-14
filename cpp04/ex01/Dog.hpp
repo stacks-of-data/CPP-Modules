@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:02:53 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/15 01:00:37 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/15 01:30:06 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Dog : public Animal
 	Brain	*brain;
 	public:
 	Dog();
-	Dog(const std::string sType);
+	Dog(const std::string& sType);
 	Dog(const Dog &obj);
 	~Dog();
 	void makeSound() const;

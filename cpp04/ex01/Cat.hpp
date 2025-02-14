@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:02:53 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/15 01:00:30 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/15 01:30:17 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Cat : public Animal
 	Brain	*brain;
 	public:
 	Cat();
-	Cat(const std::string sType);
+	Cat(const std::string& sType);
 	Cat(const Cat &obj);
 	~Cat();
 	void makeSound() const;

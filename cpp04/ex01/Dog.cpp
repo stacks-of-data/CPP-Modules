@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:39 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/15 01:00:41 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/15 01:30:14 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ Dog::Dog() : Animal()
 	std::cout << "Dog constructor called" << std::endl;
 }
 
-Dog::Dog(const std::string sType) : Animal()
+Dog::Dog(const std::string& sType) : Animal()
 {
 	this->brain = new Brain();
 	this->type = sType;
