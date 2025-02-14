@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/09 17:09:43 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/12 02:25:56 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/14 23:13:25 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ bool bsp(Point const a, Point const b, Point const c, Point const point)
 	Fixed sl_pc = (point.getX() * c.getY()) - (point.getY() * c.getX());
 	Fixed sl_cp = (c.getX() * point.getY()) - (c.getY() * point.getX());
 	Fixed sl_pb = (point.getX() * b.getY()) - (point.getY() * b.getX());
-	Fixed sl_abp_res = (sl_ab + sl_bp + sl_pa) / 2;
-	Fixed sl_bcp_res = (sl_bc + sl_cp + sl_pb) / 2;
-	Fixed sl_cap_res = (sl_ca + sl_ap + sl_pc) / 2;
+	Fixed sl_abp_res = sl_ab + sl_bp + sl_pa;
+	Fixed sl_bcp_res = sl_bc + sl_cp + sl_pb;
+	Fixed sl_cap_res = sl_ca + sl_ap + sl_pc;
 	return ((sl_abp_res > 0 && sl_bcp_res > 0 && sl_cap_res > 0) || (sl_abp_res < 0 && sl_bcp_res < 0 && sl_cap_res < 0));
 }
