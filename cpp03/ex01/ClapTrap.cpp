@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:02:42 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/14 00:15:36 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/14 11:56:12 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ ClapTrap::ClapTrap(std::string name, unsigned int hit_points,
 		unsigned int energy_points, unsigned int attack_dmg) : _name(name),
 	_hit_points(hit_points), _energy_points(energy_points), _attack_dmg(attack_dmg)
 {
-	std::cout << "ClapTrap Parameterized constructor called" << std::endl;
+	std::cout << "ClapTrap Parameterized constructor 2 called" << std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap& obj) : _name(obj.getName()),
