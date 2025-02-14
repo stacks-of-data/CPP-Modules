@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:59:18 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/14 00:12:38 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/14 22:56:56 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ DiamondTrap::DiamondTrap() : ClapTrap(std::string(DEFAULT_TRAP_NAME).append("_cl
 	std::cout << "DiamondTrap Default constructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(std::string(name).append("_clap_name"),
+DiamondTrap::DiamondTrap(const std::string name) : ClapTrap(std::string(name).append("_clap_name"),
 	FragTrap::INIT_HIT_POINTS, ScavTrap::INIT_ENERGY_POINTS, FragTrap::INIT_ATTACK_DMG), _name(name)
 {
 	std::cout << "DiamondTrap Parameterized constructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(DiamondTrap& obj) : ClapTrap(obj.getName(),
+DiamondTrap::DiamondTrap(const DiamondTrap& obj) : ClapTrap(obj.getName(),
 	obj.getHitPoints(),obj.getEnergyPoints(), obj.getAttackDmg()), ScavTrap(obj.getName()),
 	FragTrap(obj.getName()), _name(obj.getName())
 {
@@ -36,7 +36,7 @@ DiamondTrap::~DiamondTrap()
 	std::cout << "DiamondTrap Destructor called" << std::endl;
 }
 
-void	DiamondTrap::whoAmI()
+void	DiamondTrap::whoAmI() const
 {
 	std::cout << "whoAmI: " << this->_name << ' ' << this->ClapTrap::_name << std::endl;
 }

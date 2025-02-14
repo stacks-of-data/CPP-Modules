@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 15:02:42 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/14 00:18:28 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/14 22:55:01 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ ClapTrap::ClapTrap() : _name(DEFAULT_TRAP_NAME),
 	std::cout << "ClapTrap Default constructor called" << std::endl;	
 }
 
-ClapTrap::ClapTrap(std::string name) : _name(name),
+ClapTrap::ClapTrap(const std::string name) : _name(name),
 	_hit_points(INIT_HIT_POINTS), _energy_points(INIT_ENERGY_POINTS), _attack_dmg(INIT_ATTACK_DMG)
 {
 	std::cout << "ClapTrap Parameterized constructor called" << std::endl;	
 }
 
-ClapTrap::ClapTrap(ClapTrap& obj) : _name(obj.getName()),
+ClapTrap::ClapTrap(const ClapTrap& obj) : _name(obj.getName()),
 	_hit_points(obj.getHitPoints()), _energy_points(obj.getEnergyPoints()),
 	_attack_dmg(obj.getAttackDmg())
 {
@@ -50,7 +50,7 @@ void	ClapTrap::attack(const std::string& target)
 			<<" points of damage!" << std::endl;
 }
 
-void	ClapTrap::takeDamage(unsigned int amount)
+void	ClapTrap::takeDamage(const unsigned int amount)
 {
 	if (!this->_hit_points)
 	{
@@ -67,7 +67,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	std::cout << this->_name << " took " << amount << " damage" << std::endl;
 }
 
-void	ClapTrap::beRepaired(unsigned int amount)
+void	ClapTrap::beRepaired(const unsigned int amount)
 {
 	if (!this->_energy_points || !this->_hit_points)
 	{

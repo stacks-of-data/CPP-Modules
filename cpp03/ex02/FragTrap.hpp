@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 19:49:41 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 23:08:37 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/14 22:55:26 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ class FragTrap : public ClapTrap
 	static const unsigned int	INIT_ENERGY_POINTS = 100;
 	static const unsigned int	INIT_ATTACK_DMG = 30;
 	FragTrap();
-	FragTrap(std::string name);
-	FragTrap(FragTrap& obj);
+	FragTrap(const std::string name);
+	FragTrap(const FragTrap& obj);
 	~FragTrap();
 	void	attack(const std::string& target);
-	void	highFivesGuys(void);
-	FragTrap&	operator= (FragTrap& obj);
+	void	highFivesGuys(void) const;
+	FragTrap&	operator= (const FragTrap& obj);
 };
 
 #endif

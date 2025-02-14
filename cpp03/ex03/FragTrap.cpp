@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 19:51:46 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/14 00:12:17 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/14 22:57:14 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ FragTrap::FragTrap() : ClapTrap::ClapTrap(DEFAULT_TRAP_NAME, INIT_HIT_POINTS, IN
 	std::cout << "FragTrap Default constructor called" << std::endl;
 }
 
-FragTrap::FragTrap(std::string name) : ClapTrap::ClapTrap(name, INIT_HIT_POINTS, INIT_ENERGY_POINTS, INIT_ATTACK_DMG)
+FragTrap::FragTrap(const std::string name) : ClapTrap::ClapTrap(name, INIT_HIT_POINTS, INIT_ENERGY_POINTS, INIT_ATTACK_DMG)
 {
 	std::cout << "FragTrap Parameterized constructor called" << std::endl;
 }
 
-FragTrap::FragTrap(FragTrap& obj) : ClapTrap::ClapTrap(obj.getName(), obj.getHitPoints(),
+FragTrap::FragTrap(const FragTrap& obj) : ClapTrap::ClapTrap(obj.getName(), obj.getHitPoints(),
 	obj.getEnergyPoints(), obj.getAttackDmg())
 {
 	std::cout << "FragTrap Copy constructor called" << std::endl;
@@ -46,12 +46,12 @@ void	FragTrap::attack(const std::string& target)
 			<<" points of damage!" << std::endl;
 }
 
-void	FragTrap::highFivesGuys(void)
+void	FragTrap::highFivesGuys(void) const
 {
 	std::cout << this->_name << ": HIGH FIVE!!!" << std::endl;
 }
 
-FragTrap&	FragTrap::operator= (FragTrap& obj)
+FragTrap&	FragTrap::operator= (const FragTrap& obj)
 {
 	std::cout << "FragTrap Copy assignment operator called" << std::endl;
 	this->_name = obj.getName();

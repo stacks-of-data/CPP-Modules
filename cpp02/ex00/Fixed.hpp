@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:03:28 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/13 13:51:21 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/14 22:59:05 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ class Fixed
 	static const int fractBits = 8;
 	public:
 	Fixed();
-	Fixed(Fixed& obj);
+	Fixed(const Fixed& obj);
 	~Fixed();
 	int	getRawBits(void) const;
 	void	setRawBits(const int raw);
-	Fixed& operator = (Fixed& obj);
+	Fixed& operator = (const Fixed& obj);
 };
 
 #endif

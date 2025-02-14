@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 17:36:22 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/14 00:16:14 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/14 22:54:06 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ ScavTrap::ScavTrap() : ClapTrap::ClapTrap(DEFAULT_TRAP_NAME, INIT_HIT_POINTS, IN
 	std::cout << "ScavTrap Default constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap::ClapTrap(name, INIT_HIT_POINTS, INIT_ENERGY_POINTS, INIT_ATTACK_DMG)
+ScavTrap::ScavTrap(const std::string name) : ClapTrap::ClapTrap(name, INIT_HIT_POINTS, INIT_ENERGY_POINTS, INIT_ATTACK_DMG)
 {
 	std::cout << "ScavTrap Parameterized constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(ScavTrap& obj) : ClapTrap::ClapTrap(obj.getName(), obj.getHitPoints(),
+ScavTrap::ScavTrap(const ScavTrap& obj) : ClapTrap::ClapTrap(obj.getName(), obj.getHitPoints(),
 	obj.getEnergyPoints(), obj.getAttackDmg())
 {
 	std::cout << "ScavTrap Copy constructor called" << std::endl;
@@ -46,12 +46,12 @@ void	ScavTrap::attack(const std::string& target)
 			<<" points of damage!" << std::endl;
 }
 
-void	ScavTrap::guardGate()
+void	ScavTrap::guardGate() const
 {
 	std::cout << this->_name << " is now in gate keeper mode" << std::endl;
 }
 
-ScavTrap&	ScavTrap::operator= (ScavTrap& obj)
+ScavTrap&	ScavTrap::operator= (const ScavTrap& obj)
 {
 	std::cout << "ScavTrap Copy assignment operator called" << std::endl;
 	this->_name = obj.getName();
