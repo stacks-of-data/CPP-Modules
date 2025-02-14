@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 12:44:13 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/15 01:12:29 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/15 01:16:01 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main()
 	for (int i = 5; i < 10; i++)
 		animals[i] = new Cat();
 	
-	std::cout << "Shallow copy testes section:" << std::endl;
+	std::cout << "Shallow copy tests section:" << std::endl;
 	std::cout << "Dogs:" << std::endl;
 	Dog	*dog_x = new Dog();
 	Brain	brain_dog_x;
