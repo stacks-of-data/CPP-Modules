@@ -6,46 +6,46 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:04:39 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/15 01:30:32 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/16 21:22:52 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include <iostream>
 
-Animal::Animal() : type("Animal")
+AAnimal::AAnimal() : type("AAnimal")
 {
-	std::cout << "Animal constructor called" << std::endl;
+	std::cout << "AAnimal constructor called" << std::endl;
 }
 
-Animal::Animal(const std::string& sType) : type(sType)
+AAnimal::AAnimal(const std::string& sType) : type(sType)
 {
-	std::cout << "Animal parameterized constructor called" << std::endl;
+	std::cout << "AAnimal parameterized constructor called" << std::endl;
 }
 
-Animal::Animal(const Animal& obj) : type(obj.getType())
+AAnimal::AAnimal(const AAnimal& obj) : type(obj.getType())
 {
-	std::cout << "Animal copy constructor called" << std::endl;
+	std::cout << "AAnimal copy constructor called" << std::endl;
 }
 
-Animal::~Animal()
+AAnimal::~AAnimal()
 {
-	std::cout << "Animal destructor called" << std::endl;
+	std::cout << "AAnimal destructor called" << std::endl;
 }
 
-std::string	Animal::getType() const
+std::string	AAnimal::getType() const
 {
 	return (this->type);
 }
 
-void	Animal::makeSound() const
+void	AAnimal::makeSound() const
 {
 	std::cout << "ANIMAL SOUND" << std::endl;
 }
 
-Animal&	Animal::operator= (const Animal& obj)
+AAnimal&	AAnimal::operator= (const AAnimal& obj)
 {
-	std::cout << "Animal copy assignment operator called" << std::endl;
+	std::cout << "AAnimal copy assignment operator called" << std::endl;
 	this->type = obj.getType();
 	return (*this);
 }

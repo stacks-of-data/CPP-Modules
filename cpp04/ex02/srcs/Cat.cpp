@@ -6,28 +6,28 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:39 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/15 01:30:22 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/16 21:23:31 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 #include <iostream>
 
-Cat::Cat() : Animal()
+Cat::Cat() : AAnimal()
 {
 	this->brain = new Brain();
 	this->type = "Cat";
 	std::cout << "Cat constructor called" << std::endl;
 }
 
-Cat::Cat(const std::string& sType) : Animal()
+Cat::Cat(const std::string& sType) : AAnimal()
 {
 	this->brain = new Brain();
 	this->type = sType;
 	std::cout << "Cat parameterized constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat &obj) : Animal()
+Cat::Cat(const Cat &obj) : AAnimal()
 {
 	this->brain = new Brain(obj.getBrain());
 	this->type = obj.getType();

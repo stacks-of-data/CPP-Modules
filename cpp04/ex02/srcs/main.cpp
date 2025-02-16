@@ -6,11 +6,11 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 12:44:13 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/16 21:18:00 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/16 21:25:28 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "WrongAnimal.hpp"
@@ -23,18 +23,15 @@ void	printIdeas(Brain *brain)
 	for (int i = 0; i < 100; i++)
 	{
 		idea = brain->getIdea(i);
-		for (int i = 0; i < 100; i++)
-		{
-			if (!idea.empty())
-				std::cout << "idea " << i << ": " << idea << std::endl;
-			idea.clear();
-		}
+		if (!idea.empty())
+			std::cout << "idea " << i << ": " << idea << std::endl;
+		idea.clear();
 	}
 }
 
 int main()
 {
-	Animal	*animals[10];
+	AAnimal	*animals[10];
 	for (int i = 0; i < 5; i++)
 		animals[i] = new Dog();
 	for (int i = 5; i < 10; i++)

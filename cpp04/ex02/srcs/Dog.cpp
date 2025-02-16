@@ -6,28 +6,28 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:39 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/15 01:30:14 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/16 21:23:53 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 #include <iostream>
 
-Dog::Dog() : Animal()
+Dog::Dog() : AAnimal()
 {
 	this->brain = new Brain();
 	this->type = "Dog";
 	std::cout << "Dog constructor called" << std::endl;
 }
 
-Dog::Dog(const std::string& sType) : Animal()
+Dog::Dog(const std::string& sType) : AAnimal()
 {
 	this->brain = new Brain();
 	this->type = sType;
 	std::cout << "Dog parameterized constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &obj) : Animal()
+Dog::Dog(const Dog &obj) : AAnimal()
 {
 	this->brain = new Brain(obj.getBrain());
 	this->type = obj.getType();
