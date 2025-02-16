@@ -5,7 +5,7 @@ SRCS := $(addprefix srcs/,$(SRCS))
 OBJS = $(SRCS:.cpp=.o)
 HEADERS = Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp Brain.hpp
 HEADERS := $(addprefix includes/,$(HEADERS))
-NAME = Animals_Brain
+NAME = Animals_Abstract
 
 all: $(NAME)
 $(NAME): $(OBJS) $(HEADERS)
