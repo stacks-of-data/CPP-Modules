@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 12:44:13 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/15 01:27:33 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/16 18:05:24 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,21 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 #include <iostream>
+
+void	printIdeas(Brain *brain)
+{
+	std::string	idea;
+	for (int i = 0; i < 100; i++)
+	{
+		idea = brain->getIdea(i);
+		for (int i = 0; i < 100; i++)
+		{
+			if (!idea.empty())
+				std::cout << "idea " << i << ": " << idea << std::endl;
+			idea.clear();
+		}
+	}
+}
 
 int main()
 {
@@ -37,12 +52,12 @@ int main()
 	brain_dog_x->setIdea(40, "IDEA!!");
 	dog_x->setBrain(*brain_dog_x);
 	Brain	*brain_dog_y = new Brain(dog_y->getBrain());
+
 	std::cout << "dog_x ideas preview:" << std::endl;
-	for (int i = 0; i < 100; i++)
-		std::cout << brain_dog_x->getIdea(i) << std::endl;
+	printIdeas(brain_dog_x);
 	std::cout << "dog_y ideas preview:" << std::endl;
-	for (int i = 0; i < 100; i++)
-		std::cout << brain_dog_y->getIdea(i) << std::endl;
+	printIdeas(brain_dog_y);
+
 	delete brain_dog_x;
 	delete brain_dog_y;
 	delete dog_x;
@@ -59,12 +74,12 @@ int main()
 	brain_cat_x->setIdea(40, "FOOOOOOD!!");
 	cat_x->setBrain(*brain_cat_x);
 	Brain	*brain_cat_y = new Brain(cat_y->getBrain());
+	
 	std::cout << "cat_x ideas preview:" << std::endl;
-	for (int i = 0; i < 100; i++)
-		std::cout << brain_cat_x->getIdea(i) << std::endl;
+	printIdeas(brain_cat_x);
 	std::cout << "cat_y ideas preview:" << std::endl;
-	for (int i = 0; i < 100; i++)
-		std::cout << brain_cat_y->getIdea(i) << std::endl;
+	printIdeas(brain_cat_y);
+
 	delete brain_cat_x;
 	delete brain_cat_y;
 	delete cat_x;
