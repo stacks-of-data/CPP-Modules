@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:04:39 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/16 21:22:52 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/16 21:52:31 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AAnimal.hpp"
 #include <iostream>
 
-AAnimal::AAnimal() : type("AAnimal")
+AAnimal::AAnimal() : type("Animal")
 {
 	std::cout << "AAnimal constructor called" << std::endl;
 }

@@ -6,22 +6,20 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:39 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/15 01:30:54 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/16 21:44:45 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 #include <iostream>
 
-Cat::Cat() : Animal()
+Cat::Cat() : Animal("Cat")
 {
-	this->type = "Cat";
 	std::cout << "Cat constructor called" << std::endl;
 }
 
-Cat::Cat(std::string& sType) : Animal()
+Cat::Cat(const std::string& sType) : Animal(sType)
 {
-	this->type = sType;
 	std::cout << "Cat parameterized constructor called" << std::endl;
 }
 

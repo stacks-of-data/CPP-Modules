@@ -6,22 +6,20 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:39 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/15 01:31:33 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/16 21:46:15 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 #include <iostream>
 
-Dog::Dog() : Animal()
+Dog::Dog() : Animal("Dog")
 {
-	this->type = "Dog";
 	std::cout << "Dog constructor called" << std::endl;
 }
 
-Dog::Dog(std::string& sType) : Animal()
+Dog::Dog(const std::string& sType) : Animal(sType)
 {
-	this->type = sType;
 	std::cout << "Dog parameterized constructor called" << std::endl;
 }
 

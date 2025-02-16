@@ -6,24 +6,24 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:39 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/15 01:31:56 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/16 21:47:36 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongCat.hpp"
 #include <iostream>
 
-WrongCat::WrongCat() : WrongAnimal(), type("WrongCat")
+WrongCat::WrongCat() : WrongAnimal("WrongCat")
 {
 	std::cout << "WrongCat constructor called" << std::endl;
 }
 
-WrongCat::WrongCat(std::string& sType) : WrongAnimal(), type(sType)
+WrongCat::WrongCat(std::string& sType) : WrongAnimal(sType)
 {
 	std::cout << "WrongCat parameterized constructor called" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat &obj) : WrongAnimal(), type(obj.getType())
+WrongCat::WrongCat(const WrongCat &obj) : WrongAnimal(obj.getType())
 {
 	std::cout << "WrongCat copy constructor called" << std::endl;
 }

@@ -6,19 +6,19 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:15:39 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/15 01:31:46 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/16 21:47:00 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongAnimal.hpp"
 #include <iostream>
 
-WrongAnimal::WrongAnimal() : type("WrongAnimal")
+WrongAnimal::WrongAnimal()
 {
 	std::cout << "WrongAnimal constructor called" << std::endl;
 }
 
-WrongAnimal::WrongAnimal(std::string& sType) : type(sType)
+WrongAnimal::WrongAnimal(const std::string& sType) : type(sType)
 {
 	std::cout << "WrongAnimal parameterized constructor called" << std::endl;
 }
