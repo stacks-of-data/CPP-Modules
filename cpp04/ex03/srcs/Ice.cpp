@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 22:30:45 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/18 02:00:54 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:04:39 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ Ice::Ice() : AMateria("ice")
 	std::cout << "Ice constructor called" << std::endl;
 }
 
-Ice::Ice(const Ice& obj) : AMateria(obj.getType())
+Ice::Ice(const Ice& obj) : AMateria("ice")
 {
+	(void)obj;
 	std::cout << "Ice copy constructor called" << std::endl;
 }
 
@@ -41,7 +42,8 @@ void	Ice::use(ICharacter& target)
 
 Ice&	Ice::operator= (const Ice& obj)
 {
+	(void)obj;
 	std::cout << "Ice copy assignment operator called" << std::endl;
-	this->_type = obj.getType();
+	this->_type = "ice";
 	return (*this);
 }

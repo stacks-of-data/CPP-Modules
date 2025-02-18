@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 23:51:47 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/18 02:00:58 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/18 14:59:17 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ Character::Character() : _name("DEFAULT_NAME")
 
 Character::Character(const std::string& name) : _name(name)
 {
+	for (int i = 0; i < 4; i++)
+		this->inventory[i] = 0;
 	std::cout << "Character parameterized constructor called" << std::endl;
 }
 
@@ -36,6 +38,9 @@ Character::Character(const Character& obj) : _name(obj.getName())
 
 Character::~Character()
 {
+	for (int i = 0; i < 4; i++)
+		if (this->inventory[i])
+			delete this->inventory[i];
 	std::cout << "Character destructor called" << std::endl;
 }
 
@@ -48,32 +53,58 @@ void Character::equip(AMateria* m)
 {
 	for (int i = 0; i < 4; i++)
 	{
+		if (this->inventory[i] == m)
+		{
+			std::cout << "Materia already equipped" << std::endl;
+			return;
+		}
 		if (!this->inventory[i])
 		{
 			this->inventory[i] = m;
 			return ;
 		}
 	}
+	std::cout << "Inventory is full" << std::endl;
 }
 
 void Character::unequip(int idx)
 {
 	if (idx > 3 || idx < 0)
+	{
+		std::cout << "Invalid index" << std::endl;
 		return;
+	}
+	if (!this->inventory[idx])
+	{
+		std::cout << "Slot to unequip is empty" << std::endl;
+		return;
+	}
+	std::cout << this->inventory[idx]->getType() << " unequipped" << std::endl;
 	this->inventory[idx] = 0;
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-	if (idx > 3 || idx < 0 || !this->inventory[idx])
+	if (idx > 3 || idx < 0)
+	{
+		std::cout << "Invalid index" << std::endl;
 		return;
+	}
+	if (!this->inventory[idx])
+	{
+		std::cout << "Attempt to use empty slot" << std::endl;
+		return;
+	}
 	this->inventory[idx]->use(target);
 }
 
 AMateria*	Character::getInvSlotPtr(int index) const
 {
 	if (index > 3 || index < 0)
+	{
+		std::cout << "Invalid index" << std::endl;
 		return (0);
+	}
 	return (this->inventory[index]);
 }
 

@@ -10,7 +10,7 @@ NAME = Animals_Polymorphism
 all: $(NAME)
 $(NAME): $(OBJS) $(HEADERS)
 	$(CC) $(OBJS) $(CFLAGS) -o $(NAME)
-%.o: %.cpp
+%.o: %.cpp $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 clean:
 	rm -f $(OBJS)

@@ -1,49 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.cpp                                           :+:      :+:    :+:   */
+/*   Fire.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 22:30:45 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/18 16:04:29 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:04:33 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ICharacter.hpp"
-#include "Cure.hpp"
+#include "Fire.hpp"
 #include <iostream>
 
-Cure::Cure() : AMateria("cure")
+Fire::Fire() : AMateria("fire")
 {
-	std::cout << "Cure constructor called" << std::endl;
+	std::cout << "Fire constructor called" << std::endl;
 }
 
-Cure::Cure(const Cure& obj) : AMateria("cure")
+Fire::Fire(const Fire& obj) : AMateria("fire")
 {
 	(void)obj;
-	std::cout << "Cure copy constructor called" << std::endl;
+	std::cout << "Fire copy constructor called" << std::endl;
 }
 
-Cure::~Cure()
+Fire::~Fire()
 {
-	std::cout << "Cure destructor called" << std::endl;
+	std::cout << "Fire destructor called" << std::endl;
 }
 
-AMateria*	Cure::clone() const
+AMateria*	Fire::clone() const
 {
-	return (new Cure());
+	return (new Fire());
 }
 
-void	Cure::use(ICharacter& target)
+void	Fire::use(ICharacter& target)
 {
-	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+	std::cout << "* Shoot fire elements at " << target.getName() << " *" << std::endl;
 }
 
-Cure&	Cure::operator= (const Cure& obj)
+Fire&	Fire::operator= (const Fire& obj)
 {
 	(void)obj;
-	std::cout << "Cure copy assignment operator called" << std::endl;
-	this->_type = "cure";
+	std::cout << "Fire copy assignment operator called" << std::endl;
+	this->_type = "fire";
 	return (*this);
 }

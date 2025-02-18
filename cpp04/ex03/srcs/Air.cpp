@@ -1,49 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.cpp                                           :+:      :+:    :+:   */
+/*   Air.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 22:30:45 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/18 16:04:29 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/18 16:04:47 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ICharacter.hpp"
-#include "Cure.hpp"
+#include "Air.hpp"
 #include <iostream>
 
-Cure::Cure() : AMateria("cure")
+Air::Air() : AMateria("air")
 {
-	std::cout << "Cure constructor called" << std::endl;
+	std::cout << "Air constructor called" << std::endl;
 }
 
-Cure::Cure(const Cure& obj) : AMateria("cure")
+Air::Air(const Air& obj) : AMateria("air")
 {
 	(void)obj;
-	std::cout << "Cure copy constructor called" << std::endl;
+	std::cout << "Air copy constructor called" << std::endl;
 }
 
-Cure::~Cure()
+Air::~Air()
 {
-	std::cout << "Cure destructor called" << std::endl;
+	std::cout << "Air destructor called" << std::endl;
 }
 
-AMateria*	Cure::clone() const
+AMateria*	Air::clone() const
 {
-	return (new Cure());
+	return (new Air());
 }
 
-void	Cure::use(ICharacter& target)
+void	Air::use(ICharacter& target)
 {
-	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
+	std::cout << "* Summoned streams of air at " << target.getName() << " *" << std::endl;
 }
 
-Cure&	Cure::operator= (const Cure& obj)
+Air&	Air::operator= (const Air& obj)
 {
 	(void)obj;
-	std::cout << "Cure copy assignment operator called" << std::endl;
-	this->_type = "cure";
+	std::cout << "Air copy assignment operator called" << std::endl;
+	this->_type = "air";
 	return (*this);
 }
