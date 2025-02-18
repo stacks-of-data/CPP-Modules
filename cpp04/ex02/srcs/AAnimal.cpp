@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:04:39 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/16 21:52:31 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/18 19:26:52 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,6 @@ AAnimal::~AAnimal()
 std::string	AAnimal::getType() const
 {
 	return (this->type);
-}
-
-void	AAnimal::makeSound() const
-{
-	std::cout << "ANIMAL SOUND" << std::endl;
 }
 
 AAnimal&	AAnimal::operator= (const AAnimal& obj)

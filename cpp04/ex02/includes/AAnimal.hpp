@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 15:59:54 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/16 21:22:00 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/18 19:26:33 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class AAnimal
 	public:
 	virtual ~AAnimal();
 	std::string	getType() const;
-	virtual void	makeSound() const;
+	virtual void	makeSound() const = 0;
 };
 
 #endif
