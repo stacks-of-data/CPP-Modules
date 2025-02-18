@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 23:51:47 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/18 14:59:17 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/19 01:28:46 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ std::string const& Character::getName() const
 
 void Character::equip(AMateria* m)
 {
+	if (!m)
+	{
+		std::cout << "Materia ptr is null" << std::endl;
+		return;
+	}
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->inventory[i] == m)

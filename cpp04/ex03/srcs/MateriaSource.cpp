@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:27:33 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/02/18 16:10:26 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/02/19 01:29:39 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ MateriaSource::~MateriaSource()
 
 void	MateriaSource::learnMateria(AMateria* materia_ptr)
 {
+	if (!materia_ptr)
+	{
+		std::cout << "Materia ptr is null" << std::endl;
+		return;
+	}
 	for (int i = 0; i < 4; i++)
 	{
 		if (!this->materia_arr[i])
