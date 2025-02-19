@@ -1,5 +1,5 @@
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes -g
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes
 SRCS = main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp Air.cpp Fire.cpp
 SRCS := $(addprefix srcs/,$(SRCS))
 OBJS = $(SRCS:.cpp=.o)
