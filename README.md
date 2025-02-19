@@ -89,3 +89,4 @@ Diamond inheritance problem: https://www.geeksforgeeks.org/diamond-problem-in-cp
 Variable Shadowing: https://en.wikipedia.org/wiki/Variable_shadowing  
 GCC Warning Options: https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html  
 Abstract Class: https://en.cppreference.com/w/cpp/language/abstract_class  
+vtable: https://www.geeksforgeeks.org/vtable-and-vptr-in-cpp/
