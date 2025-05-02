@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:16:34 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 01:10:44 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 01:24:24 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ void	attempt_IncDec(Bureaucrat& obj, int mode)
 		else
 			obj.gradeDec();
 	}
-	catch (const Bureaucrat::GradeTooLowException& e)
+	catch (const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooHighException& e)
+	catch (...)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << "Unexpected exception" << std::endl;
 	}
 }
 
@@ -51,28 +51,27 @@ int main()
 		obj2 = new Bureaucrat(std::string("Steve"), 150);
 		obj3 = new Bureaucrat(std::string("Eric"), 100);
 	}
-	catch (const Bureaucrat::GradeTooHighException& e)
+	catch (const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 		delObjs(obj, obj2, obj3);
 		return (EXIT_FAILURE);
 	}
-	catch (const Bureaucrat::GradeTooLowException& e)
+	catch (...)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << "Unexpected exception" << std::endl;
 		delObjs(obj, obj2, obj3);
 		return (EXIT_FAILURE);
 	}
-	
-	std::cout << *obj;
+	std::cout << *obj << std::endl;
 	attempt_IncDec(*obj, 0);
-	std::cout << *obj;
-	std::cout << *obj2;
+	std::cout << *obj << std::endl;
+	std::cout << *obj2 << std::endl;
 	attempt_IncDec(*obj2, 1);
-	std::cout << *obj2;
-	std::cout << *obj3;
+	std::cout << *obj2 << std::endl;
+	std::cout << *obj3 << std::endl;
 	attempt_IncDec(*obj3, 1);
-	std::cout << *obj3;
+	std::cout << *obj3 << std::endl;
 	delObjs(obj, obj2, obj3);
 	return (EXIT_SUCCESS);
 }

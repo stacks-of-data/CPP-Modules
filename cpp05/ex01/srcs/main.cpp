@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:16:34 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 01:06:08 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 01:24:15 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,22 @@ void	delObjs(Bureaucrat* obj1, Bureaucrat* obj2, Form* obj3, Form* obj4)
 	delete obj4;
 }
 
+void	trySignForm(Bureaucrat* b_obj, Form* f_obj)
+{
+	try
+	{
+		b_obj->signForm(*f_obj);
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (...)
+	{
+		std::cerr << "Unexcpected exception" << std::endl;
+	}
+}
+
 int main()
 {
 	Bureaucrat	*b_obj = 0;
@@ -36,37 +52,25 @@ int main()
 		f_obj = new Form(std::string("LOL"), false, 10, 10);
 		f2_obj = new Form(std::string("IDK"), false, 1, 1);
 	}
-	catch(const Bureaucrat::GradeTooHighException& e)
+	catch (const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
 		delObjs(b_obj, b2_obj, f_obj, f2_obj);
 		return (EXIT_FAILURE);
 	}
-	catch(const Bureaucrat::GradeTooLowException& e)
+	catch (...)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << "Unexcpected exception" << std::endl;
 		delObjs(b_obj, b2_obj, f_obj, f2_obj);
 		return (EXIT_FAILURE);
 	}
-	catch(const Form::GradeTooHighException& e)
-	{
-		std::cerr << e.what() << std::endl;
-		delObjs(b_obj, b2_obj, f_obj, f2_obj);
-		return (EXIT_FAILURE);
-	}
-	catch(const Form::GradeTooLowException& e)
-	{
-		std::cerr << e.what() << std::endl;
-		delObjs(b_obj, b2_obj, f_obj, f2_obj);
-		return (EXIT_FAILURE);
-	}
-	std::cout << *b_obj;
-	std::cout << *f_obj;
+	std::cout << *b_obj << std::endl;
+	std::cout << *f_obj << std::endl;
 	b_obj->signForm(*f_obj);
-	std::cout << *f_obj;
+	std::cout << *f_obj << std::endl;
 	b_obj->signForm(*f_obj);
-	std::cout << *b2_obj;
-	std::cout << *f2_obj;
+	std::cout << *b2_obj << std::endl;
+	std::cout << *f2_obj << std::endl;
 	b2_obj->signForm(*f2_obj);
 	delObjs(b_obj, b2_obj, f_obj, f2_obj);
 	return (EXIT_SUCCESS);

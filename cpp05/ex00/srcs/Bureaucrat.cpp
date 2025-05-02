@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:17:03 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 01:04:20 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 01:22:40 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& obj)
 
 std::ostream&	operator<<(std::ostream& os, const Bureaucrat& obj)
 {
-	os << obj.getName() << ", bureaucrat grade " << (int)obj.getGrade() << "." << std::endl;
+	os << obj.getName() << ", bureaucrat grade " << (int)obj.getGrade() << ".";
 	return (os);
 }
