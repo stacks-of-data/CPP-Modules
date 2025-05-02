@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:16:34 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 02:10:02 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 02:10:50 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ void	attemptSign(Bureaucrat *b_obj, Form *f_obj)
 	catch (const std::exception& e)
 	{
 		std::cerr << e.what() << std::endl;
+	}
+	catch (...)
+	{
+		std::cerr << "Unexcpected exception" << std::endl;
 	}
 }
 
