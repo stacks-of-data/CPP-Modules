@@ -6,12 +6,12 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:17:03 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/02 23:52:42 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 01:05:37 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Bureaucrat.hpp>
-#include <Form.hpp>
+#include "../includes/Bureaucrat.hpp"
+#include "../includes/Form.hpp"
 
 Bureaucrat::Bureaucrat(): _name(DEFAULT_BUREAUCRAT_NAME), _grade(DEFAULT_BUREAUCRAT_GRADE)
 {
@@ -29,7 +29,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat& obj): _name(obj.getName()), _grade(obj.
 		throw Bureaucrat::GradeTooHighException();
 }
 
-Bureaucrat::Bureaucrat(const std::string name, const uint8_t grade): _name(name), _grade(grade)
+Bureaucrat::Bureaucrat(const std::string& name, const uint8_t grade): _name(name), _grade(grade)
 {
 	if (this->_grade > 150)
 		throw Bureaucrat::GradeTooLowException();

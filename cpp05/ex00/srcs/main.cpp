@@ -6,12 +6,20 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:16:34 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/02 22:07:14 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 01:10:44 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Bureaucrat.hpp>
+#include "../includes/Bureaucrat.hpp"
 #include <iostream>
+#include <cstdlib>
+
+void	delObjs(Bureaucrat *obj1, Bureaucrat *obj2, Bureaucrat *obj3)
+{
+	delete obj1;
+	delete obj2;
+	delete obj3;
+}
 
 void	attempt_IncDec(Bureaucrat& obj, int mode)
 {
@@ -34,16 +42,37 @@ void	attempt_IncDec(Bureaucrat& obj, int mode)
 
 int main()
 {
-	Bureaucrat	obj(std::string("John"), 1);
-	Bureaucrat	obj2(std::string("Steve"), 150);
-	Bureaucrat	obj3(std::string("Eric"), 100);
-	std::cout << obj;
-	attempt_IncDec(obj, 0);
-	std::cout << obj;
-	std::cout << obj2;
-	attempt_IncDec(obj2, 1);
-	std::cout << obj2;
-	std::cout << obj3;
-	attempt_IncDec(obj3, 1);
-	std::cout << obj3;
+	Bureaucrat	*obj = 0;
+	Bureaucrat	*obj2 = 0;
+	Bureaucrat	*obj3 = 0;
+	try
+	{
+		obj = new Bureaucrat(std::string("John"), 1);
+		obj2 = new Bureaucrat(std::string("Steve"), 150);
+		obj3 = new Bureaucrat(std::string("Eric"), 100);
+	}
+	catch (const Bureaucrat::GradeTooHighException& e)
+	{
+		std::cerr << e.what() << std::endl;
+		delObjs(obj, obj2, obj3);
+		return (EXIT_FAILURE);
+	}
+	catch (const Bureaucrat::GradeTooLowException& e)
+	{
+		std::cerr << e.what() << std::endl;
+		delObjs(obj, obj2, obj3);
+		return (EXIT_FAILURE);
+	}
+	
+	std::cout << *obj;
+	attempt_IncDec(*obj, 0);
+	std::cout << *obj;
+	std::cout << *obj2;
+	attempt_IncDec(*obj2, 1);
+	std::cout << *obj2;
+	std::cout << *obj3;
+	attempt_IncDec(*obj3, 1);
+	std::cout << *obj3;
+	delObjs(obj, obj2, obj3);
+	return (EXIT_SUCCESS);
 }

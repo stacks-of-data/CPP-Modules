@@ -6,12 +6,12 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 22:19:24 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 00:58:34 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 01:05:54 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Form.hpp>
-#include <Bureaucrat.hpp>
+#include "../includes/Bureaucrat.hpp"
+#include "../includes/Form.hpp"
 #include <iostream>
 
 Form::Form(): _name(DEFAULT_FORM_NAME), _bSigned(DEFAULT_FORM_SIGNED),
