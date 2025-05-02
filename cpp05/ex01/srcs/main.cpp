@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:16:34 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 01:24:15 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 02:10:02 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ void	trySignForm(Bureaucrat* b_obj, Form* f_obj)
 	}
 }
 
+void	attemptSign(Bureaucrat *b_obj, Form *f_obj)
+{
+	try
+	{
+		b_obj->signForm(*f_obj);
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+}
+
 int main()
 {
 	Bureaucrat	*b_obj = 0;
@@ -66,12 +78,12 @@ int main()
 	}
 	std::cout << *b_obj << std::endl;
 	std::cout << *f_obj << std::endl;
-	b_obj->signForm(*f_obj);
+	attemptSign(b_obj, f_obj);
 	std::cout << *f_obj << std::endl;
-	b_obj->signForm(*f_obj);
+	attemptSign(b_obj, f_obj);
 	std::cout << *b2_obj << std::endl;
 	std::cout << *f2_obj << std::endl;
-	b2_obj->signForm(*f2_obj);
+	attemptSign(b2_obj, f2_obj);
 	delObjs(b_obj, b2_obj, f_obj, f2_obj);
 	return (EXIT_SUCCESS);
 }
