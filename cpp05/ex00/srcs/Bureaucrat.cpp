@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:17:03 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/02 22:00:28 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/02 22:24:44 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ Bureaucrat::Bureaucrat(Bureaucrat& obj): _name(obj.getName()), _grade(obj.getGra
 		throw Bureaucrat::GradeTooHighException();
 }
 
-Bureaucrat::Bureaucrat(const std::string name, unsigned char grade): _name(name), _grade(grade)
+Bureaucrat::Bureaucrat(const std::string name, const unsigned char grade): _name(name), _grade(grade)
 {
 	if (this->_grade > 150)
 		throw Bureaucrat::GradeTooLowException();

@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:17:40 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/02 19:15:05 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/02 22:24:37 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Bureaucrat
 	public:
 	Bureaucrat();
 	Bureaucrat(Bureaucrat& obj);
-	Bureaucrat(const std::string name, unsigned char grade);
+	Bureaucrat(const std::string name, const unsigned char grade);
 	~Bureaucrat();
 	std::string		getName() const;
 	unsigned char	getGrade() const;
