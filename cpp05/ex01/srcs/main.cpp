@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:16:34 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 02:10:50 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 02:26:23 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,6 @@ void	delObjs(Bureaucrat* obj1, Bureaucrat* obj2, Form* obj3, Form* obj4)
 	delete obj2;
 	delete obj3;
 	delete obj4;
-}
-
-void	trySignForm(Bureaucrat* b_obj, Form* f_obj)
-{
-	try
-	{
-		b_obj->signForm(*f_obj);
-	}
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	catch (...)
-	{
-		std::cerr << "Unexcpected exception" << std::endl;
-	}
 }
 
 void	attemptSign(Bureaucrat *b_obj, Form *f_obj)
