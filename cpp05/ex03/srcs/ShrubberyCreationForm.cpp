@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 19:11:48 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 23:52:00 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 23:59:28 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 		throw AForm::FormNotSigned();
 	if (executor.getGrade() > this->getGradeToExec())
 		throw AForm::GradeTooLowException();
+	
 	std::string file_name;
 	try
 	{
@@ -134,6 +135,7 @@ void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 		std::cerr << "Unexpected exception" << std::endl;
 		throw ShrubberyCreationForm::TreePlantingFailure();
 	}
+
 	std::cout << "Planting " << file_name << std::endl;
 	DIR *dir = opendir(".");
 	if (!dir)
@@ -141,6 +143,7 @@ void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 		std::cerr << "opendir: " << std::strerror(errno) << std::endl;
 		throw ShrubberyCreationForm::TreePlantingFailure();
 	}
+
 	int	res = 0;
 	std::string data;
 	try
@@ -159,6 +162,7 @@ void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 		std::cerr << "Unexpected exception" << std::endl;
 		throw ShrubberyCreationForm::TreePlantingFailure();
 	}
+	
 	if (!res)
 		throw ShrubberyCreationForm::TreePlantingFailure();
 	std::fstream file(file_name.c_str(), std::fstream::out);
@@ -175,20 +179,7 @@ void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 		throw ShrubberyCreationForm::TreePlantingFailure();
 	}
 	file.close();
-	try
-	{
-		std::cout << "Tree planted!" << std::endl;
-	}
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-		throw ShrubberyCreationForm::TreePlantingFailure();
-	}
-	catch (...)
-	{
-		std::cerr << "Unexpected exception" << std::endl;
-		throw ShrubberyCreationForm::TreePlantingFailure();
-	}
+	std::cout << "Tree planted!" << std::endl;
 }
 
 const char*	ShrubberyCreationForm::TreePlantingFailure::what() const throw()
