@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 21:47:14 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 22:45:43 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 22:59:08 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	RobotomyRequestForm::execute(const Bureaucrat& executor) const
 		std::cerr << "Robotomy failed." << std::endl;
 		throw RobotomyRequestForm::RobotomyFailure();
 	}
-	std::cout << this->getTarget() << " has been robotomized.\n" << executor.getName() << " executed " << this->getName() << std::endl;
+	std::cout << this->getTarget() << " has been robotomized." << std::endl;
 }
 
 const char*	RobotomyRequestForm::RobotomyFailure::what() const throw()

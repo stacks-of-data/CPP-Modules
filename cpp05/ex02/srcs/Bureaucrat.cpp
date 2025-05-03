@@ -6,12 +6,13 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:17:03 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 20:05:10 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 22:58:46 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Bureaucrat.hpp"
 #include "../includes/AForm.hpp"
+#include <iostream>
 
 Bureaucrat::Bureaucrat(): _name(DEFAULT_BUREAUCRAT_NAME), _grade(DEFAULT_BUREAUCRAT_GRADE)
 {
@@ -68,6 +69,23 @@ void	Bureaucrat::gradeDec()
 void	Bureaucrat::signForm(AForm& obj) const
 {
 	obj.beSigned(*this);
+}
+
+void	Bureaucrat::executeForm(const AForm& form) const
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << "\nForm execution failed." << std::endl;
+	}
+	catch (...)
+	{
+		std::cerr << "Unexpected exception\nExecution failed." << std::endl;
+	}
 }
 
 const char*	Bureaucrat::GradeTooHighException::what() const throw()

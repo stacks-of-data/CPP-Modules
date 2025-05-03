@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 19:11:48 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 22:47:36 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 22:59:19 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ void	ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 	file.close();
 	try
 	{
-		std::cout << "Tree planted!\n" << executor.getName() << " executed " << this->getName() << std::endl;
+		std::cout << "Tree planted!" << std::endl;
 	}
 	catch (const std::exception& e)
 	{

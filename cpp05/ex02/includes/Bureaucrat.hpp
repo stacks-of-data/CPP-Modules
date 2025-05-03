@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:17:40 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 20:04:54 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 22:55:47 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ class Bureaucrat
 	void				gradeInc();
 	void				gradeDec();
 	void				signForm(AForm& obj) const;
+	void				executeForm(const AForm& form) const;
 	class GradeTooHighException: public std::exception
 	{
 		public:

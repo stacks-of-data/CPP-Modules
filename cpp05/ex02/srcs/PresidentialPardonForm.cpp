@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 22:22:17 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 22:45:54 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 23:00:38 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ void	PresidentialPardonForm::execute(const Bureaucrat& executor) const
 		throw AForm::FormNotSigned();
 	if (executor.getGrade() > this->getGradeToExec())
 		throw AForm::GradeTooLowException();
-	std::cout << this->getTarget() << "has been pardoned by Zaphod Beeblebrox.\n";
-	std::cout << executor.getName() << " executed " << this->getName() << std::endl;
+	std::cout << this->getTarget() << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }
 
 PresidentialPardonForm	PresidentialPardonForm::operator=(PresidentialPardonForm& obj)

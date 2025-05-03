@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:16:34 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 22:48:19 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 23:00:09 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,6 @@ void	attemptSign(Bureaucrat *b_obj, AForm *f_obj)
 	try
 	{
 		b_obj->signForm(*f_obj);
-	}
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	catch (...)
-	{
-		std::cerr << "Unexcpected exception" << std::endl;
-	}
-}
-
-void	attemptExec(Bureaucrat *b_obj, AForm *f_obj)
-{
-	try
-	{
-		f_obj->execute(*b_obj);
 	}
 	catch (const std::exception& e)
 	{
@@ -89,11 +73,11 @@ int main()
 	std::cout << *f2_obj << std::endl;
 	std::cout << *f3_obj << std::endl;
 	attemptSign(b_obj, f_obj);
-	attemptExec(b_obj, f_obj);
+	b_obj->executeForm(*f_obj);
 	attemptSign(b_obj, f2_obj);
-	attemptExec(b_obj, f2_obj);
+	b_obj->executeForm(*f2_obj);
 	attemptSign(b_obj, f3_obj);
-	attemptExec(b_obj, f3_obj);
+	b_obj->executeForm(*f3_obj);
 	delObjs(b_obj, f_obj, f2_obj, f3_obj);
 	return (EXIT_SUCCESS);
 }
