@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 22:19:24 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 02:08:01 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/04 00:48:06 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,7 @@ void	Form::beSigned(const Bureaucrat& obj)
 	uint8_t	bureaucratGrade = obj.getGrade();
 	if (bureaucratGrade > this->_gradeToSign)
 		throw Form::GradeTooLowException();
-	if (this->_bSigned == true)
-	{
-		std::cout << this->_name << " is already signed" << std::endl;
-		return;
-	}
 	this->_bSigned = true;
-	std::cout << obj.getName() << " signed " << this->_name << std::endl;
 }
 
 const char*	Form::GradeTooHighException::what() const throw()

@@ -6,12 +6,13 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:17:03 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 01:22:46 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/04 00:49:11 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Bureaucrat.hpp"
 #include "../includes/Form.hpp"
+#include <iostream>
 
 Bureaucrat::Bureaucrat(): _name(DEFAULT_BUREAUCRAT_NAME), _grade(DEFAULT_BUREAUCRAT_GRADE)
 {
@@ -67,7 +68,24 @@ void	Bureaucrat::gradeDec()
 
 void	Bureaucrat::signForm(Form& obj) const
 {
-	obj.beSigned(*this);
+	if (obj.getIsSigned())
+	{
+		std::cout << obj.getName() << " is already signed" << std::endl;
+		return;
+	}
+	try
+	{
+		obj.beSigned(*this);
+		std::cout << this->_name << " signed " << obj.getName() << std::endl;
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << "Unexpected exception" << std::endl;
+	}
 }
 
 const char*	Bureaucrat::GradeTooHighException::what() const throw()

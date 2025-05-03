@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:17:03 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 22:58:46 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/04 00:50:37 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,24 @@ void	Bureaucrat::gradeDec()
 
 void	Bureaucrat::signForm(AForm& obj) const
 {
-	obj.beSigned(*this);
+	if (obj.getIsSigned())
+	{
+		std::cout << obj.getName() << " is already signed" << std::endl;
+		return;
+	}
+	try
+	{
+		obj.beSigned(*this);
+		std::cout << this->_name << " signed " << obj.getName() << std::endl;
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+	}
+	catch (...)
+	{
+		std::cout << "Unexpected exception" << std::endl;
+	}
 }
 
 void	Bureaucrat::executeForm(const AForm& form) const

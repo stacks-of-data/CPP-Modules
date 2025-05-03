@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:16:34 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 02:26:23 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/04 00:51:28 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,6 @@ void	delObjs(Bureaucrat* obj1, Bureaucrat* obj2, Form* obj3, Form* obj4)
 	delete obj2;
 	delete obj3;
 	delete obj4;
-}
-
-void	attemptSign(Bureaucrat *b_obj, Form *f_obj)
-{
-	try
-	{
-		b_obj->signForm(*f_obj);
-	}
-	catch (const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	catch (...)
-	{
-		std::cerr << "Unexcpected exception" << std::endl;
-	}
 }
 
 int main()
@@ -66,12 +50,12 @@ int main()
 	}
 	std::cout << *b_obj << std::endl;
 	std::cout << *f_obj << std::endl;
-	attemptSign(b_obj, f_obj);
+	b_obj->signForm(*f_obj);
 	std::cout << *f_obj << std::endl;
-	attemptSign(b_obj, f_obj);
+	b_obj->signForm(*f_obj);
 	std::cout << *b2_obj << std::endl;
 	std::cout << *f2_obj << std::endl;
-	attemptSign(b2_obj, f2_obj);
+	b2_obj->signForm(*f2_obj);
 	delObjs(b_obj, b2_obj, f_obj, f2_obj);
 	return (EXIT_SUCCESS);
 }
