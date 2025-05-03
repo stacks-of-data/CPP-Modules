@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:17:03 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/04 00:50:45 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/04 00:58:41 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,13 @@ void	Bureaucrat::signForm(AForm& obj) const
 	}
 	catch (const std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cerr << this->_name << " couldn't sign " << obj.getName()
+			<< " because " << e.what() << std::endl;
 	}
 	catch (...)
 	{
-		std::cout << "Unexpected exception" << std::endl;
+		std::cerr << this->_name << " couldn't sign " << obj.getName()
+			<< " because " << "unexpected exception" << std::endl;
 	}
 }
 
