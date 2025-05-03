@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 22:19:24 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 22:42:09 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 23:08:00 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,8 @@ std::ostream&	operator<<(std::ostream& os, const AForm& obj)
 	os << "-------------------------\n";
 	os << "Form Name: " << obj.getName() << "\nIs Signed: " << status
 		<< "\nGrade to Sign: " << (int)obj.getGradeToSign()
-		<< "\nGrade to Execute: " << (int)obj.getGradeToExec();
+		<< "\nGrade to Execute: " << (int)obj.getGradeToExec()
+		<< "\nTarget: " << obj.getTarget();
 	os << "\n-------------------------";
 	return (os);
 }
