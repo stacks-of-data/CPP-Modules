@@ -89,4 +89,8 @@ Diamond inheritance problem: https://www.geeksforgeeks.org/diamond-problem-in-cp
 Variable Shadowing: https://en.wikipedia.org/wiki/Variable_shadowing  
 GCC Warning Options: https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html  
 Abstract Class: https://en.cppreference.com/w/cpp/language/abstract_class  
-vtable: https://www.geeksforgeeks.org/vtable-and-vptr-in-cpp/
+vtable: https://www.geeksforgeeks.org/vtable-and-vptr-in-cpp/  
+RAII: https://en.cppreference.com/w/cpp/language/raii  
+Exceptions: https://cplusplus.com/doc/tutorial/exceptions/  
+Nested Classes: https://en.cppreference.com/w/cpp/language/nested_types  
+rand() and srand() in C++: https://www.geeksforgeeks.org/rand-and-srand-in-ccpp/
