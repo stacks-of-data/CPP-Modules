@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 21:42:59 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 22:44:02 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 23:54:42 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class RobotomyRequestForm: public AForm
 	public:
 	RobotomyRequestForm();
 	RobotomyRequestForm(const std::string& target);
-	RobotomyRequestForm(RobotomyRequestForm& obj);
+	RobotomyRequestForm(const RobotomyRequestForm& obj);
 	~RobotomyRequestForm();
 	void	execute(const Bureaucrat& executor) const;
 	class RobotomyFailure: public std::exception

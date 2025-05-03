@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 22:16:55 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 22:43:12 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 23:53:37 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ class PresidentialPardonForm: public AForm
 	public:
 	PresidentialPardonForm();
 	PresidentialPardonForm(const std::string& target);
-	PresidentialPardonForm(PresidentialPardonForm& obj);
+	PresidentialPardonForm(const PresidentialPardonForm& obj);
 	~PresidentialPardonForm();
 	void	execute(const Bureaucrat& executor) const;
 };

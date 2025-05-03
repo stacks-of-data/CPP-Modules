@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 23:10:37 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 23:47:13 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 23:53:27 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ class Intern
 {
 	private:
 	std::string	_forms_names[3];
-	int	getFormIndex(const std::string& name);
+	int	getFormIndex(const std::string& name) const;
 	public:
 	Intern();
 	Intern(const Intern& obj);
 	~Intern();
-	AForm*	makeForm(const std::string& name, const std::string& target);
+	AForm*	makeForm(const std::string& name, const std::string& target) const;
 	Intern&	operator=(const Intern& obj);
 	class FormCreationFailure: public std::exception
 	{

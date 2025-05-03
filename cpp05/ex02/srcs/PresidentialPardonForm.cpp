@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 22:22:17 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 23:00:38 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 23:54:58 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string& target):
 {
 }
 
-PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm& obj):
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& obj):
 	AForm(obj.getName(), obj.getIsSigned(), obj.getGradeToSign(), obj.getGradeToExec(), obj.getTarget())
 {
 }

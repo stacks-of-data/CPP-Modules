@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 19:05:41 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 22:46:23 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 23:53:44 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class ShrubberyCreationForm: public AForm
 	public:
 	ShrubberyCreationForm();
 	ShrubberyCreationForm(const std::string& target);
-	ShrubberyCreationForm(ShrubberyCreationForm& obj);
+	ShrubberyCreationForm(const ShrubberyCreationForm& obj);
 	~ShrubberyCreationForm();
 	void	execute(const Bureaucrat& executor) const;
 	class TreePlantingFailure: public std::exception

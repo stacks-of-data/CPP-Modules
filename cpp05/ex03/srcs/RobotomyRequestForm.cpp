@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 21:47:14 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 22:59:08 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 23:51:56 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string& target):
 {
 }
 
-RobotomyRequestForm::RobotomyRequestForm(RobotomyRequestForm& obj):
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& obj):
 	AForm(obj.getName(), obj.getIsSigned(), obj.getGradeToSign(), obj.getGradeToExec(), obj.getTarget())
 {
 }

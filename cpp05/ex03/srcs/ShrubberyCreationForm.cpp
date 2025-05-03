@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 19:11:48 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 22:59:19 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 23:52:00 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target):
 {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(ShrubberyCreationForm& obj):
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& obj):
 	AForm(obj.getName(), obj.getIsSigned(), obj.getGradeToSign(), obj.getGradeToExec(), obj.getTarget())
 {
 }

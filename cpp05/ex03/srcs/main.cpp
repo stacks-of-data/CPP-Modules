@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 20:16:34 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 23:49:16 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 23:51:36 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <cstdlib>
 #include <ctime>
 
-void	delObjs(Bureaucrat* obj1, AForm* obj2, AForm *obj3, AForm *obj4)
+void	delObjs(const Bureaucrat* obj1, const AForm* obj2, const AForm *obj3, const AForm *obj4)
 {
 	delete obj1;
 	delete obj2;
@@ -27,7 +27,7 @@ void	delObjs(Bureaucrat* obj1, AForm* obj2, AForm *obj3, AForm *obj4)
 	delete obj4;
 }
 
-void	attemptSign(Bureaucrat *b_obj, AForm *f_obj)
+void	attemptSign(const Bureaucrat *b_obj, AForm *f_obj)
 {
 	try
 	{

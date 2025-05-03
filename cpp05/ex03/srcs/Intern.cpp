@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 23:10:37 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 23:47:46 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/03 23:52:30 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ Intern::~Intern()
 {
 }
 
-int	Intern::getFormIndex(const std::string& name)
+int	Intern::getFormIndex(const std::string& name) const
 {
 	for (int i = 0; i < 3; i++)
 	{
@@ -45,7 +45,7 @@ int	Intern::getFormIndex(const std::string& name)
 	return (-1);
 }
 
-AForm*	Intern::makeForm(const std::string& name, const std::string& target)
+AForm*	Intern::makeForm(const std::string& name, const std::string& target) const
 {
 	int	i = this->getFormIndex(name);
 	AForm	*res;
