@@ -1,5 +1,5 @@
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98 -I./includes
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = main.cpp Bureaucrat.cpp
 SRCS := $(addprefix srcs/,$(SRCS))
 OBJS = $(SRCS:.cpp=.o)
