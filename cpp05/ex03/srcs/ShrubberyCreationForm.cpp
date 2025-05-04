@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 19:11:48 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/03 23:59:28 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/04 21:50:25 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	treeRecursion(DIR *dir, std::string &data, size_t lvl, std::string& dir_path
 			{
 				std::string full_path = dir_path + entry->d_name;
 				stat(full_path.c_str(), &buf);
+				appendTreeStructure(data, lvl, entry);
 			}
 			catch (const std::exception& e)
 			{
@@ -55,7 +56,6 @@ int	treeRecursion(DIR *dir, std::string &data, size_t lvl, std::string& dir_path
 				closedir(dir);
 				return (0);
 			}
-			appendTreeStructure(data, lvl, entry);
 			if (S_ISDIR(buf.st_mode))
 			{
 				try
