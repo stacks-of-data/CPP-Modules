@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 22:05:26 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/06 00:47:55 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/06 01:06:45 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,48 +259,48 @@ static bool	isDisplayable(char c)
 static void	intScalarConvert(const std::string& str, TScalarData& data, TScalarModes& modes)
 {
 	data.iVal = atoi(str.c_str());
-	data.cVal = data.iVal;
-	if ((int)data.cVal != data.iVal)
+	data.cVal = static_cast<char>(data.iVal);
+	if (static_cast<int>(data.cVal) != data.iVal)
 		modes.cMode = MODE_IMPOSSIBLE;
 	else if (!isDisplayable(data.cVal))
 		modes.cMode = MODE_UNDISPLAYABLE;
-	data.fVal = data.iVal;
-	if ((int)data.fVal != data.iVal)
+	data.fVal = static_cast<float>(data.iVal);
+	if (static_cast<int>(data.fVal) != data.iVal)
 		modes.fMode = MODE_IMPOSSIBLE;
-	data.dVal = data.iVal;
-	if ((int)data.dVal != data.iVal)
+	data.dVal = static_cast<double>(data.iVal);
+	if (static_cast<int>(data.dVal) != data.iVal)
 		modes.dMode = MODE_IMPOSSIBLE;
 }
 
 static void	floatScalarConvert(const std::string& str, TScalarData& data, TScalarModes& modes)
 {
 	data.fVal = atof(str.c_str());
-	data.cVal = data.fVal;
-	if ((float)data.cVal != data.fVal)
+	data.cVal = static_cast<char>(data.fVal);
+	if (static_cast<float>(data.cVal) != data.fVal)
 		modes.cMode = MODE_IMPOSSIBLE;
 	else if (!isDisplayable(data.cVal))
 		modes.cMode = MODE_UNDISPLAYABLE;
-	data.iVal = data.fVal;
-	if ((float)data.iVal != data.fVal)
+	data.iVal = static_cast<int>(data.fVal);
+	if (static_cast<float>(data.iVal) != data.fVal)
 		modes.iMode = MODE_IMPOSSIBLE;
-	data.dVal = data.iVal;
-	if ((float)data.dVal != data.fVal)
+	data.dVal = static_cast<double>(data.iVal);
+	if (static_cast<float>(data.dVal) != data.fVal)
 		modes.dMode = MODE_IMPOSSIBLE;
 }
 
 static void	doubleScalarConvert(const std::string& str, TScalarData& data, TScalarModes& modes)
 {
 	data.dVal = atof(str.c_str());
-	data.cVal = data.dVal;
-	if ((double)data.cVal != data.dVal)
+	data.cVal = static_cast<char>(data.dVal);
+	if (static_cast<double>(data.cVal) != data.dVal)
 		modes.cMode = MODE_IMPOSSIBLE;
 	else if (!isDisplayable(data.cVal))
 		modes.cMode = MODE_UNDISPLAYABLE;
-	data.iVal = data.dVal;
-	if ((double)data.iVal != data.dVal)
+	data.iVal = static_cast<int>(data.dVal);
+	if (static_cast<double>(data.iVal) != data.dVal)
 		modes.iMode = MODE_IMPOSSIBLE;
-	data.fVal = data.dVal;
-	if ((double)data.fVal != data.dVal)
+	data.fVal = static_cast<float>(data.dVal);
+	if (static_cast<double>(data.fVal) != data.dVal)
 		modes.fMode = MODE_IMPOSSIBLE;
 }
 
@@ -309,7 +309,7 @@ static void	scientificScalarConvert(const std::string& str, TScalarData& data, T
 	modes.cMode = MODE_IMPOSSIBLE;
 	modes.iMode = MODE_IMPOSSIBLE;
 	data.fVal = atof(str.c_str());
-	data.dVal = data.fVal;
+	data.dVal = static_cast<double>(data.fVal);
 	modes.fMode = MODE_SCIENTIFIC;
 	modes.dMode = MODE_SCIENTIFIC;
 }
@@ -326,9 +326,9 @@ void	ScalarConverter::convert(const std::string& str)
 			data.cVal = str[0];
 			if (data.cVal < 0)
 				modes.cMode = MODE_UNDISPLAYABLE;
-			data.iVal = data.cVal;
-			data.fVal = data.cVal;
-			data.dVal = data.cVal;
+			data.iVal = static_cast<int>(data.cVal);
+			data.fVal = static_cast<float>(data.cVal);
+			data.dVal = static_cast<double>(data.cVal);
 			break;
 		case DATATYPE_INT:
 			intScalarConvert(str, data, modes);
