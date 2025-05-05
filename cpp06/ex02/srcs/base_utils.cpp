@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 02:14:17 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/06 02:42:35 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/06 02:55:16 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,21 @@ void	identify(Base* p)
 	A* ptr_a = dynamic_cast<A*>(p);
 	if (ptr_a)
 	{
-		(void)ptr_a;
+		static_cast<void>(ptr_a);
 		std::cout << "PTR is pointing to class A" << std::endl;
 		return;
 	}
 	B* ptr_b = dynamic_cast<B*>(p);
 	if (ptr_b)
 	{
-		(void)ptr_b;
+		static_cast<void>(ptr_b);
 		std::cout << "PTR is pointing to class B" << std::endl;
 		return;
 	}
 	C* ptr_c = dynamic_cast<C*>(p);
 	if (ptr_c)
 	{
-		(void)ptr_c;
+		static_cast<void>(ptr_c);
 		std::cout << "PTR is pointing to class C" << std::endl;
 		return;
 	}
@@ -63,7 +63,7 @@ void	identify(Base& p)
 	try
 	{
 		A& ref_a = dynamic_cast<A&>(p);
-		(void)ref_a;
+		static_cast<void>(ref_a);
 		std::cout << "REF is referencing data of class A" << std::endl;
 		return;
 	}
@@ -73,7 +73,7 @@ void	identify(Base& p)
 	try
 	{
 		B& ref_b = dynamic_cast<B&>(p);
-		(void)ref_b;
+		static_cast<void>(ref_b);
 		std::cout << "REF is referencing data of class B" << std::endl;
 		return;
 	}
@@ -83,7 +83,7 @@ void	identify(Base& p)
 	try
 	{
 		C& ref_c = dynamic_cast<C&>(p);
-		(void)ref_c;
+		static_cast<void>(ref_c);
 		std::cout << "REF is referencing data of class C" << std::endl;
 		return;
 	}
