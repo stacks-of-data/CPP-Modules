@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 22:07:21 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/06 00:48:19 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/06 02:57:53 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main(int ac, char **av)
 	}
 	catch (const std::stringstream::failure& e)
 	{
-		std::cerr << "Writing output failure: " << e.what() << std::endl;
+		std::cerr << "Writing to stream failure: " << e.what() << std::endl;
 		return (EXIT_FAILURE);
 	}
 	catch (const std::bad_alloc& e)
