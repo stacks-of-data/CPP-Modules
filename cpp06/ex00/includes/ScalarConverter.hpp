@@ -6,9 +6,12 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 21:57:31 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/06 00:37:41 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/06 02:47:03 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef SCALARCONVERTER_HPP
+#define SCALARCONVERTER_HPP
 
 #include <string>
 #include <iostream>
@@ -58,3 +61,5 @@ class ScalarConverter
 	public:
 	static void	convert(const std::string& str);
 };
+
+#endif
