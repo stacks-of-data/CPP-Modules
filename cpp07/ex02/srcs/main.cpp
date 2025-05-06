@@ -12,7 +12,7 @@ int main(int, char**)
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << "Allocation Failure: " << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 		return (EXIT_FAILURE);
 	}
     
