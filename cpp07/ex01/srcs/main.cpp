@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 17:08:33 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/06 17:34:58 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/06 22:10:13 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 #include <string>
 #include <iostream>
 
-void func42(void* content)
+void func42(int& content)
 {
-	*static_cast<int*>(content) = *static_cast<int*>(content) + 42;
+	content += 42;
 }
 
-void funcS42(void* content)
+void funcS42(std::string& content)
 {
-	*static_cast<std::string*>(content) += "_42";
+	content += "_42";
 }
 
-void func_print_int(void* content)
+void func_print_int(int& content)
 {
-	std::cout << "Int: " << *static_cast<int*>(content) << "\n";
+	std::cout << "Int: " << content << "\n";
 }
 
-void func_print_str(void* content)
+void func_print_str(const std::string& content)
 {
-	std::cout << "String: " << *static_cast<std::string*>(content) << "\n";
+	std::cout << "String: " << content << "\n";
 }
 
 int main()
