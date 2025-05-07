@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 15:29:06 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/07 20:03:20 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/07 20:08:57 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,18 @@ int main()
 	std::cout << (int)time(NULL) << std::endl;
 	std::vector<int> vec;
 	std::list<int> list;
-	for (size_t i = 0; i < COUNT; i++)
-		vec.push_back(rand() % (RAND_LIMIT + 1));
-	for (size_t i = 0; i < COUNT; i++)
-		list.push_back(rand() % (RAND_LIMIT + 1));
+	try
+	{
+		for (size_t i = 0; i < COUNT; i++)
+			vec.push_back(rand() % (RAND_LIMIT + 1));
+		for (size_t i = 0; i < COUNT; i++)
+			list.push_back(rand() % (RAND_LIMIT + 1));
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+		return (EXIT_FAILURE);
+	}
 	
 	std::cout << "VECTOR PREVIEW:" << std::endl;
 	for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); it++)
@@ -50,5 +58,5 @@ int main()
 	attemptEasyFind(vec, iVecN);
 	attemptEasyFind(list, iListN);
 
-	return (0);
+	return (EXIT_SUCCESS);
 }
