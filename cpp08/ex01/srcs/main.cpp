@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:54:31 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/07 23:16:20 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/08 00:04:16 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,5 @@ int main()
 		std::cerr << e.what() << std::endl;
 		return (EXIT_FAILURE);
 	}
-
 	return (0);
 }

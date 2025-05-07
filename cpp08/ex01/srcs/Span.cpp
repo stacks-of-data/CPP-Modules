@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:18:25 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/07 22:39:35 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/08 00:04:05 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,45 @@
 #include <limits>
 #include <cstdlib>
 
-Span::Span(): m_size(0)
+Span::Span(): m_arr(0), m_size(0), m_curr_size(0)
 {
 }
 
-Span::Span(const uint32_t n): m_size(n)
+Span::Span(const uint32_t n): m_size(n), m_curr_size(0)
 {
-	this->m_vec.reserve(n);
+	this->m_arr = new int[this->m_size];
 }
 
 Span::Span(const Span& obj)
 {
 	this->m_size = obj.m_size;
-	this->m_vec = obj.m_vec;
+	this->m_curr_size = obj.m_curr_size;
+	this->m_arr = new int[this->m_size];
+	for (uint32_t i = 0; i < this->m_curr_size; i++)
+		this->m_arr[i] = obj.m_arr[i];
 }
 
 Span::~Span()
 {
+	delete[] this->m_arr;
 }
 
 void	Span::addNumber(int n)
 {
-	if (this->m_vec.size() == this->m_size)
+	if (this->m_curr_size == this->m_size)
 		throw Span::ExceededMaxSize();
-	this->m_vec.push_back(n);
+	this->m_arr[this->m_curr_size] = n;
+	this->m_curr_size++;
 }
 
 long	Span::shortestSpan() const
 {
-	if (this->m_vec.size() < 2)
+	if (this->m_curr_size < 2)
 		throw Span::ImpossibleSpan();
 	long shortest_span = std::numeric_limits<long>::max();
-	for (long i = this->m_vec.size() - 1; i > 0; i--)
+	for (long i = this->m_curr_size - 1; i > 0; i--)
 	{
-		long lTmp = this->m_vec[i] - this->m_vec[i - 1];
+		long lTmp = this->m_arr[i] - this->m_arr[i - 1];
 		long lAbs = labs(lTmp);
 		if (lAbs < shortest_span)
 			shortest_span = lAbs;
@@ -57,12 +62,12 @@ long	Span::shortestSpan() const
 
 long	Span::longestSpan() const
 {
-	if (this->m_vec.size() < 2)
+	if (this->m_curr_size < 2)
 		throw Span::ImpossibleSpan();
 	long longest_span = std::numeric_limits<long>::min();
-	for (long i = this->m_vec.size() - 1; i > 0; i--)
+	for (long i = this->m_curr_size - 1; i > 0; i--)
 	{
-		long lTmp = this->m_vec[i] - this->m_vec[i - 1];
+		long lTmp = this->m_arr[i] - this->m_arr[i - 1];
 		long lAbs = labs(lTmp);
 		if (lAbs > longest_span)
 			longest_span = lAbs;
@@ -72,8 +77,12 @@ long	Span::longestSpan() const
 
 Span&	Span::operator=(const Span& obj)
 {
+	delete[] this->m_arr;
 	this->m_size = obj.m_size;
-	this->m_vec = obj.m_vec;
+	this->m_curr_size = obj.m_curr_size;
+	this->m_arr = new int[this->m_size];
+	for (uint32_t i = 0; i < this->m_curr_size; i++)
+		this->m_arr[i] = obj.m_arr[i];
 	return (*this);
 }
 
