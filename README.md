@@ -93,4 +93,7 @@ vtable: https://www.geeksforgeeks.org/vtable-and-vptr-in-cpp/
 RAII: https://en.cppreference.com/w/cpp/language/raii  
 Exceptions: https://cplusplus.com/doc/tutorial/exceptions/  
 Nested Classes: https://en.cppreference.com/w/cpp/language/nested_types  
-rand() and srand() in C++: https://www.geeksforgeeks.org/rand-and-srand-in-ccpp/
+rand() and srand() in C++: https://www.geeksforgeeks.org/rand-and-srand-in-ccpp/  
+Casting operators: https://www.geeksforgeeks.org/casting-operators-in-cpp/  
+RTTI: https://www.geeksforgeeks.org/rtti-run-time-type-information-in-cpp/  
+Templates: https://www.geeksforgeeks.org/templates-cpp/
