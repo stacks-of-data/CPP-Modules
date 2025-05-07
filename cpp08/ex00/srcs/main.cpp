@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 15:29:06 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/07 20:08:57 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/07 23:17:44 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ int main()
 	std::list<int> list;
 	try
 	{
-		for (size_t i = 0; i < COUNT; i++)
+		for (std::size_t i = 0; i < COUNT; i++)
 			vec.push_back(rand() % (RAND_LIMIT + 1));
-		for (size_t i = 0; i < COUNT; i++)
+		for (std::size_t i = 0; i < COUNT; i++)
 			list.push_back(rand() % (RAND_LIMIT + 1));
 	}
 	catch(const std::exception& e)
