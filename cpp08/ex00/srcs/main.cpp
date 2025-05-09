@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 15:29:06 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/07 23:17:44 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/09 15:00:38 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 int main()
 {
 	std::srand(time(NULL));
-	std::cout << (int)time(NULL) << std::endl;
 	std::vector<int> vec;
 	std::list<int> list;
 	try
@@ -49,7 +48,7 @@ int main()
 		std::cout << *it << std::endl;
 	std::cout << "LIST PREVIEW:" << std::endl;
 	for (std::list<int>::iterator it = list.begin(); it != list.end(); it++)
-		std::cout << *it << '\n';
+		std::cout << *it << std::endl;
 	int iVecN = vec[rand() % COUNT];
 	int iListN = getRandomListElement(list);
 	std::cout << "Selected " << iVecN << " to look for in the vector" << std::endl;
