@@ -5,23 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 19:51:05 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/09 15:20:39 by amsaleh          ###   ########.fr       */
+/*   Created: 2025/05/09 15:17:44 by amsaleh           #+#    #+#             */
+/*   Updated: 2025/05/09 15:20:22 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
-#include <iostream>
-#include <list>
-#include <cstdlib>
-#include <vector>
-
-#define COUNT 5
-#if COUNT <= 0
-	#undef COUNT
-	#define COUNT 1
+#define COUNT_A 100000
+#if COUNT_A < 0
+	#undef COUNT_A
+	#define COUNT_A 10
+#endif
+#define COUNT_B 10
+#if COUNT_B < 0
+	#undef COUNT_B
+	#define COUNT_B 10
 #endif
 #define RAND_LIMIT 42
 #if RAND_LIMIT <= 0
@@ -29,19 +29,7 @@
 	#define RAND_LIMIT 1
 #endif
 
-template <class T>
-void	attemptEasyFind(T& container, int iVal)
-{
-	try
-	{
-		easyfind(container, iVal);
-	}
-	catch (const std::exception& e)
-	{
-		std::cerr << "Container doesn't contain the provided value" << std::endl;
-	}
-}
-
-int	getRandomListElement(std::list<int>& list);
+#include <iostream>
+#include <cstdlib>
 
 #endif

@@ -6,18 +6,12 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 01:52:41 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/08 19:30:30 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/09 15:19:53 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/MutantStack.hpp"
-#include <iostream>
-#include <cstdlib>
-#include <algorithm>
-#include <vector>
-#include <list>
-
-#define COUNT 10
+#include "../includes/utils.hpp"
 
 int main()
 {

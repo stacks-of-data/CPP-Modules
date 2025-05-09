@@ -6,29 +6,12 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 21:54:31 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/08 01:10:31 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/09 15:20:27 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Span.hpp"
-#include <iostream>
-#include <cstdlib>
-
-#define COUNT_A 100000
-#if COUNT_A < 0
-	#undef COUNT_A
-	#define COUNT_A 10
-#endif
-#define COUNT_B 10
-#if COUNT_B < 0
-	#undef COUNT_B
-	#define COUNT_B 10
-#endif
-#define RAND_LIMIT 42
-#if RAND_LIMIT <= 0
-	#undef RAND_LIMIT
-	#define RAND_LIMIT 1
-#endif
+#include "../includes/utils.hpp"
 
 int main()
 {

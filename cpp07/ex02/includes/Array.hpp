@@ -6,9 +6,12 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 17:38:31 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/06 18:11:34 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/09 15:16:21 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef ARRAY_HPP
+#define ARRAY_HPP
 
 #include <exception>
 #include <cstdlib>
@@ -62,3 +65,5 @@ class Array
 		return (this->_arr[i]);
 	}
 };
+
+#endif

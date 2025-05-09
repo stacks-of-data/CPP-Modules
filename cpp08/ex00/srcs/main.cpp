@@ -6,24 +6,12 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 15:29:06 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/09 15:00:38 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/09 15:20:36 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/easyfind.hpp"
 #include "../includes/utils.hpp"
-#include <vector>
-
-#define COUNT 5
-#if COUNT <= 0
-	#undef COUNT
-	#define COUNT 1
-#endif
-#define RAND_LIMIT 42
-#if RAND_LIMIT <= 0
-	#undef RAND_LIMIT
-	#define RAND_LIMIT 1
-#endif
 
 int main()
 {

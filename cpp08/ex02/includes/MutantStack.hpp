@@ -6,9 +6,12 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 23:47:38 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/08 03:11:52 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/09 15:19:05 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef MUTANTSTACK_HPP
+#define MUTANTSTACK_HPP
 
 #include <stack>
 
@@ -66,3 +69,5 @@ class MutantStack: public std::stack<T>
 		return (this->c.crend());
 	}
 };
+
+#endif

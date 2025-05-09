@@ -6,9 +6,12 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:47:09 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/08 01:11:46 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/09 15:17:33 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef SPAN_HPP
+#define SPAN_HPP
 
 #include <stdint.h>
 #include <vector>
@@ -56,3 +59,5 @@ class Span
 		const char*	what() const throw();
 	};
 };
+
+#endif

@@ -6,9 +6,12 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 22:42:00 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/09 14:58:30 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/09 15:16:43 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef EASYFIND_HPP
+#define EASYFIND_HPP
 
 #include <algorithm>
 #include <iostream>
@@ -22,3 +25,5 @@ void easyfind(T& t, int iVal)
 	size_t i = std::distance(t.begin(), it);
 	std::cout << "Found first occurrence at index " << i << std::endl;
 }
+
+#endif
