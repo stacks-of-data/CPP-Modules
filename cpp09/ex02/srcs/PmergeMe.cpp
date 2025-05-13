@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 01:04:46 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/12 01:45:03 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/13 02:57:40 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 #include <algorithm>
 #include <limits>
 #include <cmath>
+
+typedef struct s_pmerge_elem
+{
+	int	val;
+	size_t	i;
+	bool	bMove;
+}	t_pmerge_elem;
+
 
 PmergeMe::PmergeMe(): m_bDisplayed(false)
 {
@@ -62,62 +70,148 @@ void	displayVec(std::vector<int>& vecAOld, std::vector<int>& vecA)
 	std::cout.flush();
 }
 
-void	PmergeMe::sortList(const char* arg)
+void	splitABVec(std::vector<int>& vecA,
+	std::vector<t_pmerge_elem>& vecB, t_pmerge_elem& straggler, bool& bStraggler)
 {
-	(void)arg;
-}
-
-void	recursiveVecSplit(std::vector<int>& vecA, std::vector<int>& vecB, std::size_t pairCount, std::size_t lvl)
-{
-	if (pairCount < 2)
-		return;
-	std::size_t indexInc = lvl * 2;
-	std::size_t indexLimit = vecA.size() - lvl;
-	for (std::size_t i = 0; i < indexLimit; i += indexInc)
-	{
-		size_t iAddLvl = i + indexInc / 2;
-		size_t iAddLvl2 = iAddLvl + indexInc / 2;
-		int maxS1 = std::numeric_limits<int>::min();
-		int maxS2 = std::numeric_limits<int>::min();
-		for (std::size_t j = i; j < iAddLvl; j++)
-			if (vecA[j] > maxS1)
-				maxS1 = vecA[j];
-		for (std::size_t j = iAddLvl; j < iAddLvl2; j++)
-			if (vecA[j] > maxS2)
-				maxS2 = vecA[j];
-		if (maxS1 > maxS2)
-		{
-			for (std::size_t j = i; j < iAddLvl; j++)
-				std::swap(vecA[j], vecA[j + indexInc / 2]);
-			for (std::size_t j = i; j < iAddLvl; j++)
-				std::swap(vecB[j], vecB[j + indexInc / 2]);
-		}
-	}
-	recursiveVecSplit(vecA, vecB, pairCount / 2, lvl + 1);
-}
-
-void	splitAB(std::vector<int>& vecA, std::vector<int>& vecB)
-{
-	std::size_t i = 0;
+	t_pmerge_elem data;
+	data.bMove = false;
+	size_t i = 0;
+	size_t track = 0;
 	while (i < vecA.size() - 1)
 	{
-		if (vecA[i + 1] < vecA[i])
+		if (vecA[i] < vecA[i + 1])
 		{
-			vecB.push_back(vecA[i + 1]);
-			vecA.erase(vecA.begin() + i + 1);
+			data.val = vecA[i];
+			data.i = track;
+			vecB.push_back(data);
+			vecA.erase(vecA.begin() + i);
 		}
 		else
 		{
-			vecB.push_back(vecA[i]);
-			vecA.erase(vecA.begin() + i);
+			data.val = vecA[i + 1];
+			data.i = track + 1;
+			vecB.push_back(data);
+			vecA.erase(vecA.begin() + i + 1);
 		}
 		i++;
+		track += 2;
 	}
 	if (vecA.size() > vecB.size())
 	{
-		vecB.push_back(vecA.back());
+		straggler.val = vecA[i];
+		straggler.i = track;
 		vecA.pop_back();
+		bStraggler = true;
 	}
+}
+
+size_t    binarySearchIndex(std::vector<int>& vec, int val)
+{
+    size_t low = 0;
+    size_t high = vec.size();
+    size_t mid;
+
+    while (low < high)
+    {
+        mid = (low + high) / 2;
+        if (vec[mid] == val)
+            return (mid + 1);
+        if (val > vec[mid])
+            low = mid + 1;
+        else
+		{
+			if (mid == 0)
+				break;
+            high = mid - 1;
+		}
+    }
+    if (val > vec[low])
+        return (low + 1);
+    return (low);
+}
+
+void debugVecA(std::vector<int>& vecA)
+{
+	std::cout << "VecA: ";
+	for (size_t i = 0; i < vecA.size(); i++)
+	{
+		std::cout << vecA[i] << " ";
+	}
+	std::cout << std::endl;
+}
+
+void debugVecB(std::vector<t_pmerge_elem >* vecB)
+{
+	std::cout << "VecB: ";
+	if (vecB)
+	{
+		for (size_t i = 0; i < vecB->size(); i++)
+		{
+			std::cout << vecB->operator[](i).val << " ";
+		}
+	}
+	std::cout << std::endl;
+}
+
+void	insertBtoA(std::vector<int>& vecA, t_pmerge_elem& elem,
+	std::vector<std::vector<t_pmerge_elem>* >& vecPrevB, size_t i)
+{
+	debugVecA(vecA);
+	debugVecB(vecPrevB[0]);
+	vecA.insert(vecA.begin() + i, elem.val);
+	if (vecPrevB.size() > 0)
+	{
+		std::vector<t_pmerge_elem>* vecPtr;
+		t_pmerge_elem oldData;
+		size_t curr_index = elem.i;
+		if (!elem.bMove)
+		{
+			elem.bMove = true;
+			for (ssize_t j = vecPrevB.size() - 1; j > -1; j--)
+			{
+				vecPtr = vecPrevB[j];
+				oldData = vecPtr->operator[](curr_index);
+				vecPtr->erase(vecPtr->begin() + curr_index);
+				oldData.bMove = true;
+				vecPtr->insert(vecPtr->begin() + i, oldData);
+				curr_index = oldData.i;
+			}
+		}
+	}
+	debugVecA(vecA);
+	debugVecB(vecPrevB[0]);
+}
+
+void	recursiveFJVec(std::vector<int>& vecA, std::vector<std::vector<t_pmerge_elem>* >& vecPrev)
+{
+	std::vector<t_pmerge_elem > vecB;
+	t_pmerge_elem straggler;
+	straggler.bMove = false;
+	bool bStraggler = false;
+
+	splitABVec(vecA, vecB, straggler, bStraggler);
+	debugVecA(vecA);
+	debugVecB(&vecB);
+	if (vecA.size() > 1)
+	{
+		vecPrev.push_back(&vecB);
+		recursiveFJVec(vecA, vecPrev);
+	}
+	std::cout << "Process" << std::endl;
+	insertBtoA(vecA, vecB[0], vecPrev, 0);
+	std::size_t i = 1;
+	while (i < vecB.size())
+	{
+		std::size_t j = binarySearchIndex(vecA, vecB[i].val);
+		insertBtoA(vecA, vecB[i], vecPrev, j);
+		i++;
+	}
+	if (bStraggler)
+	{
+		std::size_t j = binarySearchIndex(vecA, straggler.val);
+		insertBtoA(vecA, straggler, vecPrev, j);
+	}
+	vecPrev.pop_back();
 }
 
 void	PmergeMe::sortVector(const char* arg)
@@ -126,8 +220,7 @@ void	PmergeMe::sortVector(const char* arg)
 	{
 		std::vector<int>	vecAOld;
 		std::vector<int>	vecA;
-		std::vector<int>	vecB;
-		std::vector<int>	vecRes;
+		std::vector<std::vector<t_pmerge_elem>* >	vecPrev;
 		std::stringstream	ss(arg);
 		int					tmp;
 
@@ -142,12 +235,10 @@ void	PmergeMe::sortVector(const char* arg)
 			throw PmergeMe::InvalidInt();
 		if (this->m_bDisplayed == false)
 			vecAOld = vecA;
-		splitAB(vecA, vecB);
-		recursiveVecSplit(vecA, vecB, vecA.size(), 1);
-		insertionSortVec(vecRes, vecA, vecB);
+		recursiveFJVec(vecA, vecPrev);
 		if (this->m_bDisplayed == false)
 		{
-			// displayVec(vecAOld, vecRes);
+			displayVec(vecAOld, vecA);
 			this->m_bDisplayed = true;
 		}
 	}
