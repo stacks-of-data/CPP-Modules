@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 01:04:46 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/13 02:57:40 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/13 19:52:50 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,7 @@
 #include <algorithm>
 #include <limits>
 #include <cmath>
-
-typedef struct s_pmerge_elem
-{
-	int	val;
-	size_t	i;
-	bool	bMove;
-}	t_pmerge_elem;
+#include <stdint.h>
 
 
 PmergeMe::PmergeMe(): m_bDisplayed(false)
@@ -70,39 +64,9 @@ void	displayVec(std::vector<int>& vecAOld, std::vector<int>& vecA)
 	std::cout.flush();
 }
 
-void	splitABVec(std::vector<int>& vecA,
-	std::vector<t_pmerge_elem>& vecB, t_pmerge_elem& straggler, bool& bStraggler)
+void	vecLabels(std::vector<int>& vecA, std::vector<uintptr_t>& vecLabels, size_t lvl)
 {
-	t_pmerge_elem data;
-	data.bMove = false;
-	size_t i = 0;
-	size_t track = 0;
-	while (i < vecA.size() - 1)
-	{
-		if (vecA[i] < vecA[i + 1])
-		{
-			data.val = vecA[i];
-			data.i = track;
-			vecB.push_back(data);
-			vecA.erase(vecA.begin() + i);
-		}
-		else
-		{
-			data.val = vecA[i + 1];
-			data.i = track + 1;
-			vecB.push_back(data);
-			vecA.erase(vecA.begin() + i + 1);
-		}
-		i++;
-		track += 2;
-	}
-	if (vecA.size() > vecB.size())
-	{
-		straggler.val = vecA[i];
-		straggler.i = track;
-		vecA.pop_back();
-		bStraggler = true;
-	}
+	
 }
 
 size_t    binarySearchIndex(std::vector<int>& vec, int val)
@@ -130,68 +94,27 @@ size_t    binarySearchIndex(std::vector<int>& vec, int val)
     return (low);
 }
 
-void debugVecA(std::vector<int>& vecA)
+void debugVec(std::vector<int>& vec, int mode)
 {
-	std::cout << "VecA: ";
-	for (size_t i = 0; i < vecA.size(); i++)
+	if (!mode)
+		std::cout << "VecA: ";
+	else
+		std::cout << "VecB: ";
+	for (size_t i = 0; i < vec.size(); i++)
 	{
-		std::cout << vecA[i] << " ";
+		std::cout << vec[i] << " ";
 	}
 	std::cout << std::endl;
 }
 
-void debugVecB(std::vector<t_pmerge_elem >* vecB)
+void	recursiveFJVec(std::vector<int>& vecA, std::vector<std::vector<int> >& vecLabels)
 {
-	std::cout << "VecB: ";
-	if (vecB)
-	{
-		for (size_t i = 0; i < vecB->size(); i++)
-		{
-			std::cout << vecB->operator[](i).val << " ";
-		}
-	}
-	std::cout << std::endl;
-}
-
-void	insertBtoA(std::vector<int>& vecA, t_pmerge_elem& elem,
-	std::vector<std::vector<t_pmerge_elem>* >& vecPrevB, size_t i)
-{
-	debugVecA(vecA);
-	debugVecB(vecPrevB[0]);
-	vecA.insert(vecA.begin() + i, elem.val);
-	if (vecPrevB.size() > 0)
-	{
-		std::vector<t_pmerge_elem>* vecPtr;
-		t_pmerge_elem oldData;
-		size_t curr_index = elem.i;
-		if (!elem.bMove)
-		{
-			elem.bMove = true;
-			for (ssize_t j = vecPrevB.size() - 1; j > -1; j--)
-			{
-				vecPtr = vecPrevB[j];
-				oldData = vecPtr->operator[](curr_index);
-				vecPtr->erase(vecPtr->begin() + curr_index);
-				oldData.bMove = true;
-				vecPtr->insert(vecPtr->begin() + i, oldData);
-				curr_index = oldData.i;
-			}
-		}
-	}
-	debugVecA(vecA);
-	debugVecB(vecPrevB[0]);
-}
-
-void	recursiveFJVec(std::vector<int>& vecA, std::vector<std::vector<t_pmerge_elem>* >& vecPrev)
-{
-	std::vector<t_pmerge_elem > vecB;
-	t_pmerge_elem straggler;
-	straggler.bMove = false;
+	std::vector<int> pend;
+	int straggler;
 	bool bStraggler = false;
 
-	splitABVec(vecA, vecB, straggler, bStraggler);
-	debugVecA(vecA);
-	debugVecB(&vecB);
+	splitABVec(vecA, pend, straggler, bStraggler);
+	debugVec(vecA, 0);
 	if (vecA.size() > 1)
 	{
 		vecPrev.push_back(&vecB);
