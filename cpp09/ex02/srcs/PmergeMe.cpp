@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 01:04:46 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/16 17:10:23 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/16 18:47:33 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <deque>
 #include <vector>
 #include <iostream>
+#include <string>
 #include <sstream>
 #include <algorithm>
 #include <limits>
@@ -93,14 +94,6 @@ size_t    binarySearchBlockIndex(std::vector<TBlock>& vecA, int val)
 	if (low < vecA.size() && val > vecA[low].val)
 		return (low + 1);
     return (low);
-}
-
-void debugVec(std::vector<int>& vec)
-{
-	std::cout << "Vec: ";
-	for (size_t i = 0; i < vec.size(); i++)
-		std::cout << vec[i] << " ";
-	std::cout << std::endl;
 }
 
 void	setBlockData(TBlock& block,
@@ -224,33 +217,27 @@ std::vector<int>	FJSort(std::vector<int>& vec)
 	return (res);
 }
 
-void	PmergeMe::sortVector(const char* arg)
+void	PmergeMe::sortVector(const int ac, const char** av)
 {
-	try
+	std::vector<int>	vec, res;
+	int					tmp;
+	std::stringstream	ss;
+	ss.exceptions(std::ios::badbit);
+	
+	for (int i = 1; i < ac; i++)
 	{
-		std::vector<int>	vec, res;
-		std::stringstream	ss(arg);
-		int					tmp;
-
-		ss.exceptions(std::ios::badbit);
-		while (!ss.eof() && ss >> tmp)
-		{
-			if (tmp < 0)
-				throw PmergeMe::InvalidInt();
+		ss << av[i];
+		while (ss >> tmp)
 			vec.push_back(tmp);
-		}
-		if (ss.fail())
+		if (!ss.eof())
 			throw PmergeMe::InvalidInt();
-		res = FJSort(vec);
-		if (this->m_bDisplayed == false)
-		{
-			displayVec(vec, res);
-			this->m_bDisplayed = true;
-		}
+		ss.clear();
 	}
-	catch (const std::exception& e)
+	res = FJSort(vec);
+	if (this->m_bDisplayed == false)
 	{
-		throw;
+		displayVec(vec, res);
+		this->m_bDisplayed = true;
 	}
 }
 PmergeMe&	PmergeMe::operator=(PmergeMe& obj)

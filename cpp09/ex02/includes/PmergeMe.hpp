@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 00:49:45 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/10 01:53:03 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/16 18:10:29 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class PmergeMe
 	PmergeMe(PmergeMe& obj);
 	~PmergeMe();
 	void	sortList(const char* arg);
-	void	sortVector(const char* arg);
+	void	sortVector(const int ac, const char** av);
 	PmergeMe&	operator=(PmergeMe& obj);
 	class	InvalidInt: public std::exception
 	{
