@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 01:04:46 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/14 01:52:46 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/16 05:33:01 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 #include <cmath>
 #include <stdint.h>
 
+typedef struct	SBlock
+{
+	int		val;
+	struct SBlock	*linkedBBlock;
+}	TBlock;
 
 PmergeMe::PmergeMe(): m_bDisplayed(false)
 {
@@ -64,63 +69,18 @@ void	displayVec(std::vector<int>& vecAOld, std::vector<int>& vecA)
 	std::cout.flush();
 }
 
-void	vecLabelingFunc(std::vector<int>& vecA, std::vector<std::vector<size_t> >& recVecsAIdx,
-	std::vector<std::vector<size_t> >& recVecsBIdx, size_t lvl)
-{
-	std::vector<size_t> vecAIdx, vecBIdx;
-	if (lvl == 0)
-	{
-		for (size_t i = 0; i < vecA.size() - 1; i += 2)
-		{
-			if (vecA[i] < vecA[i + 1])
-			{
-				vecAIdx.push_back(i + 1);
-				vecBIdx.push_back(i);
-			}
-			else
-			{
-				vecAIdx.push_back(i);
-				vecBIdx.push_back(i + 1);
-			}
-		}
-		if (vecA.size() % 2)
-			vecBIdx.push_back(vecA.size() - 1);
-	}
-	else
-	{
-		std::vector<size_t>& lastVecAIdx = recVecsAIdx.back();
-		for (size_t i = 0; i < lastVecAIdx.size() - 1; i += 2)
-		{
-			if (vecA[lastVecAIdx[i]] < vecA[lastVecAIdx[i + 1]])
-			{
-				vecAIdx.push_back(lastVecAIdx[i + 1]);
-				vecBIdx.push_back(lastVecAIdx[i]);
-			}
-			else
-			{
-				vecAIdx.push_back(lastVecAIdx[i]);
-				vecBIdx.push_back(lastVecAIdx[i + 1]);
-			}
-		}
-		if (lastVecAIdx.size() % 2)
-			vecBIdx.push_back(lastVecAIdx[lastVecAIdx.size() - 1]);
-	}
-	recVecsAIdx.push_back(vecAIdx);
-	recVecsBIdx.push_back(vecBIdx);
-}
-
-size_t    binarySearchIndex(std::vector<int>& vec, int val)
+size_t    binarySearchBlockIndex(std::vector<TBlock>& vecA, int val)
 {
     size_t low = 0;
-    size_t high = vec.size();
+    size_t high = vecA.size();
     size_t mid;
 
     while (low < high)
     {
         mid = (low + high) / 2;
-        if (vec[mid] == val)
+        if (val == vecA[mid].val)
             return (mid + 1);
-        if (val > vec[mid])
+        if (val > vecA[mid].val)
             low = mid + 1;
         else
 		{
@@ -129,8 +89,8 @@ size_t    binarySearchIndex(std::vector<int>& vec, int val)
             high = mid - 1;
 		}
     }
-    if (val > vec[low])
-        return (low + 1);
+	if (low < vecA.size() && val > vecA[low].val)
+		return (low + 1);
     return (low);
 }
 
@@ -142,57 +102,166 @@ void debugVec(std::vector<int>& vec)
 	std::cout << std::endl;
 }
 
-void	movePairB(std::vector<int>& vecA, std::vector<std::vector<size_t> >& recVecsAIdx,
-	std::vector<std::vector<size_t> >& recVecsBIdx, size_t iB, size_t iA)
+void	setBlockData(TBlock& block,
+	int val,
+	TBlock *linkedBBlock = NULL)
 {
-	
+	block.val = val;
+	block.linkedBBlock = linkedBBlock;
 }
 
-void	recursiveFJVec(std::vector<int>& vecA,
-	std::vector<std::vector<size_t> >& recVecsAIdx, std::vector<std::vector<size_t> >& recVecsBIdx, size_t lvl)
+void	vecSplitBlocks(std::vector<TBlock>& vecAOld,
+	std::vector<TBlock>& vecBOld,
+	std::vector<TBlock>& vecA,
+	std::vector<TBlock>& vecB)
 {
-	vecLabelingFunc(vecA, recVecsAIdx, recVecsBIdx, lvl);
-	std::vector<size_t> vecAIdx = recVecsAIdx.back();
-	std::vector<size_t> vecBIdx = recVecsBIdx.back();
-	if (vecAIdx.size() > 2)
-		recursiveFJVec(vecA, recVecsAIdx, recVecsBIdx, lvl + 1);
-	// std::cout << "vecAIdx:" << std::endl;
-	// for (size_t i = 0; i < vecAIdx.size(); i++)
-	// 	std::cout << vecAIdx[i] << " ";
-	// std::cout << std::endl;
-	// std::cout << "vecBIdx:" << std::endl;
-	// for (size_t i = 0; i < vecBIdx.size(); i++)
-	// 	std::cout << vecBIdx[i] << " ";
-	// std::cout << std::endl;
+	TBlock	tmpBlock;
 
-	movePairB(vecA, recVecsAIdx, recVecsBIdx, 0, 0);
+	for (size_t i = 0; i < vecAOld.size() - 1; i += 2)
+	{
+		if (vecAOld[i].val < vecAOld[i + 1].val)
+		{
+			setBlockData(tmpBlock, vecAOld[i + 1].val, &vecBOld[i + 1]);
+			vecA.push_back(tmpBlock);
+			setBlockData(tmpBlock, vecAOld[i].val, &vecBOld[i]);
+			vecB.push_back(tmpBlock);
+		}
+		else
+		{
+			setBlockData(tmpBlock, vecAOld[i].val, &vecBOld[i]);
+			vecA.push_back(tmpBlock);
+			setBlockData(tmpBlock, vecAOld[i + 1].val, &vecBOld[i + 1]);
+			vecB.push_back(tmpBlock);
+		}
+	}
+	if (vecAOld.size() % 2)
+	{
+		setBlockData(tmpBlock, vecAOld[vecAOld.size() - 1].val, &vecBOld[vecAOld.size() - 1]);
+		vecB.push_back(tmpBlock);
+	}
+}
 
-	// std::cout << "Process" << std::endl;
-	// insertBtoA(vecA, vecB[0], vecPrev, 0);
-	// std::size_t i = 1;
-	// while (i < vecB.size())
-	// {
-	// 	std::size_t j = binarySearchIndex(vecA, vecB[i].val);
-	// 	insertBtoA(vecA, vecB[i], vecPrev, j);
-	// 	i++;
-	// }
-	// if (bStraggler)
-	// {
-	// 	std::size_t j = binarySearchIndex(vecA, straggler.val);
-	// 	insertBtoA(vecA, straggler, vecPrev, j);
-	// }
-	// vecPrev.pop_back();
-	recVecsAIdx.pop_back();
-	recVecsBIdx.pop_back();
+void	recursiveFJ(std::vector<TBlock>& vecA,
+	std::vector<TBlock>& vecB,
+	bool bFirst = true)
+{
+	std::vector<TBlock>	res, newVecA, newVecB;
+	if (vecA.size() > 2)
+	{
+		vecSplitBlocks(vecA, vecB, newVecA, newVecB);
+		recursiveFJ(newVecA, newVecB, false);
+		if (!bFirst)
+		{
+			for (size_t i = 0; i < newVecA.size(); i++)
+				newVecB.push_back(*(newVecA[i].linkedBBlock));
+			for (size_t i = 0; i < newVecB.size(); i++)
+			{
+				size_t j = binarySearchBlockIndex(newVecA, newVecB[i].val);
+				newVecA.insert(newVecA.begin() + j, newVecB[i]);
+			}
+			newVecB.clear();
+			vecA = newVecA;
+			return;
+		}
+		else
+		{
+			std::cout << "newVecA: ";
+			for (size_t i = 0; i < newVecA.size(); i++)
+				std::cout << newVecA[i].val << " ";
+			std::cout << std::endl;
+			std::cout << "vecB: ";
+			for (size_t i = 0; i < vecB.size(); i++)
+				std::cout << vecB[i].val << " ";
+			std::cout << std::endl;
+			for (size_t i = 0; i < vecB.size(); i++)
+			{
+				size_t j = binarySearchBlockIndex(newVecA, vecB[i].val);
+				newVecA.insert(newVecA.begin() + j, vecB[i]);
+			}
+			vecA = newVecA;
+			vecB.clear();
+			return;
+		}
+
+		// std::cout << "newVecA: ";
+		// for (size_t i = 0; i < newVecA.size(); i++)
+		// 	std::cout << newVecA[i].val << " ";
+		// std::cout << std::endl;
+		// std::cout << "newVecB: ";
+		// for (size_t i = 0; i < newVecB.size(); i++)
+		// 	std::cout << newVecB[i].val << " ";
+		// std::cout << std::endl;
+		// for (size_t i = 0; i < newVecB.size(); i++)
+		// {
+		// 	size_t j = binarySearchBlockIndex(newVecA, newVecB[i].val);
+		// 	vecA.insert(newVecA.begin() + j, newVecB[i]);
+		// }
+	}
+	for (size_t i = 0; i < vecB.size(); i++)
+	{
+		size_t j = binarySearchBlockIndex(vecA, vecB[i].val);
+		vecA.insert(vecA.begin() + j, vecB[i]);
+	}
+	vecB.clear();
+	// std::cout << "vecA: ";
+	// for (size_t i = 0; i < vecA.size(); i++)
+	// 	std::cout << vecA[i].val << " ";
+	// std::cout << std::endl;
+	// std::cout << "vecB: ";
+	// for (size_t i = 0; i < vecB.size(); i++)
+	// 	std::cout << vecB[i].val << " ";
+	// std::cout << std::endl;
+}
+
+std::vector<int>	FJSort(std::vector<int>& vec)
+{
+	std::vector<int>	res;
+	std::vector<TBlock>	vecA, vecB;
+	TBlock	tmpBlock;
+
+	for (size_t i = 0; i < vec.size() - 1; i += 2)
+	{
+		if (vec[i] < vec[i + 1])
+		{
+			setBlockData(tmpBlock, vec[i + 1]);
+			vecA.push_back(tmpBlock);
+			setBlockData(tmpBlock, vec[i]);
+			vecB.push_back(tmpBlock);
+		}
+		else
+		{
+			setBlockData(tmpBlock, vec[i]);
+			vecA.push_back(tmpBlock);
+			setBlockData(tmpBlock, vec[i + 1]);
+			vecB.push_back(tmpBlock);
+		}
+	}
+	if (vec.size() % 2)
+	{
+		setBlockData(tmpBlock, vec[vec.size() - 1]);
+		vecB.push_back(tmpBlock);
+	}
+	// std::cout << "vecA: ";
+	// for (size_t i = 0; i < vecA.size(); i++)
+	// 	std::cout << vecA[i].val << " ";
+	// std::cout << std::endl;
+	// std::cout << "vecB: ";
+	// for (size_t i = 0; i < vecB.size(); i++)
+	// 	std::cout << vecB[i].val << " ";
+	// std::cout << std::endl;
+	recursiveFJ(vecA, vecB);
+	std::cout << "FINAL:\n";
+	for (size_t i = 0; i < vecA.size(); i++)
+		std::cout << vecA[i].val << " ";
+	std::cout << std::endl;
+	return (res);
 }
 
 void	PmergeMe::sortVector(const char* arg)
 {
 	try
 	{
-		std::vector<int>	vecAOld;
-		std::vector<int>	vecA;
-		std::vector<std::vector<size_t> > recVecsAIdx, recVecsBIdx;
+		std::vector<int>	vec, res;
 		std::stringstream	ss(arg);
 		int					tmp;
 
@@ -201,26 +270,14 @@ void	PmergeMe::sortVector(const char* arg)
 		{
 			if (tmp < 0)
 				throw PmergeMe::InvalidInt();
-			vecA.push_back(tmp);
+			vec.push_back(tmp);
 		}
 		if (ss.fail())
 			throw PmergeMe::InvalidInt();
-		if (this->m_bDisplayed == false)
-			vecAOld = vecA;
-		recursiveFJVec(vecA, recVecsAIdx, recVecsBIdx, 0);
-		// std::cout << "vecLabels:" << std::endl;
-		// for (size_t i = 0; i < vecLabels.size(); i++)
-		// {
-		// 	std::vector<bool>& refVec = vecLabels[i];
-		// 	std::cout << "Labels " << i << ": ";
-		// 	for (size_t j = 0; j < refVec.size(); j++)
-		// 		std::cout << refVec[j] << " ";
-		// 	std::cout << std::endl;
-		// }
-		std::cout << std::endl;
+		res = FJSort(vec);
 		if (this->m_bDisplayed == false)
 		{
-			displayVec(vecAOld, vecA);
+			displayVec(vec, res);
 			this->m_bDisplayed = true;
 		}
 	}
