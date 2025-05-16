@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 01:04:46 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/16 05:33:01 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/16 17:10:23 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 
 typedef struct	SBlock
 {
-	int		val;
-	struct SBlock	*linkedBBlock;
+	int				val;
+	struct SBlock*	prevA;
+	struct SBlock*	prevB;
 }	TBlock;
 
 PmergeMe::PmergeMe(): m_bDisplayed(false)
@@ -104,13 +105,15 @@ void debugVec(std::vector<int>& vec)
 
 void	setBlockData(TBlock& block,
 	int val,
-	TBlock *linkedBBlock = NULL)
+	TBlock* prevA = NULL,
+	TBlock* prevB = NULL)
 {
 	block.val = val;
-	block.linkedBBlock = linkedBBlock;
+	block.prevA = prevA;
+	block.prevB = prevB;
 }
 
-void	vecSplitBlocks(std::vector<TBlock>& vecAOld,
+void	packBlocks(std::vector<TBlock>& vecAOld,
 	std::vector<TBlock>& vecBOld,
 	std::vector<TBlock>& vecA,
 	std::vector<TBlock>& vecB)
@@ -121,139 +124,103 @@ void	vecSplitBlocks(std::vector<TBlock>& vecAOld,
 	{
 		if (vecAOld[i].val < vecAOld[i + 1].val)
 		{
-			setBlockData(tmpBlock, vecAOld[i + 1].val, &vecBOld[i + 1]);
-			vecA.push_back(tmpBlock);
-			setBlockData(tmpBlock, vecAOld[i].val, &vecBOld[i]);
+			setBlockData(tmpBlock, vecAOld[i + 1].val, &vecAOld[i + 1], &vecBOld[i + 1]);
+			vecA.push_back(tmpBlock);;
+			setBlockData(tmpBlock, vecAOld[i].val, &vecAOld[i], &vecBOld[i]);
 			vecB.push_back(tmpBlock);
 		}
 		else
 		{
-			setBlockData(tmpBlock, vecAOld[i].val, &vecBOld[i]);
+			setBlockData(tmpBlock, vecAOld[i].val, &vecAOld[i], &vecBOld[i]);
 			vecA.push_back(tmpBlock);
-			setBlockData(tmpBlock, vecAOld[i + 1].val, &vecBOld[i + 1]);
+			setBlockData(tmpBlock, vecAOld[i + 1].val, &vecAOld[i + 1], &vecBOld[i + 1]);
 			vecB.push_back(tmpBlock);
 		}
 	}
 	if (vecAOld.size() % 2)
 	{
-		setBlockData(tmpBlock, vecAOld[vecAOld.size() - 1].val, &vecBOld[vecAOld.size() - 1]);
+		setBlockData(tmpBlock, vecAOld[vecAOld.size() - 1].val, &vecAOld[vecAOld.size() - 1], &vecBOld[vecAOld.size() - 1]);
 		vecB.push_back(tmpBlock);
 	}
 }
 
+void	unpackBlocks(std::vector<TBlock>& packedVecA,
+	std::vector<TBlock>& vecA,
+	std::vector<TBlock>& vecB)
+{
+	std::vector<TBlock>	unpackedVecA, unpackedVecB;
+
+	for (size_t i = 0; i < packedVecA.size(); i++)
+	{
+		unpackedVecA.push_back(*(packedVecA[i].prevA));
+		unpackedVecB.push_back(*(packedVecA[i].prevB));
+	}
+	vecA = unpackedVecA;
+	if (vecA.size() != vecB.size())
+	{
+		TBlock tmp = vecB.back();
+		vecB = unpackedVecB;
+		vecB.push_back(tmp);
+	}
+	else
+		vecB = unpackedVecB;
+}
+
 void	recursiveFJ(std::vector<TBlock>& vecA,
-	std::vector<TBlock>& vecB,
-	bool bFirst = true)
+	std::vector<TBlock>& vecB)
 {
 	std::vector<TBlock>	res, newVecA, newVecB;
 	if (vecA.size() > 2)
 	{
-		vecSplitBlocks(vecA, vecB, newVecA, newVecB);
-		recursiveFJ(newVecA, newVecB, false);
-		if (!bFirst)
-		{
-			for (size_t i = 0; i < newVecA.size(); i++)
-				newVecB.push_back(*(newVecA[i].linkedBBlock));
-			for (size_t i = 0; i < newVecB.size(); i++)
-			{
-				size_t j = binarySearchBlockIndex(newVecA, newVecB[i].val);
-				newVecA.insert(newVecA.begin() + j, newVecB[i]);
-			}
-			newVecB.clear();
-			vecA = newVecA;
-			return;
-		}
-		else
-		{
-			std::cout << "newVecA: ";
-			for (size_t i = 0; i < newVecA.size(); i++)
-				std::cout << newVecA[i].val << " ";
-			std::cout << std::endl;
-			std::cout << "vecB: ";
-			for (size_t i = 0; i < vecB.size(); i++)
-				std::cout << vecB[i].val << " ";
-			std::cout << std::endl;
-			for (size_t i = 0; i < vecB.size(); i++)
-			{
-				size_t j = binarySearchBlockIndex(newVecA, vecB[i].val);
-				newVecA.insert(newVecA.begin() + j, vecB[i]);
-			}
-			vecA = newVecA;
-			vecB.clear();
-			return;
-		}
-
-		// std::cout << "newVecA: ";
-		// for (size_t i = 0; i < newVecA.size(); i++)
-		// 	std::cout << newVecA[i].val << " ";
-		// std::cout << std::endl;
-		// std::cout << "newVecB: ";
-		// for (size_t i = 0; i < newVecB.size(); i++)
-		// 	std::cout << newVecB[i].val << " ";
-		// std::cout << std::endl;
-		// for (size_t i = 0; i < newVecB.size(); i++)
-		// {
-		// 	size_t j = binarySearchBlockIndex(newVecA, newVecB[i].val);
-		// 	vecA.insert(newVecA.begin() + j, newVecB[i]);
-		// }
+		packBlocks(vecA, vecB, newVecA, newVecB);
+		recursiveFJ(newVecA, newVecB);
+		unpackBlocks(newVecA, vecA, vecB);
 	}
-	for (size_t i = 0; i < vecB.size(); i++)
+	vecA.insert(vecA.begin(), vecB[0]);
+	for (size_t i = 1; i < vecB.size(); i++)
 	{
 		size_t j = binarySearchBlockIndex(vecA, vecB[i].val);
 		vecA.insert(vecA.begin() + j, vecB[i]);
 	}
 	vecB.clear();
-	// std::cout << "vecA: ";
-	// for (size_t i = 0; i < vecA.size(); i++)
-	// 	std::cout << vecA[i].val << " ";
-	// std::cout << std::endl;
-	// std::cout << "vecB: ";
-	// for (size_t i = 0; i < vecB.size(); i++)
-	// 	std::cout << vecB[i].val << " ";
-	// std::cout << std::endl;
 }
 
 std::vector<int>	FJSort(std::vector<int>& vec)
 {
 	std::vector<int>	res;
-	std::vector<TBlock>	vecA, vecB;
+	std::vector<TBlock>	main, vecA, vecB;
 	TBlock	tmpBlock;
 
-	for (size_t i = 0; i < vec.size() - 1; i += 2)
+	for (size_t i = 0; i < vec.size(); i++)
 	{
-		if (vec[i] < vec[i + 1])
+		setBlockData(tmpBlock, vec[i]);
+		main.push_back(tmpBlock);
+	}
+	for (size_t i = 0; i < main.size() - 1; i += 2)
+	{
+		if (main[i].val < main[i + 1].val)
 		{
-			setBlockData(tmpBlock, vec[i + 1]);
+			setBlockData(tmpBlock, main[i + 1].val, &main[i + 1], &main[i]);
 			vecA.push_back(tmpBlock);
-			setBlockData(tmpBlock, vec[i]);
+			setBlockData(tmpBlock, main[i].val);
 			vecB.push_back(tmpBlock);
 		}
 		else
 		{
-			setBlockData(tmpBlock, vec[i]);
+			setBlockData(tmpBlock, main[i].val, &main[i], &main[i + 1]);
 			vecA.push_back(tmpBlock);
-			setBlockData(tmpBlock, vec[i + 1]);
+			setBlockData(tmpBlock, main[i + 1].val);
 			vecB.push_back(tmpBlock);
 		}
 	}
 	if (vec.size() % 2)
 	{
-		setBlockData(tmpBlock, vec[vec.size() - 1]);
+		setBlockData(tmpBlock, main[main.size() - 1].val);
 		vecB.push_back(tmpBlock);
 	}
-	// std::cout << "vecA: ";
-	// for (size_t i = 0; i < vecA.size(); i++)
-	// 	std::cout << vecA[i].val << " ";
-	// std::cout << std::endl;
-	// std::cout << "vecB: ";
-	// for (size_t i = 0; i < vecB.size(); i++)
-	// 	std::cout << vecB[i].val << " ";
-	// std::cout << std::endl;
 	recursiveFJ(vecA, vecB);
-	std::cout << "FINAL:\n";
 	for (size_t i = 0; i < vecA.size(); i++)
-		std::cout << vecA[i].val << " ";
-	std::cout << std::endl;
+		res.push_back(vecA[i].val);
 	return (res);
 }
 
