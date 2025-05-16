@@ -1,9 +1,9 @@
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -g
-SRCS = main.cpp PmergeMe.cpp
+SRCS = main.cpp PmergeMe.cpp utils.cpp
 SRCS := $(addprefix srcs/,$(SRCS))
 OBJS = $(SRCS:.cpp=.o)
-HEADERS = PmergeMe.hpp
+HEADERS = PmergeMe.hpp utils.hpp
 HEADERS := $(addprefix includes/,$(HEADERS))
 NAME = PmergeMe
 

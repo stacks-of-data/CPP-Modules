@@ -6,13 +6,13 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 01:16:29 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/16 18:30:25 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/16 21:34:35 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/PmergeMe.hpp"
-#include <iostream>
 #include <cstdlib>
+#include <cmath>
 
 int main(int ac, const char** av)
 {
@@ -26,7 +26,7 @@ int main(int ac, const char** av)
 	}
 	try
 	{
-		obj.sortVector(ac, av);
+		obj.sort(ac, av);
 	}
 	catch (const std::exception& e)
 	{

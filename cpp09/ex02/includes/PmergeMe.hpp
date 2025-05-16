@@ -6,12 +6,18 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 00:49:45 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/16 18:10:29 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/16 22:20:11 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <exception>
 #include <vector>
+#include <deque>
+#include <iostream>
+#include <sys/time.h>
+#include <string>
+#include <sstream>
+#include <algorithm>
+#include "../includes/utils.hpp"
 
 class PmergeMe
 {
@@ -21,10 +27,11 @@ class PmergeMe
 	PmergeMe();
 	PmergeMe(PmergeMe& obj);
 	~PmergeMe();
-	void	sortList(const char* arg);
-	void	sortVector(const int ac, const char** av);
-	PmergeMe&	operator=(PmergeMe& obj);
-	class	InvalidInt: public std::exception
+	void			sortVector(const int ac, const char** av);
+	void			sortDeque(const int ac, const char** av);
+	void			sort(const int ac, const char** av);
+	PmergeMe&		operator=(PmergeMe& obj);
+	class	InvalidSequence: public std::exception
 	{
 		const char*	what() const throw();
 	};

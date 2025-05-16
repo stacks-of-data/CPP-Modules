@@ -6,94 +6,22 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 01:04:46 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/16 18:47:33 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/16 22:20:08 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/PmergeMe.hpp"
-#include <deque>
-#include <vector>
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <algorithm>
-#include <limits>
-#include <cmath>
-#include <stdint.h>
-
-typedef struct	SBlock
-{
-	int				val;
-	struct SBlock*	prevA;
-	struct SBlock*	prevB;
-}	TBlock;
 
 PmergeMe::PmergeMe(): m_bDisplayed(false)
 {
 }
 
-PmergeMe::PmergeMe(PmergeMe& obj): m_bDisplayed(false)
+PmergeMe::PmergeMe(PmergeMe& obj): m_bDisplayed(obj.m_bDisplayed)
 {
-	(void)obj;
 }
 
 PmergeMe::~PmergeMe()
 {
-}
-
-void	displayVec(std::vector<int>& vecAOld, std::vector<int>& vecA)
-{
-	std::vector<int>::iterator it = vecAOld.begin();
-	std::vector<int>::iterator itE = vecAOld.end();
-
-	std::cout << "Before: ";
-	while (it != itE)
-	{
-		std::cout << *it;
-		if (it + 1 != itE)
-			std::cout << ' ';
-		else
-			std::cout << '\n';
-		it++;
-	}
-	std::cout << "After: ";
-	it = vecA.begin();
-	itE = vecA.end();
-	while (it != itE)
-	{
-		std::cout << *it;
-		if (it + 1 != itE)
-			std::cout << ' ';
-		else
-			std::cout << '\n';
-		it++;
-	}
-	std::cout.flush();
-}
-
-size_t    binarySearchBlockIndex(std::vector<TBlock>& vecA, int val)
-{
-    size_t low = 0;
-    size_t high = vecA.size();
-    size_t mid;
-
-    while (low < high)
-    {
-        mid = (low + high) / 2;
-        if (val == vecA[mid].val)
-            return (mid + 1);
-        if (val > vecA[mid].val)
-            low = mid + 1;
-        else
-		{
-			if (mid == 0)
-				break;
-            high = mid - 1;
-		}
-    }
-	if (low < vecA.size() && val > vecA[low].val)
-		return (low + 1);
-    return (low);
 }
 
 void	setBlockData(TBlock& block,
@@ -106,79 +34,7 @@ void	setBlockData(TBlock& block,
 	block.prevB = prevB;
 }
 
-void	packBlocks(std::vector<TBlock>& vecAOld,
-	std::vector<TBlock>& vecBOld,
-	std::vector<TBlock>& vecA,
-	std::vector<TBlock>& vecB)
-{
-	TBlock	tmpBlock;
-
-	for (size_t i = 0; i < vecAOld.size() - 1; i += 2)
-	{
-		if (vecAOld[i].val < vecAOld[i + 1].val)
-		{
-			setBlockData(tmpBlock, vecAOld[i + 1].val, &vecAOld[i + 1], &vecBOld[i + 1]);
-			vecA.push_back(tmpBlock);;
-			setBlockData(tmpBlock, vecAOld[i].val, &vecAOld[i], &vecBOld[i]);
-			vecB.push_back(tmpBlock);
-		}
-		else
-		{
-			setBlockData(tmpBlock, vecAOld[i].val, &vecAOld[i], &vecBOld[i]);
-			vecA.push_back(tmpBlock);
-			setBlockData(tmpBlock, vecAOld[i + 1].val, &vecAOld[i + 1], &vecBOld[i + 1]);
-			vecB.push_back(tmpBlock);
-		}
-	}
-	if (vecAOld.size() % 2)
-	{
-		setBlockData(tmpBlock, vecAOld[vecAOld.size() - 1].val, &vecAOld[vecAOld.size() - 1], &vecBOld[vecAOld.size() - 1]);
-		vecB.push_back(tmpBlock);
-	}
-}
-
-void	unpackBlocks(std::vector<TBlock>& packedVecA,
-	std::vector<TBlock>& vecA,
-	std::vector<TBlock>& vecB)
-{
-	std::vector<TBlock>	unpackedVecA, unpackedVecB;
-
-	for (size_t i = 0; i < packedVecA.size(); i++)
-	{
-		unpackedVecA.push_back(*(packedVecA[i].prevA));
-		unpackedVecB.push_back(*(packedVecA[i].prevB));
-	}
-	vecA = unpackedVecA;
-	if (vecA.size() != vecB.size())
-	{
-		TBlock tmp = vecB.back();
-		vecB = unpackedVecB;
-		vecB.push_back(tmp);
-	}
-	else
-		vecB = unpackedVecB;
-}
-
-void	recursiveFJ(std::vector<TBlock>& vecA,
-	std::vector<TBlock>& vecB)
-{
-	std::vector<TBlock>	res, newVecA, newVecB;
-	if (vecA.size() > 2)
-	{
-		packBlocks(vecA, vecB, newVecA, newVecB);
-		recursiveFJ(newVecA, newVecB);
-		unpackBlocks(newVecA, vecA, vecB);
-	}
-	vecA.insert(vecA.begin(), vecB[0]);
-	for (size_t i = 1; i < vecB.size(); i++)
-	{
-		size_t j = binarySearchBlockIndex(vecA, vecB[i].val);
-		vecA.insert(vecA.begin() + j, vecB[i]);
-	}
-	vecB.clear();
-}
-
-std::vector<int>	FJSort(std::vector<int>& vec)
+std::vector<int>	FJSortVec(std::vector<int>& vec)
 {
 	std::vector<int>	res;
 	std::vector<TBlock>	main, vecA, vecB;
@@ -217,37 +73,152 @@ std::vector<int>	FJSort(std::vector<int>& vec)
 	return (res);
 }
 
+std::deque<int>	FJSortDeque(std::deque<int>& deq)
+{
+	std::deque<int>	res;
+	std::deque<TBlock>	main, deqA, deqB;
+	TBlock	tmpBlock;
+
+	for (size_t i = 0; i < deq.size(); i++)
+	{
+		setBlockData(tmpBlock, deq[i]);
+		main.push_back(tmpBlock);
+	}
+	for (size_t i = 0; i < main.size() - 1; i += 2)
+	{
+		if (main[i].val < main[i + 1].val)
+		{
+			setBlockData(tmpBlock, main[i + 1].val, &main[i + 1], &main[i]);
+			deqA.push_back(tmpBlock);
+			setBlockData(tmpBlock, main[i].val);
+			deqB.push_back(tmpBlock);
+		}
+		else
+		{
+			setBlockData(tmpBlock, main[i].val, &main[i], &main[i + 1]);
+			deqA.push_back(tmpBlock);
+			setBlockData(tmpBlock, main[i + 1].val);
+			deqB.push_back(tmpBlock);
+		}
+	}
+	if (deq.size() % 2)
+	{
+		setBlockData(tmpBlock, main[main.size() - 1].val);
+		deqB.push_back(tmpBlock);
+	}
+	recursiveFJ(deqA, deqB);
+	for (size_t i = 0; i < deqA.size(); i++)
+		res.push_back(deqA[i].val);
+	return (res);
+}
+
+long long	getTimestampMicro()
+{
+	struct timeval data;
+	gettimeofday(&data, NULL);
+	return (static_cast<long long>(data.tv_sec) * 1000000 + data.tv_usec);
+}
+
 void	PmergeMe::sortVector(const int ac, const char** av)
 {
 	std::vector<int>	vec, res;
 	int					tmp;
 	std::stringstream	ss;
 	ss.exceptions(std::ios::badbit);
+	long long	start, end;
+	double		timeRes;
 	
+	start = getTimestampMicro();
 	for (int i = 1; i < ac; i++)
 	{
 		ss << av[i];
 		while (ss >> tmp)
+		{
+			if (tmp < 0)
+				throw PmergeMe::InvalidSequence();
 			vec.push_back(tmp);
+		}
 		if (!ss.eof())
-			throw PmergeMe::InvalidInt();
+			throw PmergeMe::InvalidSequence();
 		ss.clear();
 	}
-	res = FJSort(vec);
+	if (!vec.size())
+		throw PmergeMe::InvalidSequence();
+	res = FJSortVec(vec);
+	end = getTimestampMicro();
 	if (this->m_bDisplayed == false)
 	{
-		displayVec(vec, res);
+		displaySortedSequence(vec, res);
 		this->m_bDisplayed = true;
 	}
+	timeRes = (double)(end - start) / 1000;
+	std::cout << "Time to process a range of " << res.size()
+		<< " elements with std::vector using Ford-Johnson sort: " << timeRes << std::endl;
+	start = getTimestampMicro();
+	std::sort(vec.begin(), vec.end());
+	end = getTimestampMicro();
+	timeRes = (double)(end - start) / 1000;
+	std::cout << "Time to process a range of " << res.size()
+		<< " elements with std::vector using std::sort: " << timeRes << std::endl;
 }
+
+void	PmergeMe::sortDeque(const int ac, const char** av)
+{
+	std::deque<int>	deq, res;
+	int					tmp;
+	std::stringstream	ss;
+	ss.exceptions(std::ios::badbit);
+	long long	start, end;
+	double		timeRes;
+	
+	start = getTimestampMicro();
+	for (int i = 1; i < ac; i++)
+	{
+		ss << av[i];
+		while (ss >> tmp)
+		{
+			if (tmp < 0)
+				throw PmergeMe::InvalidSequence();
+			deq.push_back(tmp);
+		}
+		if (!ss.eof())
+			throw PmergeMe::InvalidSequence();
+		ss.clear();
+	}
+	if (!deq.size())
+		throw PmergeMe::InvalidSequence();
+	res = FJSortDeque(deq);
+	end = getTimestampMicro();
+	if (this->m_bDisplayed == false)
+	{
+		displaySortedSequence(deq, res);
+		this->m_bDisplayed = true;
+	}
+	timeRes = (double)(end - start) / 1000;
+	std::cout << "Time to process a range of " << res.size()
+		<< " elements with std::deque using Ford-Johnson sort: " << timeRes << std::endl;
+	start = getTimestampMicro();
+	std::sort(deq.begin(), deq.end());
+	end = getTimestampMicro();
+	timeRes = (double)(end - start) / 1000;
+	std::cout << "Time to process a range of " << res.size()
+		<< " elements with std::deque using std::sort: " << timeRes << std::endl;
+}
+
+void	PmergeMe::sort(const int ac, const char** av)
+{
+	sortVector(ac, av);
+	sortDeque(ac, av);
+}
+
 PmergeMe&	PmergeMe::operator=(PmergeMe& obj)
 {
 	(void)obj;
-	this->m_bDisplayed = false;
+	this->m_bDisplayed = obj.m_bDisplayed;
 	return (*this);
 }
 
-const char*	PmergeMe::InvalidInt::what() const throw()
+const char*	PmergeMe::InvalidSequence::what() const throw()
 {
-	return ("PmergeMe::InvalidInt");
+	return ("PmergeMe::InvalidSequence");
 }
