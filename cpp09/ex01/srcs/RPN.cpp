@@ -6,7 +6,7 @@
 /*   By: amsaleh <amsaleh@student.42amman.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 17:16:07 by amsaleh           #+#    #+#             */
-/*   Updated: 2025/05/11 20:29:35 by amsaleh          ###   ########.fr       */
+/*   Updated: 2025/05/16 23:26:47 by amsaleh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ const char*	RPN::InvalidExpression::what() const throw()
 
 const char*	RPN::IntOverflow::what() const throw()
 {
-	return ("RPN::InvalidExpression");
+	return ("RPN::IntOverflow");
 }
 
 const char*	RPN::DivisionByZero::what() const throw()
