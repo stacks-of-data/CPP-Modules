@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef BITCOINEXCHANGE_HPP
+#define BITCOINEXCHANGE_HPP
+
 #include <ctime>
 #include <map>
 #include <exception>
@@ -50,3 +53,5 @@ class BitcoinExchange
 		const char*	what() const throw();
 	};
 };
+
+#endif

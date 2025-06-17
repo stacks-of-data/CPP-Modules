@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PMERGEME_HPP
+#define PMERGEME_HPP
+
 #include <vector>
 #include <deque>
 #include <iostream>
@@ -36,3 +39,5 @@ class PmergeMe
 		const char*	what() const throw();
 	};
 };
+
+#endif

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/utils.hpp"
+#include <cmath>
 
 size_t	batchSequence(size_t k)
 {

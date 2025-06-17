@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef RPN_HPP
+#define RPN_HPP
+
 #include <stack>
 #include <exception>
 
@@ -34,3 +37,5 @@ class RPN
 		const char*	what() const throw();
 	};
 };
+
+#endif
