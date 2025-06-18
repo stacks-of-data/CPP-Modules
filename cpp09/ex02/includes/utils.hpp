@@ -10,8 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef UTILS_HPP
+#define UTILS_HPP
+
 #include <iostream>
-#include <cmath>
 
 typedef struct	SBlock
 {
@@ -115,7 +117,7 @@ template <class T>
 void	recursiveFJ(T& contA, T& contB)
 {
 	T	res, newContA, newContB;
-	if (contA.size() > 2)
+	if (contA.size() > 1)
 	{
 		packBlocks(contA, contB, newContA, newContB);
 		recursiveFJ(newContA, newContB);
@@ -151,3 +153,5 @@ void	recursiveFJ(T& contA, T& contB)
 	}
 	contB.clear();
 }
+
+#endif
