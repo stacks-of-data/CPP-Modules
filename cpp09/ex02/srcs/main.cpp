@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/PmergeMe.hpp"
-#include <cstdlib>
-#include <cmath>
 
 int main(int ac, const char** av)
 {
