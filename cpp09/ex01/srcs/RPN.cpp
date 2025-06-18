@@ -31,11 +31,11 @@ RPN::~RPN()
 void	RPN::evaluateExp(const char *exp)
 {
 	std::stringstream	ss;
-	std::stack<int>		stack;
+	std::stack<long>	stack;
 	std::string			str;
 	long				res;
-	int 				val1;
-	int					val2;
+	long 				val1;
+	long				val2;
 
 	ss.exceptions(std::ios::badbit);
 	ss << exp;
@@ -77,7 +77,7 @@ void	RPN::evaluateExp(const char *exp)
 			stack.push(res);
 		}
 	}
-	if (ss.fail() && !ss.eof())
+	if ((ss.fail() && !ss.eof()) || stack.size() > 1)
 		throw RPN::InvalidExpression();
 	std::cout << stack.top() << std::endl;
 }

@@ -26,7 +26,9 @@ class BitcoinExchange
 		ERR_DATE_FORMAT,
 		ERR_TIMESTAMP,
 		ERR_BTC_AMOUNT,
-		ERR_BTC_PRICE
+		ERR_BTC_PRICE,
+		ERR_MAP_UNINITALIZED,
+		ERR_MAP_EMPTY
 	};
 	std::map<time_t, double>	m_map;
 	bool						m_bInit;

@@ -75,6 +75,12 @@ void	BitcoinExchange::IssueReporter(BitcoinExchange::Issues issue) const
 			std::cerr << "line:" << line << '\n';
 			std::cerr << "Bitcoin price is out of range";
 			break;
+		case ERR_MAP_UNINITALIZED:
+			std::cerr << "Map is uninitalized";
+			break;
+		case ERR_MAP_EMPTY:
+			std::cerr << "Map is empty";
+			break;
 		default:
 			std::cerr << "Unknown error";
 	}
@@ -89,6 +95,16 @@ void	BitcoinExchange::ParseFile(const char* file)
 	std::time_t		timestamp;
 	double			btcAmount;
 
+	if (this->m_bInit == false)
+	{
+		IssueReporter(ERR_MAP_UNINITALIZED);
+		throw BitcoinExchange::ParsingFailure();
+	}
+	if (this->m_map.size() < 1)
+	{
+		IssueReporter(ERR_MAP_EMPTY);
+		throw BitcoinExchange::ParsingFailure();
+	}
 	this->file = file;
 	if (fs.is_open() == false)
 	{
@@ -139,6 +155,8 @@ void	BitcoinExchange::ParseFile(const char* file)
 					continue;
 				}
 				std::map<time_t, double>::const_iterator it = this->m_map.lower_bound(timestamp);
+				if (it == this->m_map.end())
+					--it;
 				std::cout << sLine.c_str() << " => " << sLine.c_str() + i << " = " << (*it).second * btcAmount << std::endl;
 			}
 		}
