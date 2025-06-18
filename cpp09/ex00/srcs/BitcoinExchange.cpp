@@ -14,6 +14,7 @@
 #include <fstream>
 #include <iostream>
 #include <cmath>
+#include <sstream>
 
 size_t	BitcoinExchange::cleanLine(std::string& str)
 {
@@ -69,11 +70,11 @@ void	BitcoinExchange::IssueReporter(BitcoinExchange::Issues issue) const
 			break;
 		case ERR_BTC_AMOUNT:
 			std::cerr << "line:" << this->line << '\n';
-			std::cerr << "Bitcoin amount is out of range";
+			std::cerr << "Bitcoin amount is invalid";
 			break;
 		case ERR_BTC_PRICE:
 			std::cerr << "line:" << line << '\n';
-			std::cerr << "Bitcoin price is out of range";
+			std::cerr << "Bitcoin price is invalid";
 			break;
 		case ERR_MAP_UNINITALIZED:
 			std::cerr << "Map is uninitalized";
@@ -85,6 +86,19 @@ void	BitcoinExchange::IssueReporter(BitcoinExchange::Issues issue) const
 			std::cerr << "Unknown error";
 	}
 	std::cerr << "\e[39m" << std::endl;
+}
+
+double  ParseDouble(const char* str)
+{
+    std::stringstream ss(str);
+    double val;
+    ss >> val;
+    if (ss.fail())
+        return (HUGE_VAL_F64);
+    char tmp;
+    if (ss >> tmp)
+        return (HUGE_VAL_F64);
+    return (val);
 }
 
 void	BitcoinExchange::ParseFile(const char* file)
@@ -148,7 +162,7 @@ void	BitcoinExchange::ParseFile(const char* file)
 					IssueReporter(ERR_TIMESTAMP);
 					continue;
 				}
-				btcAmount = strtod(sLine.c_str() + i, NULL);
+                btcAmount = ParseDouble(sLine.c_str() + i);
 				if (btcAmount < 0 || btcAmount > 1000)
 				{
 					IssueReporter(ERR_BTC_AMOUNT);
@@ -228,7 +242,7 @@ void	BitcoinExchange::InitMap()
 					IssueReporter(ERR_TIMESTAMP);
 					throw BitcoinExchange::ParsingFailure();
 				}
-				data.second = strtod(sLine.c_str() + i + 1, NULL);
+                data.second = ParseDouble(sLine.c_str() + i + 1);
 				if (data.second == HUGE_VAL_F64 || data.second < 0)
 				{
 					IssueReporter(ERR_BTC_PRICE);
