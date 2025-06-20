@@ -77,7 +77,7 @@ void	RPN::evaluateExp(const char *exp)
 			stack.push(res);
 		}
 	}
-	if ((ss.fail() && !ss.eof()) || stack.size() > 1)
+	if ((ss.fail() && !ss.eof()) || stack.size() != 1)
 		throw RPN::InvalidExpression();
 	std::cout << stack.top() << std::endl;
 }
