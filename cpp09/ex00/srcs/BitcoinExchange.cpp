@@ -11,13 +11,10 @@
 /* ************************************************************************** */
 
 #include "../includes/BitcoinExchange.hpp"
-#include <cctype>
-#include <cstddef>
 #include <fstream>
 #include <iostream>
 #include <cmath>
 #include <sstream>
-#include <string>
 
 void  BitcoinExchange::SplitTokens(std::string& str, std::string* toks, char delim)
 {
