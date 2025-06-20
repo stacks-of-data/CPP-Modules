@@ -11,38 +11,36 @@
 /* ************************************************************************** */
 
 #include "../includes/BitcoinExchange.hpp"
+#include <cctype>
+#include <cstddef>
 #include <fstream>
 #include <iostream>
 #include <cmath>
 #include <sstream>
+#include <string>
 
-size_t	BitcoinExchange::cleanLine(std::string& str)
+void  BitcoinExchange::SplitTokens(std::string& str, std::string* toks, char delim)
 {
-	std::size_t res;
-	std::size_t i = 0;
-	while (std::isspace(str[i]))
-		i++;
-	str.erase(0, i);
-	while (str[i] && !std::isspace(str[i]))
-		i++;
-	if (std::isspace(str[i]))
-	{
-		std::size_t j = i;
-		while (std::isspace(str[j]))
-			j++;
-		str.erase(i, j - i);
-	}
-	str[i] = 0;
-	res = i + 1;
-	std::size_t j = i + 1;
-	i = j;
-	while (std::isspace(str[i]))
-		i++;
-	str.erase(j, i - j);
-	while (str[i] && !std::isspace(str[i]))
-		i++;
-	str.erase(i);
-	return (res);
+    std::stringstream   ss(str);
+
+    ss.exceptions(std::stringstream::badbit);
+    toks[0].clear();
+    toks[1].clear();
+    size_t i = 0;
+    while (std::getline(ss, toks[i], delim))
+    {
+        size_t j = 0;
+        while (std::isspace(toks[i][j]))
+            j++;
+        toks[i].erase(0, j);
+        j = 0;
+        while (toks[i][j] && !std::isspace(toks[i][j]))
+            j++;
+        toks[i].erase(j, std::string::npos);
+        if (i == 1)
+            return;
+        i++;
+    }
 }
 
 void	BitcoinExchange::IssueReporter(BitcoinExchange::Issues issue) const
@@ -92,6 +90,8 @@ double  ParseDouble(const char* str)
 {
     std::stringstream ss(str);
     double val;
+
+    ss.exceptions(std::stringstream::badbit);
     ss >> val;
     if (ss.fail())
         return (HUGE_VAL_F64);
@@ -101,13 +101,75 @@ double  ParseDouble(const char* str)
     return (val);
 }
 
+std::pair<time_t, double> BitcoinExchange::ParseLine(std::string& sLine,
+    std::string *toks, char delim) const
+{
+    std::pair<time_t, double>   data;
+    std::tm			            t_data = {};
+    
+    SplitTokens(sLine, toks, delim);
+	if (toks[0].empty() || toks[1].empty())
+	{
+		IssueReporter(ERR_ENTRY_FORMAT);
+		throw BitcoinExchange::ParsingFailure();
+	}
+	if (!strptime(toks[0].c_str(), "%Y-%m-%d", &t_data))
+	{
+		IssueReporter(ERR_DATE_FORMAT);
+		throw BitcoinExchange::ParsingFailure();
+	}
+	data.first = std::mktime(&t_data);
+	if (data.first == -1)
+	{
+		IssueReporter(ERR_TIMESTAMP);
+		throw BitcoinExchange::ParsingFailure();
+	}
+    data.second = ParseDouble(toks[1].c_str());
+	if (data.second == HUGE_VAL_F64 || data.second < 0)
+	{
+		IssueReporter(ERR_BTC_PRICE);
+		throw BitcoinExchange::ParsingFailure();
+	}
+    if (delim == '|' && data.second > 1000)
+    {
+        IssueReporter(ERR_BTC_PRICE);
+		throw BitcoinExchange::ParsingFailure();
+    }
+    return (data);
+}
+
+void    BitcoinExchange::ValidateHeader(std::string& sLine, char delim) const
+{
+    std::stringstream   ss(sLine);
+    std::string         tok;
+    size_t              i = 0;
+
+    ss.exceptions(std::stringstream::badbit);
+    while (std::getline(ss, tok, delim))
+    {
+        size_t j = 0;
+        while (std::isspace(tok[j]))
+            j++;
+        if (!tok[j] || i == 2)
+        {
+            IssueReporter(ERR_HEADER);
+		    throw BitcoinExchange::ParsingFailure();
+        }
+        i++;
+    }
+    if (i < 2)
+    {
+        IssueReporter(ERR_HEADER);
+		throw BitcoinExchange::ParsingFailure();
+    }
+}
+
 void	BitcoinExchange::ParseFile(const char* file)
 {
-	std::ifstream	fs(file);
-	std::string		sLine;
-	std::tm			t_data = {};
-	std::time_t		timestamp;
-	double			btcAmount;
+	std::ifstream	            fs(file);
+	std::string		            sLine;
+    std::string                 toks[2];
+    std::pair<time_t, double>   data;
 
 	if (this->m_bInit == false)
 	{
@@ -133,45 +195,21 @@ void	BitcoinExchange::ParseFile(const char* file)
 		{
 			this->line++;
 			if (this->line == 1)
-			{
-				std::size_t i = sLine.find('|');
-				if (i == std::string::npos || sLine.find('|', i + 1) != std::string::npos)
-				{
-					IssueReporter(ERR_HEADER);
-					throw BitcoinExchange::ParsingFailure();
-				}
-			}
+				ValidateHeader(sLine, '|');
 			else if (!sLine.empty())
 			{
-				std::size_t i = sLine.find('|');
-				if (i != std::string::npos)
-					i = BitcoinExchange::cleanLine(sLine);
-				else
-				{
-					IssueReporter(ERR_ENTRY_FORMAT);
-					continue;
-				}
-				if (!strptime(sLine.c_str(), "%Y-%m-%d", &t_data))
-				{
-					IssueReporter(ERR_DATE_FORMAT);
-					continue;
-				}
-				timestamp = std::mktime(&t_data);
-				if (timestamp == -1)
-				{
-					IssueReporter(ERR_TIMESTAMP);
-					continue;
-				}
-                btcAmount = ParseDouble(sLine.c_str() + i);
-				if (btcAmount < 0 || btcAmount > 1000)
-				{
-					IssueReporter(ERR_BTC_AMOUNT);
-					continue;
-				}
-				std::map<time_t, double>::const_iterator it = this->m_map.lower_bound(timestamp);
+                try
+                {
+                    data = ParseLine(sLine, toks, '|');
+                }
+                catch (...)
+                {
+                    continue;
+                }
+				std::map<time_t, double>::const_iterator it = this->m_map.lower_bound(data.first);
 				if (it == this->m_map.end())
 					--it;
-				std::cout << sLine.c_str() << " => " << sLine.c_str() + i << " = " << (*it).second * btcAmount << std::endl;
+				std::cout << toks[0] << " => " << toks[1] << " = " << (*it).second * data.second << std::endl;
 			}
 		}
 		fs.close();
@@ -194,8 +232,8 @@ void	BitcoinExchange::InitMap()
 	const char* filename = "data.csv";
 	std::ifstream					fs(filename);
 	std::string						sLine;
+    std::string                     toks[2];
 	std::pair<time_t, double>		data;
-	std::tm							t_data = {};
 
 	this->file = filename;
 	if (fs.is_open() == false)
@@ -210,44 +248,10 @@ void	BitcoinExchange::InitMap()
 		while (std::getline(fs, sLine))
 		{
 			if (this->line == 1)
-			{
-				std::size_t i = sLine.find(',');
-				if (i == std::string::npos || sLine.find(',', i + 1) != std::string::npos)
-				{
-					IssueReporter(ERR_HEADER);
-					throw BitcoinExchange::ParsingFailure();
-				}
-			}
+                ValidateHeader(sLine, ',');
 			else if (!sLine.empty())
 			{
-				std::size_t i = sLine.find(',');
-				if (i != std::string::npos)
-					sLine.erase(i);
-				else
-				{
-					IssueReporter(ERR_ENTRY_FORMAT);
-					throw BitcoinExchange::ParsingFailure();
-				}
-				std::size_t j = sLine.find(',');
-				if (j != std::string::npos)
-					sLine.erase(j);
-				if (!strptime(sLine.c_str(), "%Y-%m-%d", &t_data))
-				{
-					IssueReporter(ERR_DATE_FORMAT);
-					throw BitcoinExchange::ParsingFailure();
-				}
-				data.first = std::mktime(&t_data);
-				if (data.first == -1)
-				{
-					IssueReporter(ERR_TIMESTAMP);
-					throw BitcoinExchange::ParsingFailure();
-				}
-                data.second = ParseDouble(sLine.c_str() + i + 1);
-				if (data.second == HUGE_VAL_F64 || data.second < 0)
-				{
-					IssueReporter(ERR_BTC_PRICE);
-					throw BitcoinExchange::ParsingFailure();
-				}
+                data = ParseLine(sLine, toks, ',');
 				this->m_map.insert(data);
 			}
 			this->line++;
