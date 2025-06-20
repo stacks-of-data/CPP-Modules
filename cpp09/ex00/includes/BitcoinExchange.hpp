@@ -44,7 +44,10 @@ class BitcoinExchange
 	void	InitMap();
 	void	ParseFile(const char* file);
 	void	IssueReporter(BitcoinExchange::Issues issue) const;
-	static size_t	cleanLine(std::string& str);
+    std::pair<time_t, double> ParseLine(std::string& sLine,
+        std::string *toks, char delim) const;
+    void    ValidateHeader(std::string& sLine, char delim) const;
+	static void SplitTokens(std::string& str, std::string* toks, char delim);
 	BitcoinExchange&	operator=(BitcoinExchange& obj);
 	class	ParsingFailure: public std::exception
 	{
