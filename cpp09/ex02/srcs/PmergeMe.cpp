@@ -132,14 +132,13 @@ void	PmergeMe::sortVector(const int ac, const char** av)
 	for (int i = 1; i < ac; i++)
 	{
 		ss << av[i];
-		while (ss >> tmp)
+		while (!ss.eof())
 		{
-			if (tmp < 0)
+			ss >> tmp;
+			if (ss.fail() || tmp < 0)
 				throw PmergeMe::InvalidSequence();
 			vec.push_back(tmp);
 		}
-		if (!ss.eof())
-			throw PmergeMe::InvalidSequence();
 		ss.clear();
 	}
 	if (!vec.size())
@@ -175,14 +174,13 @@ void	PmergeMe::sortDeque(const int ac, const char** av)
 	for (int i = 1; i < ac; i++)
 	{
 		ss << av[i];
-		while (ss >> tmp)
+		while (!ss.eof())
 		{
-			if (tmp < 0)
+			ss >> tmp;
+			if (ss.fail() || tmp < 0)
 				throw PmergeMe::InvalidSequence();
 			deq.push_back(tmp);
 		}
-		if (!ss.eof())
-			throw PmergeMe::InvalidSequence();
 		ss.clear();
 	}
 	if (!deq.size())
