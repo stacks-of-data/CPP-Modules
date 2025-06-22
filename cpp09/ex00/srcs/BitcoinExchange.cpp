@@ -11,10 +11,12 @@
 /* ************************************************************************** */
 
 #include "../includes/BitcoinExchange.hpp"
+#include <ctime>
 #include <fstream>
 #include <iostream>
 #include <cmath>
 #include <sstream>
+#include <string>
 
 void  BitcoinExchange::SplitTokens(std::string& str, std::string* toks, char delim)
 {
@@ -59,9 +61,9 @@ void	BitcoinExchange::IssueReporter(BitcoinExchange::Issues issue) const
 			std::cerr << "line:" << this->line << '\n';
 			std::cerr << "Incorrect date format";
 			break;
-		case ERR_TIMESTAMP:
+		case ERR_DUPLICATE_DATE:
 			std::cerr << "line:" << this->line << '\n';
-			std::cerr << "Date cannot be stored in std::time_t datatype";
+			std::cerr << "Duplicated Date";
 			break;
 		case ERR_BTC_AMOUNT:
 			std::cerr << "line:" << this->line << '\n';
@@ -98,11 +100,60 @@ double  ParseDouble(const char* str)
     return (val);
 }
 
+time_t BitcoinExchange::ParseDate(std::string& date)
+{
+    std::stringstream   ss(date);
+    std::string         toks[3];
+    std::tm             tm = {};
+    time_t              timestamp;
+
+    ss.exceptions(std::stringstream::badbit);
+    size_t i = 0;
+    while (std::getline(ss, toks[i], '-'))
+    {
+        if (i == 3)
+            throw BitcoinExchange::ParsingFailure();
+        i++;
+    }
+    i = 0;
+    int val;
+    while (i < DATE_FINISH)
+    {
+        ss.clear();
+        ss.str(toks[i]);
+        ss >> val;
+        if (ss.fail())
+            throw BitcoinExchange::ParsingFailure();
+        switch (i)
+        {
+            case DATE_YEAR:
+                tm.tm_year = val - 1900;
+                break;
+            case DATE_MONTH:
+                tm.tm_mon = val - 1;
+                break;
+            case DATE_DAY:
+                tm.tm_mday = val;
+                break;
+        }
+        i++;
+    }
+    int tm_year = tm.tm_year;
+    int tm_month = tm.tm_mon;
+    int tm_day = tm.tm_mday;
+    timestamp = std::mktime(&tm);
+	if (timestamp == -1)
+		throw BitcoinExchange::ParsingFailure();
+    if (tm_year != tm.tm_year
+        || tm_month != tm.tm_mon || tm_day != tm.tm_mday)
+		throw BitcoinExchange::ParsingFailure();
+    return (timestamp);
+}
+
 std::pair<time_t, double> BitcoinExchange::ParseLine(std::string& sLine,
     std::string *toks, char delim) const
 {
     std::pair<time_t, double>   data;
-    std::tm			            t_data = {};
     
     SplitTokens(sLine, toks, delim);
 	if (toks[0].empty() || toks[1].empty())
@@ -110,17 +161,16 @@ std::pair<time_t, double> BitcoinExchange::ParseLine(std::string& sLine,
 		IssueReporter(ERR_ENTRY_FORMAT);
 		throw BitcoinExchange::ParsingFailure();
 	}
-	if (!strptime(toks[0].c_str(), "%Y-%m-%d", &t_data))
-	{
-		IssueReporter(ERR_DATE_FORMAT);
-		throw BitcoinExchange::ParsingFailure();
-	}
-	data.first = std::mktime(&t_data);
-	if (data.first == -1)
-	{
-		IssueReporter(ERR_TIMESTAMP);
-		throw BitcoinExchange::ParsingFailure();
-	}
+    try
+    {
+        data.first = ParseDate(toks[0]);
+    }
+    catch (const std::exception& e)
+    {
+        IssueReporter(ERR_DATE_FORMAT);
+        throw;
+    }
+    ParseDate(toks[0]);
     data.second = ParseDouble(toks[1].c_str());
 	if (data.second == HUGE_VAL_F64 || data.second < 0)
 	{
@@ -137,27 +187,11 @@ std::pair<time_t, double> BitcoinExchange::ParseLine(std::string& sLine,
 
 void    BitcoinExchange::ValidateHeader(std::string& sLine, char delim) const
 {
-    std::stringstream   ss(sLine);
-    std::string         tok;
-    size_t              i = 0;
-
-    ss.exceptions(std::stringstream::badbit);
-    while (std::getline(ss, tok, delim))
-    {
-        size_t j = 0;
-        while (std::isspace(tok[j]))
-            j++;
-        if (!tok[j] || i == 2)
-        {
-            IssueReporter(ERR_HEADER);
-		    throw BitcoinExchange::ParsingFailure();
-        }
-        i++;
-    }
-    if (i < 2)
+    size_t i = sLine.find(delim);
+    if (i == std::string::npos || i != sLine.rfind(delim))
     {
         IssueReporter(ERR_HEADER);
-		throw BitcoinExchange::ParsingFailure();
+        throw BitcoinExchange::ParsingFailure();
     }
 }
 
@@ -204,8 +238,9 @@ void	BitcoinExchange::ParseFile(const char* file)
                     continue;
                 }
 				std::map<time_t, double>::const_iterator it = this->m_map.lower_bound(data.first);
-				if (it == this->m_map.end())
-					--it;
+                if (it == this->m_map.end() || (*it).first != data.first)
+                    if (it != this->m_map.begin())
+                        --it;
 				std::cout << toks[0] << " => " << toks[1] << " = " << (*it).second * data.second << std::endl;
 			}
 		}
@@ -249,6 +284,11 @@ void	BitcoinExchange::InitMap()
 			else if (!sLine.empty())
 			{
                 data = ParseLine(sLine, toks, ',');
+                if (this->m_map.count(data.first))
+                {
+                    IssueReporter(ERR_DUPLICATE_DATE);
+                    throw BitcoinExchange::ParsingFailure();
+                }
 				this->m_map.insert(data);
 			}
 			this->line++;

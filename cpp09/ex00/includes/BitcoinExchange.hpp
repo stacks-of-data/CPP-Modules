@@ -13,6 +13,7 @@
 #ifndef BITCOINEXCHANGE_HPP
 #define BITCOINEXCHANGE_HPP
 
+#include <bits/types/time_t.h>
 #include <ctime>
 #include <map>
 #include <exception>
@@ -27,12 +28,19 @@ class BitcoinExchange
 		ERR_HEADER,
 		ERR_ENTRY_FORMAT,
 		ERR_DATE_FORMAT,
-		ERR_TIMESTAMP,
+        ERR_DUPLICATE_DATE,
 		ERR_BTC_AMOUNT,
 		ERR_BTC_PRICE,
 		ERR_MAP_UNINITALIZED,
 		ERR_MAP_EMPTY
 	};
+    enum    DateModes
+    {
+        DATE_YEAR,
+        DATE_MONTH,
+        DATE_DAY,
+        DATE_FINISH
+    };
 	std::map<time_t, double>	m_map;
 	bool						m_bInit;
 	std::size_t					line;
@@ -48,6 +56,7 @@ class BitcoinExchange
         std::string *toks, char delim) const;
     void    ValidateHeader(std::string& sLine, char delim) const;
 	static void SplitTokens(std::string& str, std::string* toks, char delim);
+    static time_t ParseDate(std::string& date);
 	BitcoinExchange&	operator=(BitcoinExchange& obj);
 	class	ParsingFailure: public std::exception
 	{
