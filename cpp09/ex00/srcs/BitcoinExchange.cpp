@@ -103,7 +103,7 @@ double  ParseDouble(const char* str)
 time_t BitcoinExchange::ParseDate(std::string& date)
 {
     std::stringstream   ss(date);
-    std::string         toks[3];
+    std::string         toks[4];
     std::tm             tm = {};
     time_t              timestamp;
 
