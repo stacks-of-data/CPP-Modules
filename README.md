@@ -1,5 +1,5 @@
 # CPP-Modules
-CPP-Modules are C++ projects with the main goal of OOP where we will learn about Namespaces, classes, stdio streams, errors handling in C++, STL, Memory Allocation, References, Pointers to member functions.  
+CPP-Modules are C++ projects with the main goal of OOP where we will learn about Namespaces, classes, stdio streams, errors handling in C++, STL, Memory Management and safe type-casting. 
 ## CPP00  
 In this module we learned how to create a class and use it and how to use namespaces correctly, and the usage of streams and correctly error handling in C++.   
 ## CPP01
