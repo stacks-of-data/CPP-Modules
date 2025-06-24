@@ -106,6 +106,7 @@ time_t BitcoinExchange::ParseDate(std::string& date)
     std::string         toks[4];
     std::tm             tm = {};
     time_t              timestamp;
+    char                c;
 
     ss.exceptions(std::stringstream::badbit);
     size_t i = 0;
@@ -113,6 +114,18 @@ time_t BitcoinExchange::ParseDate(std::string& date)
     {
         if (i == 3)
             throw BitcoinExchange::ParsingFailure();
+        switch (i)
+        {
+            case DATE_YEAR:
+                if (toks[i].size() > 4)
+                    throw BitcoinExchange::ParsingFailure();
+                break;
+            case DATE_MONTH:
+            case DATE_DAY:
+                if (toks[i].size() > 2)
+                    throw BitcoinExchange::ParsingFailure();
+                break;
+        }
         i++;
     }
     i = 0;
@@ -122,7 +135,7 @@ time_t BitcoinExchange::ParseDate(std::string& date)
         ss.clear();
         ss.str(toks[i]);
         ss >> val;
-        if (ss.fail())
+        if (ss.fail() || ss >> c)
             throw BitcoinExchange::ParsingFailure();
         switch (i)
         {
