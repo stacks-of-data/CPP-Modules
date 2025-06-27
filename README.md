@@ -63,5 +63,6 @@ rand() and srand() in C++: https://www.geeksforgeeks.org/rand-and-srand-in-ccpp/
 Casting operators: https://www.geeksforgeeks.org/casting-operators-in-cpp/  
 RTTI: https://www.geeksforgeeks.org/rtti-run-time-type-information-in-cpp/  
 Templates: https://www.geeksforgeeks.org/templates-cpp/  
-STL: https://www.geeksforgeeks.org/the-c-standard-template-library-stl/
+STL: https://www.geeksforgeeks.org/the-c-standard-template-library-stl/  
+Binary Search: https://taylorial.com/dstruct/binarysearch/
 
